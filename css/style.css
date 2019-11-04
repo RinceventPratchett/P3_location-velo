@@ -10,8 +10,9 @@ header{
     
 }
 
-#mapId{
-   height: 180px; 
+#map{
+   height: 30vw;
+   max-width: 100%;
 }
 
 .rent{
