@@ -1,4 +1,19 @@
+header{
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 3vw;
+}
 
-.text {
+.diaporama{
+    
+}
 
+#mapId{
+   height: 180px; 
+}
+
+.rent{
+    
 }

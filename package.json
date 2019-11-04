@@ -1,8 +1,16 @@
 {
     "name": "P3_location-velo",
     "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],
+    "keywords": [
+        "util",
+        "functional",
+        "server",
+        "client",
+        "browser"
+    ],
     "author": "Voy",
     "contributors": [],
-    "dependencies": {}
+    "dependencies": {
+        "jquery": "^3.4.1"
+    }
 }
