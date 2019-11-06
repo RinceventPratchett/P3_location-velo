@@ -1,13 +1,7 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/*---------- Require ajax.js + maps.js preventively (url+ajax request)-------------------
+*/
+
+
 //pour instancier le marker vert 
 var greenIcon = L.icon({
 	iconUrl: '../images/leaf-green.png',
@@ -42,7 +36,9 @@ var orangeIcon = L.icon({
 	popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-ajaxGet(url, function (detailsStation) {
+var markers = L.markerClusterGroup();
+
+function successAjax(detailsStation) {
     var details = JSON.parse(detailsStation);
         console.log(details);//pour faire un controle sur la console
     details.forEach(function (station) { //pour récupérer les détail de chaque station
@@ -53,12 +49,15 @@ ajaxGet(url, function (detailsStation) {
         var adressStation = station.address;
         var remainingPark = station.available_bikes_stands;
         var statutStation = station.status;
-        if ((dispo > 0) && (statutStation === "OPEN")) {
-            L.marker([coordLat, coordLng], {icon: greenIcon}).addTo(map);
-        } else if (statutStation === "CLOSED") {
-            L.marker([coordLat, coordLng], {icon: redIcon}).addTo(map);
-        } else if ((statutStation === "OPEN") && ((dispo === 0) || (remainingPark === 0))) {
-            L.marker([coordLat, coordLng], {icon: orangeIcon}).addTo(map);
-        };
+        var color = greenIcon;
+        if (statutStation === 'OPEN' && (dispo === 0 || remainingPark === 0)) {
+            color = orangeIcon;
+        } else if (statutStation === 'CLOSED') {
+            color = redIcon;
+        }
+        markers.addLayer(L.marker([coordLat, coordLng], {icon: color}));    //pour ajouter tous les markers aux clusters.   
     });
-});
+    markers.addTo(map);
+};
+
+ajaxGet(url, successAjax);
