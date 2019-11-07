@@ -17,7 +17,7 @@ const orangeIcon = new icons({iconUrl: '../images/leaf-orange.png'});
 //pour créer le Cluster utilisés avec l'ajout des markers ->39
 const markers = L.markerClusterGroup();
 
-function successAjax(detailsStation) {
+function successAjax(detailsStation) { //l'utilisation de var permet l'appel du contenu dans toute la fonction
     var details = JSON.parse(detailsStation);
         console.log(details);//pour faire un controle sur la console
     details.forEach(function (station) { //pour récupérer les détail de chaque station
@@ -36,17 +36,10 @@ function successAjax(detailsStation) {
         } else if (statutStation === 'CLOSED') {
                 color = redIcon;                
         }
-        var marker = L.marker([coordLat, coordLng], {icon: color}); //pour ajouter les popup sur chaque marker
-        markers.addLayer(marker, marker.bindPopup( /*pour rassembler les markers et instancier le popup sur chacun */ 
-              `Station : ${nameStation}  
-              <br>
-               Adresse : ${adressStation}
-              <br> 
-              Nombre de places : ${remainingPark} 
-              <br>
-              Vélos disponible : <strong>${dispo}</strong>`
-                //utilisation des accents graves (libéraux de gabarits) pour utiliser du texte +  les details de la fonctio forEach
-        ));
+        var marker = L.marker([coordLat, coordLng], {icon: color}); //pour ajouter les popup sur chaque marker 
+        markers.addLayer(marker, marker.bindPopup('Statut de la station : ' + statutStation + '<br> Station : ' + nameStation + 
+                '<br> Adresse : ' + adressStation + '<br> Vélo\'V disponible : ' + dispo 
+                + '<br> Place de stationnement Vélo\'V disponible : ' + remainingPark)); //mise en place info contenu dans le marker.         
     });
     markers.addTo(map);
 };
