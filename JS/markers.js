@@ -30,7 +30,7 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
         var statutStation = station.status;
         var color = greenIcon;
         // marker vert de base et modifié par les conditions    
-        if (statutStation === 'OPEN' && (dispo === 0 || remainingPark === 0)) {
+        if (statutStation === 'OPEN' && (dispo <= 2 || remainingPark <= 2)) {
                 color = orangeIcon;
          
         } else if (statutStation === 'CLOSED') {
@@ -39,7 +39,10 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
         var marker = L.marker([coordLat, coordLng], {icon: color}); //pour ajouter les popup sur chaque marker 
         markers.addLayer(marker, marker.bindPopup('Statut de la station : ' + statutStation + '<br> Station : ' + nameStation + 
                 '<br> Adresse : ' + adressStation + '<br> Vélo\'V disponible : ' + dispo 
-                + '<br> Place de stationnement Vélo\'V disponible : ' + remainingPark)); //mise en place info contenu dans le marker.         
+                + '<br> Place de stationnement Vélo\'V disponible : ' + remainingPark)); //mise en place info contenu dans le marker.
+        if (statutStation === 'CLOSED') {
+                marker.bindPopup('Statut de la station : ' + statutStation + '<br> Station : ' + nameStation);
+        }
     });
     markers.addTo(map);
 };
