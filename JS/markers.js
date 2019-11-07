@@ -1,42 +1,21 @@
 /*---------- Require ajax.js + maps.js preventively (url+ajax request)-------------------
 */
 
-
-//pour instancier le marker vert 
-var greenIcon = L.icon({
-	iconUrl: '../images/leaf-green.png',
-	shadowUrl: '../images/leaf-shadow.png',
-
-	iconSize:     [38, 95], // size of the icon
-	shadowSize:   [50, 64], // size of the shadow
-	iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-	shadowAnchor: [4, 62],  // the same for the shadow
-	popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+//Instancie la class icons qui servira pour chaque icone de couleur
+const icons = L.Icon.extend ({
+        options : {
+            iconSize: [38, 95],
+            iconAnchor: [22, 94],
+            popupAnchor: [-3, -76]
+        }
 });
+//pour instancier le marker vert/rouge/orange 
+const greenIcon = new icons({iconUrl: '../images/leaf-green.png'});
+const redIcon = new icons({iconUrl: '../images/leaf-red.png'});
+const orangeIcon = new icons({iconUrl: '../images/leaf-orange.png'});
 
-var redIcon = L.icon({
-	iconUrl: '../images/leaf-red.png',
-	shadowUrl: '../images/leaf-shadow.png',
-
-	iconSize:     [38, 95], // size of the icon
-	shadowSize:   [50, 64], // size of the shadow
-	iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-	shadowAnchor: [4, 62],  // the same for the shadow
-	popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
-
-var orangeIcon = L.icon({
-	iconUrl: '../images/leaf-orange.png',
-	shadowUrl: '../images/leaf-shadow.png',
-
-	iconSize:     [38, 95], // size of the icon
-	shadowSize:   [50, 64], // size of the shadow
-	iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-	shadowAnchor: [4, 62],  // the same for the shadow
-	popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
-
-var markers = L.markerClusterGroup();
+//pour créer le Cluster utilisés avec l'ajout des markers ->39
+const markers = L.markerClusterGroup();
 
 function successAjax(detailsStation) {
     var details = JSON.parse(detailsStation);
@@ -47,15 +26,27 @@ function successAjax(detailsStation) {
         var dispo = station.available_bikes;
         var nameStation = station.name;
         var adressStation = station.address;
-        var remainingPark = station.available_bikes_stands;
+        var remainingPark = station.available_bike_stands;
         var statutStation = station.status;
         var color = greenIcon;
+        // marker vert de base et modifié par les conditions    
         if (statutStation === 'OPEN' && (dispo === 0 || remainingPark === 0)) {
-            color = orangeIcon;
+                color = orangeIcon;
+         
         } else if (statutStation === 'CLOSED') {
-            color = redIcon;
+                color = redIcon;                
         }
-        markers.addLayer(L.marker([coordLat, coordLng], {icon: color}));    //pour ajouter tous les markers aux clusters.   
+        var marker = L.marker([coordLat, coordLng], {icon: color}); //pour ajouter les popup sur chaque marker
+        markers.addLayer(marker, marker.bindPopup( /*pour rassembler les markers et instancier le popup sur chacun */ 
+              `Station : ${nameStation}  
+              <br>
+               Adresse : ${adressStation}
+              <br> 
+              Nombre de places : ${remainingPark} 
+              <br>
+              Vélos disponible : <strong>${dispo}</strong>`
+                //utilisation des accents graves (libéraux de gabarits) pour utiliser du texte +  les details de la fonctio forEach
+        ));
     });
     markers.addTo(map);
 };
