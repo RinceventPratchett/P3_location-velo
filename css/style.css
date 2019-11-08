@@ -30,8 +30,8 @@ header{
     border-radius: 5px;
 }
 
-.titreStatut{
-    display: block;
+.detailsStation{
+    display: none;
     text-align: center;
     width : 80%;
     margin-left: 10%;
@@ -74,6 +74,63 @@ header{
     margin-top: 1%;  
     background-color: graytext;
     border-radius: 5px;
+    color: white;
+    height: auto;
+}
+
+.nameStation{
+    display: none;
+    text-align: center;
+    width: 80%;
+    border: solid black 1px;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    margin-left: 10%;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    height: auto;
+    
+}
+
+.address{
+    display: none;
+    text-align: center;
+    width: 80%;
+    border: solid black 1px;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    margin-left: 10%;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    height: auto;
+}
+
+.dispo{
+    display: none;
+    text-align: center;
+    width: 80%;
+    border: solid black 1px;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    margin-left: 10%;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    height: auto;
+}
+
+.stationnement{
+    display: none;
+    text-align: center;
+    width: 80%;
+    border: solid black 1px;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    margin-left: 10%;
+    border-radius: 5px;
+    background-color: black;
     color: white;
     height: auto;
 }

@@ -50,19 +50,42 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
         
         marker.addEventListener("click", function(){
                 $("#statut").empty();
+                $(".detailsStation").empty();
+                $(".nameStation").empty();
+                $(".address").empty();
+                $(".dispo").empty();
+                $(".stationnement").empty();
                 $("#velov").css({ display: "flex" });
                 $("#billboard").css({ display: "block" });
                 $("#map").css({ width : "75%" });
                 if (statutStation === 'OPEN'){
                     $("#statut").append("open");
+                    $(".detailsStation").css({ display: "block" });
+                    $(".detailsStation").append("Détails de la station");
+                    $(".nameStation").css({ display: "block" });
+                    $(".nameStation").append(nameStation);
+                    $(".address").css({ display: "block" });
+                    $(".address").append(adressStation);
+                    (".dispo").css({ display: "block" });
+                    $(".dispo").append(dispo);
+                    (".stationnement").css({ display: "block" });
+                    $(".stationnement").append(remainingPark);                    
+                    
                     if (dispo > 0){
                             $("#rent").css({ display: "block" });  
                     } else {
                             $("#rent").css({ display: "none" });
                     }
                 } else if (statutStation === 'CLOSED') {
+                    $(".detailsStation").css({ display: "block" });
+                    $(".detailsStation").append("Détails de la station");
                     $("#statut").append("closed");
+                    $(".nameStation").css({ display: "block" });
+                    $(".nameStation").append(nameStation);
+                    $(".address").css({ display: "none" });
+                    $(".dispo").css({ display: "none" });
                     $("#rent").css({ display: "none" });
+                    $(".stationnement").css({ display: "none" });  
 
                 }        
                 map.addEventListener("click", function() {
