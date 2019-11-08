@@ -27,11 +27,22 @@ and open the template in the editor.
         <main>
             <div class="diaporama"></div>
             
-            <div id="map" class="map"></div>
-            
-            <div class="rent"></div>
+            <div id="velov">
+                <div id="map" class="map"></div>
+                <div id="billboard">
+                    <span class="titreStatut">statut de la station</span>
+                    <span id="statut"></span>
+                    <form id="rent">
+                        <p>Formulaire de réservation</p>
+                        <input type="text" name="firstname" placeholder="Entrer votre prénom"><br>
+                        <input type="text" name="lastname" placeholder="Entrer votre nom de famille">                       
+                    </form>
+                </div>
+            </div>
+
         </main>        
         <footer>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
             <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
    crossorigin="">

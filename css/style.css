@@ -3,18 +3,75 @@ header{
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
-    padding: 3vw;
+    padding: 2.5vw;
 }
 
 .diaporama{
     
 }
 
-#map{
-   height: 40rem;
-   max-width: 100%;
+#velov{
+    height: 40rem;
 }
 
-.rent{
-    
+#map{
+   height: 40rem;
+   max-width: 99%;
+   margin-left: 0.5%;
+   border-radius: 5px;
+}
+
+#billboard{
+    display: none;
+    width: 24%;
+    height: 40rem;
+    border: solid black 1.5px;
+    background-color: gray;
+    border-radius: 5px;
+}
+
+.titreStatut{
+    display: block;
+    text-align: center;
+    width : 80%;
+    margin-left: 10%;
+    margin-top: 6%;
+    height: 2vw;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+#statut{
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 1%;
+    height: auto;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+#rent{
+    display: none;
+    text-align: center;
+    width: 80%;
+    border: solid black 1px;
+    margin-top: 5rem;
+    padding-bottom: 1rem;
+    margin-left: 10%;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+#rent input{
+    width: 80%;
+    margin-top: 1%;  
+    background-color: graytext;
+    border-radius: 5px;
+    color: white;
 }

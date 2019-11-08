@@ -17,6 +17,12 @@ const orangeIcon = new icons({iconUrl: '../images/leaf-orange.png'});
 //pour créer le Cluster utilisés avec l'ajout des markers ->39
 const markers = L.markerClusterGroup();
 
+/*
+ * successAjax Executé au succès de la requete ajax du wenservice JCdecault
+ * 
+ * @param {object} detailsStation Objet retourné par l'API JCdecault
+ * @returns true
+ */
 function successAjax(detailsStation) { //l'utilisation de var permet l'appel du contenu dans toute la fonction
     var details = JSON.parse(detailsStation);
         console.log(details);//pour faire un controle sur la console
@@ -29,22 +35,47 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
         var remainingPark = station.available_bike_stands;
         var statutStation = station.status;
         var color = greenIcon;
-        // marker vert de base et modifié par les conditions    
+        var popup = 'Statut de la station : ' + statutStation + '<br /> Station : ' + nameStation + 
+                '<br /> Adresse : ' + adressStation + '<br /> Vélo\'V disponible : ' + dispo 
+                + '<br /> Place de stationnement Vélo\'V disponible : ' + remainingPark;
+        // marker vert de base et modifié par les conditions + popup    
         if (statutStation === 'OPEN' && (dispo <= 2 || remainingPark <= 2)) {
                 color = orangeIcon;
          
         } else if (statutStation === 'CLOSED') {
-                color = redIcon;                
+                color = redIcon;
+                popup = 'Statut de la station : ' + statutStation + '<br /> Station : ' + nameStation;
         }
         var marker = L.marker([coordLat, coordLng], {icon: color}); //pour ajouter les popup sur chaque marker 
-        markers.addLayer(marker, marker.bindPopup('Statut de la station : ' + statutStation + '<br> Station : ' + nameStation + 
-                '<br> Adresse : ' + adressStation + '<br> Vélo\'V disponible : ' + dispo 
-                + '<br> Place de stationnement Vélo\'V disponible : ' + remainingPark)); //mise en place info contenu dans le marker.
-        if (statutStation === 'CLOSED') {
-                marker.bindPopup('Statut de la station : ' + statutStation + '<br> Station : ' + nameStation);
-        }
+        
+        marker.addEventListener("click", function(){
+                $("#statut").empty();
+                $("#velov").css({ display: "flex" });
+                $("#billboard").css({ display: "block" });
+                $("#map").css({ width : "75%" });
+                if (statutStation === 'OPEN'){
+                    $("#statut").append("open");
+                    if (dispo > 0){
+                            $("#rent").css({ display: "block" });  
+                    } else {
+                            $("#rent").css({ display: "none" });
+                    }
+                } else if (statutStation === 'CLOSED') {
+                    $("#statut").append("closed");
+                    $("#rent").css({ display: "none" });
+
+                }        
+                map.addEventListener("click", function() {
+                   $("#billboard").css({ display: "none" });
+                   $("#map").css({ width : "100%" });
+                });        
+        
+        });
+        marker.bindPopup(popup);    
+        markers.addLayer(marker); //mise en place info contenu dans le marker.
     });
     markers.addTo(map);
+    return true;
 };
 
 ajaxGet(url, successAjax);
