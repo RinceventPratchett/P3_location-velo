@@ -48,26 +48,26 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
         }
         var marker = L.marker([coordLat, coordLng], {icon: color}); //pour ajouter les popup sur chaque marker 
         
-        marker.addEventListener("click", function(){
-                $("#statut").empty();
+        marker.addEventListener("click", function(){ 
+                $("#statut").empty();   //pour vider les champs si ils ont déjà été appelé 
                 $(".detailsStation").empty();
                 $(".nameStation").empty();
                 $(".address").empty();
                 $(".dispo").empty();
                 $(".stationnement").empty();
-                $("#velov").css({ display: "flex" });
+                $("#velov").css({ display: "flex" }); 
                 $("#billboard").css({ display: "block" });
                 $("#map").css({ width : "75%" });
                 if (statutStation === 'OPEN'){
                     $("#statut").append("open");
                     $(".detailsStation").css({ display: "block" });
-                    $(".detailsStation").append("Détails de la station");
+                    $(".detailsStation").append("Détails de la station"); //texte qui apparait
                     $(".nameStation").css({ display: "block" });
                     $(".nameStation").append(nameStation);
                     $(".address").css({ display: "block" });
                     $(".address").append(adressStation);
                     $(".dispo").css({ display: "block" });
-                    $(".dispo").append(dispo + " vélo'v disponible");
+                    $(".dispo").append(dispo + " vélo'v disponible(s)");
                     $(".stationnement").css({ display: "block" });
                     $(".stationnement").append(remainingPark + " place(s) restante(s)");                    
                     
@@ -82,19 +82,19 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
                     $("#statut").append("closed");
                     $(".nameStation").css({ display: "block" });
                     $(".nameStation").append(nameStation);
-                    $(".address").css({ display: "none" });
+                    $(".address").css({ display: "none" }); //pour faire disparaitre le bloc vide
                     $(".dispo").css({ display: "none" });
                     $("#rent").css({ display: "none" });
                     $(".stationnement").css({ display: "none" });  
 
                 }        
                 map.addEventListener("click", function() {
-                   $("#billboard").css({ display: "none" });
+                   $("#billboard").css({ display: "none" }); //pour effacer le panneau lors d'un click sur la map 
                    $("#map").css({ width : "100%" });
                 });        
         
         });
-        marker.bindPopup(popup);    
+        marker.bindPopup(popup);     //initialise les popups
         markers.addLayer(marker); //mise en place info contenu dans le marker.
     });
     markers.addTo(map);
