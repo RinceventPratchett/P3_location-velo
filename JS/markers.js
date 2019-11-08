@@ -59,13 +59,13 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
                 $("#billboard").css({ display: "block" });
                 $("#map").css({ width : "75%" });
                 if (statutStation === 'OPEN'){
-                    $("#statut").append("open");
+                    $("#statut").append("statut : open");
                     $(".detailsStation").css({ display: "block" });
                     $(".detailsStation").append("Détails de la station"); //texte qui apparait
                     $(".nameStation").css({ display: "block" });
                     $(".nameStation").append(nameStation);
                     $(".address").css({ display: "block" });
-                    $(".address").append(adressStation);
+                    $(".address").append("adresse : " + adressStation);
                     $(".dispo").css({ display: "block" });
                     $(".dispo").append(dispo + " vélo'v disponible(s)");
                     $(".stationnement").css({ display: "block" });
@@ -78,8 +78,8 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
                     }
                 } else if (statutStation === 'CLOSED') {
                     $(".detailsStation").css({ display: "block" });
-                    $(".detailsStation").append("Détails de la station");
-                    $("#statut").append("closed");
+                    $(".detailsStation").append("détails de la station");
+                    $("#statut").append("statut : closed");
                     $(".nameStation").css({ display: "block" });
                     $(".nameStation").append(nameStation);
                     $(".address").css({ display: "none" }); //pour faire disparaitre le bloc vide
