@@ -66,9 +66,9 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
                     $(".nameStation").append(nameStation);
                     $(".address").css({ display: "block" });
                     $(".address").append(adressStation);
-                    (".dispo").css({ display: "block" });
+                    $(".dispo").css({ display: "block" });
                     $(".dispo").append(dispo);
-                    (".stationnement").css({ display: "block" });
+                    $(".stationnement").css({ display: "block" });
                     $(".stationnement").append(remainingPark);                    
                     
                     if (dispo > 0){
