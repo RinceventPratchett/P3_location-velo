@@ -67,9 +67,9 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
                     $(".address").css({ display: "block" });
                     $(".address").append(adressStation);
                     $(".dispo").css({ display: "block" });
-                    $(".dispo").append(dispo);
+                    $(".dispo").append(dispo + " vélo'v disponible");
                     $(".stationnement").css({ display: "block" });
-                    $(".stationnement").append(remainingPark);                    
+                    $(".stationnement").append(remainingPark + " place(s) restante(s)");                    
                     
                     if (dispo > 0){
                             $("#rent").css({ display: "block" });  
