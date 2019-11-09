@@ -49,7 +49,7 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
         var marker = L.marker([coordLat, coordLng], {icon: color}); //pour ajouter les popup sur chaque marker 
         
         marker.addEventListener("click", function(){ 
-                $(".statut").empty();   //pour vider les champs si ils ont déjà été appelé 
+                $("#statut").empty();   //pour vider les champs si ils ont déjà été appelé 
                 $(".detailsStation").empty();
                 $(".nameStation").empty();
                 $(".address").empty();
@@ -59,7 +59,7 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
                 $("#billboard").css({ display: "block" });
                 $("#map").css({ width : "75%" });
                 if (statutStation === 'OPEN'){
-                    $(".statut").append("statut : open");
+                    $("#statut").append("statut : open");
                     $(".detailsStation").css({ display: "block" });
                     $(".detailsStation").append("Détails de la station"); //texte qui apparait
                     $(".nameStation").css({ display: "block" });
@@ -72,14 +72,14 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
                     $(".stationnement").append(remainingPark + " place(s) restante(s)");                    
                     
                     if (dispo > 0){
-                            $("#rent").css({ display: "flex" });  
+                            $("#rent").css({ display: "block" });  
                     } else {
                             $("#rent").css({ display: "none" });
                     }
                 } else if (statutStation === 'CLOSED') {
                     $(".detailsStation").css({ display: "block" });
                     $(".detailsStation").append("détails de la station");
-                    $(".statut").append("statut : closed");
+                    $("#statut").append("statut : closed");
                     $(".nameStation").css({ display: "block" });
                     $(".nameStation").append(nameStation);
                     $(".address").css({ display: "none" }); //pour faire disparaitre le bloc vide
@@ -100,25 +100,5 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
     markers.addTo(map);
     return true;
 };
-// pour stocker les infos saisies lors de la session (reset si fermeture du nav)
-var stockNomPrenom = () => { 
-    var lastName = document.getElementById('lastName');
-    var firstName = document.getElementById('firstName');
-    if (sessionStorage.getItem('stockLastName')){
-      nom.value = sessionStorage.getItem('stockLastName'); //pour restaurer le champ Nom
-    }
-    nom.addEventListener("change", function() {
-      sessionStorage.setItem('stockLastName', lastName.value); //pour enregistrer les modificarions faites dans le champs au moment de la saisie
-    });
-    if(sessionStorage.getItem('stockFirstName')){
-      firstName.value = sessionStorage.getItem('stockFirstName');
-    }
-    firstName.addEventListener("change", function() {
-      sessionStorage.setItem('stockFirstName', firstName.value);
-    });
-   
-};
- 
-ajaxGet(url, successAjax);
-stockNomPrenom();
 
+ajaxGet(url, successAjax);
