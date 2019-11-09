@@ -20,7 +20,7 @@ header{
 }
 
 #map{
-   height: 40vw;
+   height: 45vw;
    max-width: 99%;
    margin-left: 0.5%;
    margin-right: 0.5%;
@@ -31,8 +31,8 @@ header{
     display: none;
     margin-right: 0.5%;
     margin-left: 0.5%;
-    width: 30%;
-    height: 40vw;
+    width: 35%;
+    height: 45vw;
     border: solid black 1.5px;
     background-color: gray;
     border-radius: 5px;
