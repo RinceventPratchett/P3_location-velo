@@ -105,9 +105,9 @@ var stockNomPrenom = () => {
     var lastName = document.getElementById('lastName');
     var firstName = document.getElementById('firstName');
     if (sessionStorage.getItem('stockLastName')){
-      nom.value = sessionStorage.getItem('stockLastName'); //pour restaurer le champ Nom
+      lastName.value = sessionStorage.getItem('stockLastName'); //pour restaurer le champ Nom
     }
-    nom.addEventListener("change", function() {
+    lastName.addEventListener("change", function() {
       sessionStorage.setItem('stockLastName', lastName.value); //pour enregistrer les modificarions faites dans le champs au moment de la saisie
     });
     if(sessionStorage.getItem('stockFirstName')){

@@ -20,7 +20,7 @@ header{
 }
 
 #map{
-   height: 45rem;
+   height: 50rem;
    max-width: 99%;
    margin-left: 0.5%;
    margin-right: 0.5%;
@@ -31,8 +31,8 @@ header{
     display: none;
     margin-right: 0.5%;
     margin-left: 0.5%;
-    width: 40%;
-    height: 45rem;
+    width: 50%;
+    height: 50rem;
     border: solid black 1.5px;
     background-color: gray;
     border-radius: 5px;
@@ -78,6 +78,10 @@ header{
     background-color: black;
     color: white;
     height: auto;
+}
+
+#rent p{
+    text-align: center;
 }
 
 #rent input{
