@@ -14,59 +14,81 @@ const greenIcon = new icons({iconUrl: '../images/leaf-green.png'});
 const redIcon = new icons({iconUrl: '../images/leaf-red.png'});
 const orangeIcon = new icons({iconUrl: '../images/leaf-orange.png'});
 
-let booking = {};
-booking.loop = false;
-booking.idStation = 0;
-booking.start= (idStation) => {
+//init le session storage du booking si existant.
+var booking = {};
+booking.params = {};
+console.log(booking.params);
+
+console.log('booking à init l23')
+booking.params.timer = false;
+booking.params.idStation = 0;
+console.log(booking.params);
+console.log('timer : ' + booking.params.timer); 
+
+
+booking.start = (idStation) => {
     console.log('booking qui demarre');
-    booking.idStation = idStation;
+    booking.params.idStation = idStation;
     booking.display(idStation);
-    
-    // Set the date we're counting down to
-    var countDownTime = new Date().getTime() + (1000 * 60 * 20);
+
+    // Set the timer
+    booking.timer();
+}
+booking.stop = () => {
+    console.log('fonction stop');
+    clearInterval(booking.loop);
+    $("#timer").html("EXPIRED");
+    booking.params.timer = false;
+    booking.params.idStation = 0;
+}
+booking.timer = () => {
+    if(!booking.params.timer){
+        booking.params.timer = new Date().getTime() + (1000 * 60 * 20);
+    }
+    console.log('timer : ' + booking.params.timer);  
 
     // Update the count down every 1 second
-    booking.loop = setInterval(function () {
+    booking.loop = setInterval(function () {;;
 
         // Get today's date and time
         var newResa = new Date().getTime();
 
         // Find the distance between now and the count down date
-        var finResa = countDownTime - newResa;
+        var finResa = booking.params.timer - newResa;
 
         // Time calculations for minutes and seconds
 
         var minutes = Math.floor((finResa % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((finResa % (1000 * 60)) / 1000);
 
-        // Output the result in an element with id="demo"
+        // Output the result in an element with id="timer"
         $("#timer").html(minutes + "m " + seconds + "s ");
 
         // If the count down is over, write some text 
         if (finResa < 0) {
-            
+
             booking.stop();
             console.log('fin resa');
         }
     }, 1000);
-}
-
-
-booking.stop = () => {
-    console.log('fonction stop');
-    clearInterval(booking.loop);
-    $("#timer").html("EXPIRED");
-    booking.loop = false;
-    booking.idStation = 0;
+    sessionStorage.setItem('timer', booking.params.timer);
+    sessionStorage.setItem('idStation', booking.params.idStation);
 }
 booking.display = (idStation) => {
-    if(idStation == booking.idStation){
+    if (idStation == booking.params.idStation) {
         //hide form
-        $("#rent").css({ display: "none" });
+        $("#firstName").css({display: "none"});
+        $("#lastName").css({display: "none"});
     }
-    $("#timer").css({ display: "block" });
+    $("#timer").css({display: "block"});
 }
 
+if (sessionStorage.getItem('booking')) {
+    booking.params.timer = sessionStorage.getItem('timer');
+    booking.params.idStation = sessionStorage.getItem('idStation');
+    booking.timer();
+    console.log('session existante l21');
+}
 
 //pour créer le Cluster utilisés avec l'ajout des markers ->39
 const markers = L.markerClusterGroup();
@@ -146,7 +168,7 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
                     $(".stationnement").css({ display: "none" });  
 
                 }        
-                if (!booking.loop === false){
+                if (booking.params.timer != false){
                     booking.display(station.number);
                 }     
         
@@ -165,14 +187,12 @@ map.addEventListener("click", function() {
 $("#buttonResa").click(function () {
     var idStation = $("#id_station").val();
     console.log('clik boutton résa');
-    if (!booking.loop === false){ //booking existe
-        if(idStation != booking.idStation){
-            var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
-            if (r == true) { //pour reset le counter
-                booking.stop();
-                booking.start(idStation);
-            } 
-        }
+    if (booking.params.timer != false){ //booking existe
+        var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
+        if (r == true) { //pour reset le counter
+            booking.stop();
+            booking.start(idStation);
+        } 
     }else{
         booking.start(idStation);
     }    
@@ -193,9 +213,10 @@ var stockNomPrenom = () => {
     }
     firstName.addEventListener("change", function() {
       localStorage.setItem('stockFirstName', firstName.value);
-    });
-   
+    });  
 };
+
+
  
 ajaxGet(url, successAjax);
 stockNomPrenom();
