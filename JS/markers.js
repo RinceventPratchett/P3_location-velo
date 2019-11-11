@@ -18,9 +18,10 @@ let booking = {};
 booking.loop = false;
 booking.idStation = 0;
 booking.start= (idStation) => {
-    console.log('booking de merde qui demarre');
-    booking.display();
+    console.log('booking qui demarre');
     booking.idStation = idStation;
+    booking.display(idStation);
+    
     // Set the date we're counting down to
     var countDownTime = new Date().getTime() + (1000 * 60 * 20);
 
@@ -39,7 +40,6 @@ booking.start= (idStation) => {
         var seconds = Math.floor((finResa % (1000 * 60)) / 1000);
 
         // Output the result in an element with id="demo"
-        console.log('display resa');
         $("#timer").html(minutes + "m " + seconds + "s ");
 
         // If the count down is over, write some text 
@@ -57,8 +57,13 @@ booking.stop = () => {
     clearInterval(booking.loop);
     $("#timer").html("EXPIRED");
     booking.loop = false;
+    booking.idStation = 0;
 }
-booking.display = () => {
+booking.display = (idStation) => {
+    if(idStation == booking.idStation){
+        //hide form
+        $("#rent").css({ display: "none" });
+    }
     $("#timer").css({ display: "block" });
 }
 
@@ -142,7 +147,7 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
 
                 }        
                 if (!booking.loop === false){
-                    booking.display();
+                    booking.display(station.number);
                 }     
         
         });
@@ -159,7 +164,7 @@ map.addEventListener("click", function() {
 
 $("#buttonResa").click(function () {
     var idStation = $("#id_station").val();
-    console.log('boutton résa qui arrache');
+    console.log('clik boutton résa');
     if (!booking.loop === false){ //booking existe
         if(idStation != booking.idStation){
             var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
