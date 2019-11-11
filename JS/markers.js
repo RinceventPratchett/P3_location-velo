@@ -14,6 +14,55 @@ const greenIcon = new icons({iconUrl: '../images/leaf-green.png'});
 const redIcon = new icons({iconUrl: '../images/leaf-red.png'});
 const orangeIcon = new icons({iconUrl: '../images/leaf-orange.png'});
 
+let booking = {};
+booking.loop = false;
+booking.idStation = 0;
+booking.start= (idStation) => {
+    console.log('booking de merde qui demarre');
+    booking.display();
+    booking.idStation = idStation;
+    // Set the date we're counting down to
+    var countDownTime = new Date().getTime() + (1000 * 60 * 20);
+
+    // Update the count down every 1 second
+    booking.loop = setInterval(function () {
+
+        // Get today's date and time
+        var newResa = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var finResa = countDownTime - newResa;
+
+        // Time calculations for minutes and seconds
+
+        var minutes = Math.floor((finResa % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((finResa % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        console.log('display resa');
+        $("#timer").html(minutes + "m " + seconds + "s ");
+
+        // If the count down is over, write some text 
+        if (finResa < 0) {
+            
+            booking.stop();
+            console.log('fin resa');
+        }
+    }, 1000);
+}
+
+
+booking.stop = () => {
+    console.log('fonction stop');
+    clearInterval(booking.loop);
+    $("#timer").html("EXPIRED");
+    booking.loop = false;
+}
+booking.display = () => {
+    $("#timer").css({ display: "block" });
+}
+
+
 //pour créer le Cluster utilisés avec l'ajout des markers ->39
 const markers = L.markerClusterGroup();
 
@@ -35,16 +84,16 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
         var remainingPark = station.available_bike_stands;
         var statutStation = station.status;
         var color = greenIcon;
-        var popup = 'Statut de la station : ' + statutStation + '<br /> Station : ' + nameStation + 
-                '<br /> Adresse : ' + adressStation + '<br /> Vélo\'V disponible : ' + dispo 
-                + '<br /> Place de stationnement Vélo\'V disponible : ' + remainingPark;
+//        var popup = 'Statut de la station : ' + statutStation + '<br /> Station : ' + nameStation + 
+//                '<br /> Adresse : ' + adressStation + '<br /> Vélo\'V disponible : ' + dispo 
+//                + '<br /> Place de stationnement Vélo\'V disponible : ' + remainingPark;
         // marker vert de base et modifié par les conditions + popup    
         if (statutStation === 'OPEN' && (dispo <= 2 || remainingPark <= 2)) {
                 color = orangeIcon;
          
         } else if (statutStation === 'CLOSED') {
                 color = redIcon;
-                popup = 'Statut de la station : ' + statutStation + '<br /> Station : ' + nameStation;
+//                popup = 'Statut de la station : ' + statutStation + '<br /> Station : ' + nameStation;
         }
         var marker = L.marker([coordLat, coordLng], {icon: color}); //pour ajouter les popup sur chaque marker 
         
@@ -58,6 +107,9 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
                 $("#velov").css({ display: "flex" }); 
                 $("#billboard").css({ display: "block" });
                 $("#map").css({ width : "75%" });
+                console.log('station num :'+station.number);
+                $("#id_station").val(station.number);
+                
                 if (statutStation === 'OPEN'){
                     $(".statut").append("statut : open");
                     $(".detailsStation").css({ display: "block" });
@@ -72,7 +124,8 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
                     $(".stationnement").append(remainingPark + " place(s) restante(s)");                    
                     
                     if (dispo > 0){
-                            $("#rent").css({ display: "flex" });  
+                            $("#rent").css({ display: "flex" });
+                                    
                     } else {
                             $("#rent").css({ display: "none" });
                     }
@@ -88,33 +141,53 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
                     $(".stationnement").css({ display: "none" });  
 
                 }        
-                map.addEventListener("click", function() {
-                   $("#billboard").css({ display: "none" }); //pour effacer le panneau lors d'un click sur la map 
-                   $("#map").css({ width : "100%" });
-                });        
+                if (!booking.loop === false){
+                    booking.display();
+                }     
         
         });
-        marker.bindPopup(popup);     //initialise les popups
+//        marker.bindPopup(popup);     //initialise les popups
         markers.addLayer(marker); //mise en place info contenu dans le marker.
     });
     markers.addTo(map);
     return true;
 };
+map.addEventListener("click", function() {
+   $("#billboard").css({ display: "none" }); //pour effacer le panneau lors d'un click sur la map 
+   $("#map").css({ width : "100%" });
+});   
+
+$("#buttonResa").click(function () {
+    var idStation = $("#id_station").val();
+    console.log('boutton résa qui arrache');
+    if (!booking.loop === false){ //booking existe
+        if(idStation != booking.idStation){
+            var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
+            if (r == true) { //pour reset le counter
+                booking.stop();
+                booking.start(idStation);
+            } 
+        }
+    }else{
+        booking.start(idStation);
+    }    
+});
+                            
 // pour stocker les infos saisies lors de la session (reset si fermeture du nav)
 var stockNomPrenom = () => { 
     var lastName = document.getElementById('lastName');
     var firstName = document.getElementById('firstName');
-    if (sessionStorage.getItem('stockLastName')){
-      lastName.value = sessionStorage.getItem('stockLastName'); //pour restaurer le champ Nom
+    if (localStorage.getItem('stockLastName')){
+      lastName.value = localStorage.getItem('stockLastName'); //pour restaurer le champ Nom
     }
     lastName.addEventListener("change", function() {
-      sessionStorage.setItem('stockLastName', lastName.value); //pour enregistrer les modificarions faites dans le champs au moment de la saisie
+      localStorage.setItem('stockLastName', lastName.value); //pour enregistrer les modificarions faites dans le champs au moment de la saisie
     });
-    if(sessionStorage.getItem('stockFirstName')){
-      firstName.value = sessionStorage.getItem('stockFirstName');
+    if(localStorage.getItem('stockFirstName')){
+      firstName.value = localStorage.getItem('stockFirstName');
     }
     firstName.addEventListener("change", function() {
-      sessionStorage.setItem('stockFirstName', firstName.value);
+      localStorage.setItem('stockFirstName', firstName.value);
     });
    
 };

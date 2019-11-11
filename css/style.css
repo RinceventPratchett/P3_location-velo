@@ -164,3 +164,19 @@ button{
     color: white;
     height: auto;
 }
+
+#timer{
+    display: none;
+    text-align: center;
+    
+    vertical-align: middle;
+    width: 80%;
+    border: solid black 1px;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    margin-left: 10%;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    height: auto;
+}
