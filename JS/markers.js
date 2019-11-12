@@ -19,7 +19,7 @@ var booking = {};
 booking.params = {};
 console.log(booking.params);
 
-console.log('booking à init l23')
+console.log('booking à init l23');
 booking.params.timer = false;
 booking.params.idStation = 0;
 console.log(booking.params);
@@ -33,26 +33,26 @@ booking.start = (idStation) => {
 
     // Set the timer
     booking.timer();
-}
+};
+
 booking.stop = () => {
     console.log('fonction stop');
     clearInterval(booking.loop);
     $("#timer").html("EXPIRED");
     booking.params.timer = false;
     booking.params.idStation = 0;
-}
+};
+
 booking.timer = () => {
-    if(!booking.params.timer){
+    if(!booking.params.timer){ //si le timer n'est pas initié
         booking.params.timer = new Date().getTime() + (1000 * 60 * 20);
     }
     console.log('timer : ' + booking.params.timer);  
 
     // Update the count down every 1 second
     booking.loop = setInterval(function () {;;
-
         // Get today's date and time
         var newResa = new Date().getTime();
-
         // Find the distance between now and the count down date
         var finResa = booking.params.timer - newResa;
 
@@ -61,7 +61,7 @@ booking.timer = () => {
         var minutes = Math.floor((finResa % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((finResa % (1000 * 60)) / 1000);
 
-        // Output the result in an element with id="timer"
+        // Output the result in the element with id="timer"  .html = innerHTML
         $("#timer").html(minutes + "m " + seconds + "s ");
 
         // If the count down is over, write some text 
@@ -73,22 +73,23 @@ booking.timer = () => {
     }, 1000);
     sessionStorage.setItem('timer', booking.params.timer);
     sessionStorage.setItem('idStation', booking.params.idStation);
-}
+};
+
 booking.display = (idStation) => {
-    if (idStation == booking.params.idStation) {
+    if (idStation === booking.params.idStation) {
         //hide form
         $("#firstName").css({display: "none"});
         $("#lastName").css({display: "none"});
     }
     $("#timer").css({display: "block"});
-}
+};
 
 if (sessionStorage.getItem('booking')) {
     booking.params.timer = sessionStorage.getItem('timer');
     booking.params.idStation = sessionStorage.getItem('idStation');
     booking.timer();
-    console.log('session existante l21');
-}
+    console.log('resa existante avec timer et idStation');
+};
 
 //pour créer le Cluster utilisés avec l'ajout des markers ->39
 const markers = L.markerClusterGroup();
@@ -134,8 +135,8 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
                 $("#velov").css({ display: "flex" }); 
                 $("#billboard").css({ display: "block" });
                 $("#map").css({ width : "75%" });
-                console.log('station num :'+station.number);
-                $("#id_station").val(station.number);
+                console.log('station num :'+station.number+ 'function marker addeventlistener');
+                $("#id_station").val(station.number); //pour récupérer l'id et l'attribuer à l'input html 
                 
                 if (statutStation === 'OPEN'){
                     $(".statut").append("statut : open");
@@ -168,7 +169,7 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
                     $(".stationnement").css({ display: "none" });  
 
                 }        
-                if (booking.params.timer != false){
+                if (booking.params.timer !== false){
                     booking.display(station.number);
                 }     
         
@@ -187,9 +188,9 @@ map.addEventListener("click", function() {
 $("#buttonResa").click(function () {
     var idStation = $("#id_station").val();
     console.log('clik boutton résa');
-    if (booking.params.timer != false){ //booking existe
+    if (booking.params.timer !== false){ //booking existe
         var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
-        if (r == true) { //pour reset le counter
+        if (r === true) { //pour reset le counter
             booking.stop();
             booking.start(idStation);
         } 
