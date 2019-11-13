@@ -77,53 +77,53 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
 };
 
 
-function markerClick(station){
-            $(".statut").empty();   //pour vider les champs si ils ont déjà été appelé 
-            $(".detailsStation").empty();
-            $(".nameStation").empty();
-            $(".address").empty();
-            $(".dispo").empty();
-            $(".stationnement").empty();
-            $("#velov").css({display: "flex"}); 
-            $("#billboard").css({display: "block"});
-            $("#map").css({width: "75%"});
-            console.log('station num :' + station.number + 'function marker addeventlistener');
-            $("#id_station").val(station.number); //pour récupérer l'id de la station et l'attribuer à l'input html 
+function markerClick(station) {
+    $(".statut").empty();   //pour vider les champs si ils ont déjà été appelé 
+    $(".detailsStation").empty();
+    $(".nameStation").empty();
+    $(".address").empty();
+    $(".dispo").empty();
+    $(".stationnement").empty();
+    $("#velov").css({display: "flex"});
+    $("#billboard").css({display: "block"});
+    $("#map").css({width: "75%"});
+    console.log('station num :' + station.number + 'function marker addeventlistener');
+    $("#id_station").val(station.number); //pour récupérer l'id de la station et l'attribuer à l'input html 
 
-            if (station.status === 'OPEN') { //verification du statut pour déffinir les infos à afficher
-                $(".statut").append("statut : open");
-                $(".detailsStation").css({display: "block"});
-                $(".detailsStation").append("Détails de la station"); //texte qui apparait
-                $(".nameStation").css({display: "block"});
-                $(".nameStation").append(station.name);
-                $(".address").css({display: "block"});
-                $(".address").append("adresse : " + station.address);
-                $(".dispo").css({display: "block"});
-                $(".dispo").append(station.available_bikes + " vélo'v disponible(s)");
-                $(".stationnement").css({display: "block"});
-                $(".stationnement").append(station.available_bike_stands + " place(s) restante(s)");
+    if (station.status === 'OPEN') { //verification du statut pour déffinir les infos à afficher
+        $(".statut").append("statut : open");
+        $(".detailsStation").css({display: "block"});
+        $(".detailsStation").append("Détails de la station"); //texte qui apparait
+        $(".nameStation").css({display: "block"});
+        $(".nameStation").append(station.name);
+        $(".address").css({display: "block"});
+        $(".address").append("adresse : " + station.address);
+        $(".dispo").css({display: "block"});
+        $(".dispo").append(station.available_bikes + " vélo'v disponible(s)");
+        $(".stationnement").css({display: "block"});
+        $(".stationnement").append(station.available_bike_stands + " place(s) restante(s)");
 
-                if (station.available_bikes > 0) { //ouverture du formulaire de resa
-                    $("#rent").css({display: "flex"});
+        if (station.available_bikes > 0) { //ouverture du formulaire de resa
+            $("#rent").css({display: "flex"});
 
-                } else {
-                    $("#rent").css({display: "none"});
-                }
-            } else if (station.status === 'CLOSED') { //affichage limité en cas de statut fermé
-                $(".detailsStation").css({display: "block"});
-                $(".detailsStation").append("détails de la station");
-                $(".statut").append("statut : closed");
-                $(".nameStation").css({display: "block"});
-                $(".nameStation").append(station.name);
-                $(".address").css({display: "none"}); //pour faire disparaitre le bloc vide
-                $(".dispo").css({display: "none"});
-                $("#rent").css({display: "none"});
-                $(".stationnement").css({display: "none"});
+        } else {
+            $("#rent").css({display: "none"});
+        }
+    } else if (station.status === 'CLOSED') { //affichage limité en cas de statut fermé
+        $(".detailsStation").css({display: "block"});
+        $(".detailsStation").append("détails de la station");
+        $(".statut").append("statut : closed");
+        $(".nameStation").css({display: "block"});
+        $(".nameStation").append(station.name);
+        $(".address").css({display: "none"}); //pour faire disparaitre le bloc vide
+        $(".dispo").css({display: "none"});
+        $("#rent").css({display: "none"});
+        $(".stationnement").css({display: "none"});
 
-            }
-//            if (booking.params.timer !== false) { //pour recupérer le num de station pour perso le message d'alerte
-//                booking.display(station.number);
-//            }
+    }
+    //            if (booking.params.timer !== false) { //pour recupérer le num de station pour perso le message d'alerte
+    //                booking.display(station.number);
+    //            }
 
 }
 
