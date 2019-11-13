@@ -1,7 +1,6 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Required map.js + booking.js
+ * créer la requete ajax (asynchrone) vers le server.
  */
 
 var url = 'https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=aaa4da9065925332b37756d729ce3a07e7107a41';

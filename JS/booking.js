@@ -1,13 +1,13 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Required ajax.js + map.js
+ * 
+ *
  */
-
+//creation de l'objet booking 
 var booking = {
-    start(idStation){
+    start(idStation){ //méthode pour démarer le booking correspondant à la station déterminé.
         console.log('booking qui demarre');
-        booking.params.idStation = idStation;
+        booking.params.idStation = idStation; 
         booking.display(idStation);
     // Set the timer
         booking.timer();
@@ -19,6 +19,9 @@ var booking = {
         $("#timer").html("EXPIRED");
         booking.params.timer = false;
         booking.params.idStation = 0;
+        $("#firstName").css({display: "block"});
+        $("#lastName").css({display: "block"});
+        $("#timer").html("20mn 00s");
     },
     
     timer(){
@@ -57,6 +60,17 @@ var booking = {
         $("#timer").css({display: "block"});
     },
     
+    params(){
+        booking.params = {};
+        if (sessionStorage.getItem('timer')) {
+            booking.params.timer = sessionStorage.getItem('timer');
+            booking.params.idStation = sessionStorage.getItem('idStation');
+        }else {
+            booking.params.timer = false; 
+            booking.params.idStation = 0;
+        }
+    },
+    
     init(){
         //code à éxécuter au chargement de la page
         if (sessionStorage.getItem('timer')) { //pour vérifier la présence du timer en cache sessionStorage
@@ -64,16 +78,14 @@ var booking = {
             booking.params.idStation = sessionStorage.getItem('idStation'); //affect l'id station existant
             booking.timer();
             booking.display(booking.params.idStation); //pour faire apparaitre le timer contenu/en cours
-            console.log('resa existante avec timer et idStation'); //pour vérifier que le timer se récupère bien
+            console.log('resa existante avec timer et '+ booking.params.idStation); //pour vérifier que le timer se récupère bien
         }
     }
 };    
-booking.params = {};
-booking.params.timer = false; 
-booking.params.idStation = 0;
+
 booking.init();
 
-console.log(booking.params+'espion du booking init()');
+console.log('espion du booking init()');
 console.log('timer : ' + booking.params.timer);
 
 
