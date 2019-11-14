@@ -5,6 +5,7 @@
  */
 var canvas  = $('canvas')[0]; //il faut spécifier le canvas rechercher pour qu'il reçoive les propriétés.
 var context = canvas.getContext('2d');
+canvas.innerHTML =  'Enter message here...';
 
 $('#canvas').mousedown(function(e){
     var mouseX = e.pageX - this.offsetLeft;      

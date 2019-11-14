@@ -21,9 +21,9 @@ header{
 
 #map{
    height: 45rem;
-   max-width: 99%;
-   margin-left: 0.5%;
-   margin-right: 0.5%;
+   max-width: 98%;
+   margin-left: 1%;
+   margin-right: 1%;
    border-radius: 5px;
 }
 
@@ -31,8 +31,9 @@ header{
     display: none;
     margin-right: 0.5%;
     margin-left: 0.5%;
+    padding-bottom: 1.5%;
     width: 50%;
-    height: 45rem;
+    height: auto;
     border: solid black 1.5px;
     background-color: gray;
     border-radius: 5px;
@@ -92,7 +93,7 @@ header{
     height: auto;
 }
 #lastName{
-    margin-top: -2%;
+    margin-top: 1rem;
 }
 
 .hilight { /*classe pour le cas ou un champs est vide*/ 
@@ -187,11 +188,28 @@ button{
 }
 
 canvas{
-/*    width: 80%;
-    margin-top: 2%;  */
+  /*  width: 80%;*/
+    margin-top: 2%;  
     background-color: white;
     border-radius: 5px;
     cursor: pointer;
-/*    color: black;
-    height: 7rem;*/
+
+/*    color: black;*/
+}
+-mobile{
+    
+}
+
+@media all and (max-width: 900px){
+    #velov{
+        height: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    #map{
+        width: 98% !important;
+    }
+    #billboard{
+        width: 100%;
+    }
 }

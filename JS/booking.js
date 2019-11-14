@@ -111,10 +111,10 @@ $("#buttonResa").click(function () {
     console.log('clik boutton résa' + $('#lastName').val());
     if ($('#lastName').val() === "" || $('#firstName').val() === ""/* || $('canvas').val() === ""*/) { //gère le fait q'un champ soit vide
         $("#buttonResa").disabled = true;
-        if ($('#lastName').val() === "" && $('#firstName').val() === ""/* && $('canvas').val() === ""*/) {
+        if (/*$('#lastName').val() === "" && $('#firstName').val() === "" &&*/ $('canvas').val() === "") {
             $('#lastName').addClass("hilight");     
             $('#firstName').addClass("hilight");
-//            $('canvas').addClass("hilight");
+            $('canvas').addClass("hilight");
         } else if (($('#firstName').val() === "") && ($('#lastName').val() !== "")) {            
             $('#firstName').addClass("hilight");
             $('#lastName').removeClass("hilight");
@@ -162,6 +162,13 @@ var stockNomPrenom = () => {
     });
 };
 
+$(document).ready(function(){
+    let largeurwidth = $("body").width();
+    if (largeurwidth <= 900) {
+        $("#canvas").removeAttr('width');
+        $("#canvas").addAttr('width: 280');
+    }
+});
 
 stockNomPrenom();
 booking.init();
