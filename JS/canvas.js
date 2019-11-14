@@ -189,21 +189,10 @@ for(var i=0; i < clickX.length; i++) {
 	// Draw to the canvas
 	function renderCanvas() {
 		if (drawing) {
-			ctx.moveTo(lastPos.x, lastPos.y);
-			ctx.lineTo(mousePos.x, mousePos.y);
-			ctx.stroke();
+			context.moveTo(lastPos.x, lastPos.y);
+			context.lineTo(mousePos.x, mousePos.y);
+			context.stroke();
 			lastPos = mousePos;
 		}
 	}
-
-	function clearCanvas() {
-		canvas.width = canvas.width;
-	}
-
-	// Allow for animation
-	(function drawLoop () {
-		requestAnimFrame(drawLoop());
-		renderCanvas();
-	})();
-
 })();
