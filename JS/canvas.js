@@ -7,27 +7,29 @@ var canvas  = $('canvas')[0]; //il faut spécifier le canvas rechercher pour qu'
 var context = canvas.getContext('2d');
 
 $('#canvas').mousedown(function(e){
-  var mouseX = e.pageX - this.offsetLeft;      
-  var mouseY = e.pageY - this.offsetTop;
+    var mouseX = e.pageX - this.offsetLeft;      
+    var mouseY = e.pageY - this.offsetTop;
 		
-  paint = true; // bascule la valeur de paint
-  addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop); //pour enregistrer la position de la souris dans le canvas lors du click maintenu 
-  redraw(); // maj du canvas avc fonction redraw() 
+    paint = true; // bascule la valeur de paint
+    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop); //pour enregistrer la position de la souris dans le canvas lors du click maintenu 
+    redraw(); // maj du canvas avc fonction redraw() 
 });
 
 $('#canvas').mousemove(function(e){
-  if(paint){ //si valeur a true la souris est considéré comme la pointe du stylo 
-    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true); //
-    redraw();
-  }
+    if(paint){ //si valeur a true la souris est considéré comme la pointe du stylo 
+        addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true); //
+        redraw();
+    }
 });
 
 $('#canvas').mouseup(function(e){
-  paint = false;
+    paint = false;
 });
 
 $('#canvas').mouseleave(function(e){
-  paint = false;
+    paint = false;
+    e.preventDefault();
+    e.stopPropagation();
 });
 
 
@@ -43,7 +45,7 @@ function addClick(x, y, dragging) //fonction qui déclenche l'enregistrement des
   clickDrag.push(dragging);
 };
 
-function redraw(){ //pour effacer le canvas à chaque appel
+function redraw(){ 
   context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
   
   context.strokeStyle = "#df4b26";
