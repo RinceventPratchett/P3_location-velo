@@ -86,11 +86,13 @@ header{
 
 #rent input{
     width: 80%;
-    margin-top: 1%;  
     background-color: ghostwhite;
     border-radius: 5px;
     color: black;
     height: auto;
+}
+#lastName{
+    margin-top: -2%;
 }
 
 .hilight { /*classe pour le cas ou un champs est vide*/ 
@@ -126,7 +128,6 @@ button{
     display: none;
     text-transform: uppercase;
     text-align: center;
-    vertical-align: middle;
     width: 80%;
     border: solid black 1px;
     margin-top: 1rem;
@@ -141,7 +142,6 @@ button{
 .dispo{
     display: none;
     text-align: center;
-    vertical-align: middle;
     width: 80%;
     border: solid black 1px;
     margin-top: 1rem;
@@ -155,9 +155,7 @@ button{
 
 .stationnement{
     display: none;
-    text-align: center;
-    
-    vertical-align: middle;
+    text-align: center;    
     width: 80%;
     border: solid black 1px;
     margin-top: 1rem;
@@ -172,15 +170,9 @@ button{
 #timer{
     display: none;
     text-align: center;
-    
-    vertical-align: middle;
     width: 80%;
-    border: solid black 1px;
     margin-top: 1rem;
     padding-bottom: 1rem;
-    margin-left: 10%;
-    border-radius: 5px;
-    background-color: black;
     color: white;
     height: auto;
 }

@@ -41,15 +41,15 @@ and open the template in the editor.
                     
                     <form id="rent">
                         <p>Formulaire de réservation</p>
-                        <input type="hidden" id="id_station" name="idstation" />
+                        <!--<input type="hidden" id="id_station" /> name="idstation"-->
                         <input id="firstName" type="text" name="firstname" placeholder="Prénom" required /><br />
                         <input id="lastName" type="text" name="lastname" placeholder="Nom" required />
-                        <button id="buttonResa" type="button" >réserver</button> <!-- onsubmit=false pour empecher l'action submit et empecher la page de se reload-->
-                        <span>signature</span>
                         <canvas></canvas>
+                        <button id="buttonResa" type="button" >réserver</button> 
+                        <div id=timer></div>
                     </form>
                     
-                    <div id=timer></div>
+                    
                 </div>
             </div>
 

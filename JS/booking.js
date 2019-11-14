@@ -7,7 +7,7 @@
 var booking = {
     start(idStation){ //méthode pour démarer le booking correspondant à la station déterminé.
         console.log('booking qui demarre');
-        booking.params.idStation = idStation; 
+        booking.params.idStation = idStation;
         booking.display(idStation);
     // Set the timer
         booking.timer();
@@ -18,7 +18,7 @@ var booking = {
         clearInterval(booking.loop);
         $("#timer").html("EXPIRED");
         booking.params.timer = false;
-        console.log('pour vérifier que booking.params.timer est bien a false' + booking.params.timer);
+        console.log('pour vérifier que booking.params.timer est bien a false ' + booking.params.timer);
         booking.params.idStation = 0;
         $("#firstName").css({display: "block"});
         $("#lastName").css({display: "block"});
@@ -27,7 +27,7 @@ var booking = {
     
     timer(){
         if (!booking.params.timer) { //si le timer n'est pas initié
-            console.log('pour vérifier que booking.params.timer a une valeur dans la méthode timer' + booking.params.timer);
+            console.log('pour vérifier que booking.params.timer a une valeur dans la méthode timer ' + booking.params.timer);
         booking.params.timer = new Date().getTime() + (1000 * 60 * 20);
         }
         console.log('timer : ' + booking.params.timer);
@@ -87,7 +87,22 @@ var booking = {
     }
 };    
 
-
+/*class Sign
+{
+    constructor() {
+        this.canvas = $("#canvas");
+        this.context = this.canvas.getContext('2d');
+        this.context.strokeStyle = "rgb(23, 145, 167)";
+        this.context.lineCap = 'round';
+        this.context.lineCap = 'round';
+        this.cursorX, this.cursorY;
+        this.painting = false;
+        this.started = false;
+        this.mousemove();
+        this.mousedown();
+        this.mouseup();
+    }
+};*/
 
 $("#buttonResa").click(function () {
     var idStation = $("#id_station").val();
@@ -97,7 +112,7 @@ $("#buttonResa").click(function () {
         if ($('#lastName').val() === "" && $('#firstName').val() === ""/* && $('canvas').val() === ""*/) {
             $('#lastName').addClass("hilight");     
             $('#firstName').addClass("hilight");
-            $('canvas').addClass("hilight");
+//            $('canvas').addClass("hilight");
         } else if (($('#firstName').val() === "") && ($('#lastName').val() !== "")) {            
             $('#firstName').addClass("hilight");
             $('#lastName').removeClass("hilight");
@@ -107,17 +122,17 @@ $("#buttonResa").click(function () {
         } /*else if ($('canvas').val() === "") {
             $('canvas').addClass("hilight");
         }*/
-        else if ($('#lastName').val() !== "" || $('#firstName').val() !== ""/* || $('canvas').val() === ""*/) { //gère le fait q'un champ soit remplit{
-            $('#firstName').removeClass("hilight");
-            $('#lastName').removeClass("hilight");
-            $('canvas').removeClass("hilight");
-        } //alert('les champs nom,prénom et signature sont indispensables pour créer une réservation');
+//        else if ($('#lastName').val() !== "" || $('#firstName').val() !== ""/* || $('canvas').val() === ""*/) { //gère le fait q'un champ soit remplit{
+//            $('#firstName').removeClass("hilight");
+//            $('#lastName').removeClass("hilight");
+//            $('canvas').removeClass("hilight");
+//        } //alert('les champs nom,prénom et signature sont indispensables pour créer une réservation');
     }else if (booking.params.timer === undefined || booking.params.timer === false) {
           //booking non existant 
         booking.start(idStation);
-        console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa' + booking.params.timer);
+        console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa ' + booking.params.timer);
     }else{
-        console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa' + booking.params.timer);
+        console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa ' + booking.params.timer);
         var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
             if (r === true) { //pour reset le counter
             booking.stop();
