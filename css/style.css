@@ -207,6 +207,7 @@ canvas{
         flex-direction: column;
     }
     #map{
+        height: 22.5rem;
         width: 98% !important;
     }
     #billboard{
