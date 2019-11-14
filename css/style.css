@@ -187,10 +187,11 @@ button{
 }
 
 canvas{
-    width: 80%;
-    margin-top: 2%;  
+/*    width: 80%;
+    margin-top: 2%;  */
     background-color: white;
     border-radius: 5px;
-    color: black;
-    max-height: 5rem;
+    cursor: pointer;
+/*    color: black;
+    height: 7rem;*/
 }

@@ -87,6 +87,8 @@ var booking = {
     }
 };    
 
+
+
 /*class Sign
 {
     constructor() {
