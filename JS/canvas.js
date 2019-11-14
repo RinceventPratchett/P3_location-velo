@@ -195,4 +195,15 @@ for(var i=0; i < clickX.length; i++) {
 			lastPos = mousePos;
 		}
 	}
-});
+
+	function clearCanvas() {
+		canvas.width = canvas.width;
+	}
+
+	// Allow for animation
+	(function drawLoop () {
+		requestAnimFrame(drawLoop());
+		renderCanvas();
+	})();
+
+})();
