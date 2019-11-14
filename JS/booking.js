@@ -49,7 +49,7 @@ var booking = {
                 console.log('fin resa');
             }
         }, 1000);
-        sessionStorage.setItem('timer', booking.params.timer);
+        sessionStorage.setItem('timer', booking.params.timer);  //stock les infos de session - raz lors de la fermeture de session.
         console.log('pour vérifier que booking.params.timer a une valeur dans la méthode timer en appel sessionSTorage' + booking.params.timer);
         sessionStorage.setItem('idStation', booking.params.idStation);
     },
@@ -92,13 +92,30 @@ var booking = {
 $("#buttonResa").click(function () {
     var idStation = $("#id_station").val();
     console.log('clik boutton résa' + $('#lastName').val());
-    if ($('#lastName').val() === "" || $('#firstName').val() === "") {
+    if ($('#lastName').val() === "" || $('#firstName').val() === ""/* || $('canvas').val() === ""*/) { //gère le fait q'un champ soit vide
         $("#buttonResa").disabled = true;
-    console.log('wtf');
-    }else{
-        if (booking.params.timer === undefined || booking.params.timer === false) { //booking non existant 
-            booking.start(idStation);
-            console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa' + booking.params.timer);
+        if ($('#lastName').val() === "" && $('#firstName').val() === ""/* && $('canvas').val() === ""*/) {
+            $('#lastName').addClass("hilight");     
+            $('#firstName').addClass("hilight");
+            $('canvas').addClass("hilight");
+        } else if (($('#firstName').val() === "") && ($('#lastName').val() !== "")) {            
+            $('#firstName').addClass("hilight");
+            $('#lastName').removeClass("hilight");
+        } else if (($('#lastName').val() === "") && ($('#firstName').val() !== "")) {
+            $('#lastName').addClass("hilight");
+            $('#firstName').removeClass("hilight");
+        } /*else if ($('canvas').val() === "") {
+            $('canvas').addClass("hilight");
+        }*/
+        else if ($('#lastName').val() !== "" || $('#firstName').val() !== ""/* || $('canvas').val() === ""*/) { //gère le fait q'un champ soit remplit{
+            $('#firstName').removeClass("hilight");
+            $('#lastName').removeClass("hilight");
+            $('canvas').removeClass("hilight");
+        } //alert('les champs nom,prénom et signature sont indispensables pour créer une réservation');
+    }else if (booking.params.timer === undefined || booking.params.timer === false) {
+          //booking non existant 
+        booking.start(idStation);
+        console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa' + booking.params.timer);
     }else{
         console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa' + booking.params.timer);
         var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
@@ -106,11 +123,8 @@ $("#buttonResa").click(function () {
             booking.stop();
             booking.start(idStation);
             }
-        }
     }
 });
-
-booking.init();
 
 
 // pour stocker les infos saisies lors de la session (pas de reset si fermeture du nav)
@@ -130,4 +144,9 @@ var stockNomPrenom = () => {
         localStorage.setItem('stockFirstName', firstName.value);
     });
 };
+
+
 stockNomPrenom();
+booking.init();
+
+
