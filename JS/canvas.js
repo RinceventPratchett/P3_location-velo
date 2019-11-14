@@ -195,4 +195,4 @@ for(var i=0; i < clickX.length; i++) {
 			lastPos = mousePos;
 		}
 	}
-})();
+});
