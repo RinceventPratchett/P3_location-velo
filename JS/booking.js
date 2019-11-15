@@ -109,7 +109,7 @@ var booking = {
 $("#buttonResa").click(function () {
     var idStation = $("#id_station").val();
     console.log('clik boutton résa' + $('#lastName').val());
-    if ($('#lastName').val() === "" || $('#firstName').val() === ""/* || $('canvas').val() === ""*/) { //gère le fait q'un champ soit vide
+    if ($('#lastName').val() === "" || $('#firstName').val() === "" || $('canvas').val() === "") { //gère le fait q'un champ soit vide
         $("#buttonResa").disabled = true;
         if (/*$('#lastName').val() === "" && $('#firstName').val() === "" &&*/ $('canvas').val() === "") {
             $('#lastName').addClass("hilight");     
@@ -121,9 +121,9 @@ $("#buttonResa").click(function () {
         } else if (($('#lastName').val() === "") && ($('#firstName').val() !== "")) {
             $('#lastName').addClass("hilight");
             $('#firstName').removeClass("hilight");
-        } /*else if ($('canvas').val() === "") {
+        } else if ($('canvas').val() === "") {
             $('canvas').addClass("hilight");
-        }*/
+        }
 //        else if ($('#lastName').val() !== "" || $('#firstName').val() !== ""/* || $('canvas').val() === ""*/) { //gère le fait q'un champ soit remplit{
 //            $('#firstName').removeClass("hilight");
 //            $('#lastName').removeClass("hilight");
@@ -134,6 +134,8 @@ $("#buttonResa").click(function () {
         booking.start(idStation);
         console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa ' + booking.params.timer);
     }else{
+        $('#lastName').val(localStorage.getItem('stockLastName'));
+        $('#firstName').val(localStorage.getItem('stockFirstName'));
         console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa ' + booking.params.timer);
         var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
             if (r === true) { //pour reset le counter
@@ -166,9 +168,11 @@ $(document).ready(function(){
     let largeurwidth = $("body").width();
     if (largeurwidth <= 900) {
         $("#canvas").removeAttr('width');
-        $("#canvas").addAttr('width: 280');
+        $("#canvas").removeAttr('heigth');
+        $("#canvas").attr({heigth:230, width:170});
     }
 });
+
 
 stockNomPrenom();
 booking.init();

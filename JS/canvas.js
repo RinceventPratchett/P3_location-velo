@@ -5,15 +5,17 @@
  */
 var canvas  = $('canvas')[0]; //il faut spécifier le canvas rechercher pour qu'il reçoive les propriétés.
 var context = canvas.getContext('2d');
-canvas.innerHTML =  'Enter message here...';
+
 
 $('#canvas').mousedown(function(e){
     var mouseX = e.pageX - this.offsetLeft;      
     var mouseY = e.pageY - this.offsetTop;
 		
     paint = true; // bascule la valeur de paint
+    $('#canvas').val("ok"); //pour authoriser la reservation de vélo
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop); //pour enregistrer la position de la souris dans le canvas lors du click maintenu 
-    redraw(); // maj du canvas avc fonction redraw() 
+    redraw(); // maj du canvas avc fonction redraw()
+    
 });
 
 $('#canvas').mousemove(function(e){

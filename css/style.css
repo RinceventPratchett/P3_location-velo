@@ -33,7 +33,7 @@ header{
     margin-left: 0.5%;
     padding-bottom: 1.5%;
     width: 50%;
-    height: auto;
+    height: min-content;
     border: solid black 1.5px;
     background-color: gray;
     border-radius: 5px;
@@ -94,6 +94,16 @@ header{
 }
 #lastName{
     margin-top: 1rem;
+}
+
+#rent span{
+    width: 80%;
+    text-align: center; 
+    text-transform: uppercase;
+    margin-top: 1%;
+    background-color: graytext;
+    border-radius: 5px;
+    height: auto;     
 }
 
 .hilight { /*classe pour le cas ou un champs est vide*/ 
@@ -177,15 +187,7 @@ button{
     color: white;
     height: auto;
 }
-#rent span{
-    width: 80%;
-    text-align: center; 
-    text-transform: uppercase;
-    margin-top: 5%;  
-    background-color: graytext;
-    border-radius: 5px;
-    height: auto;     
-}
+
 
 canvas{
   /*  width: 80%;*/
@@ -202,15 +204,16 @@ canvas{
 
 @media all and (max-width: 900px){
     #velov{
-        height: auto;
-        display: flex;
-        flex-direction: column;
+        height: min-content;
+/*        display: flex;
+        flex-direction: column;*/
     }
-    #map{
+/*    #map{
         height: 22.5rem;
         width: 98% !important;
     }
-    #billboard{
-        width: 100%;
-    }
+    */
+/*    #billboard{
+        height: min-content;
+    }*/
 }
