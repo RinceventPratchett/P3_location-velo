@@ -5,10 +5,10 @@
  */
 //creation de l'objet booking 
 var booking = {
-    start(idStation){ //méthode pour démarer le booking correspondant à la station déterminé.
+    start(/*idStation*/){ //méthode pour démarer le booking correspondant à la station déterminé.
         console.log('booking qui demarre');
-        booking.params.idStation = idStation;
-        booking.display(idStation);
+        //booking.params.idStation = idStation;
+        booking.display(/*idStation*/);
     // Set the timer
         booking.timer();
     },
@@ -19,7 +19,7 @@ var booking = {
         $("#timer").html("EXPIRED");
         booking.params.timer = false;
         console.log('pour vérifier que booking.params.timer est bien a false ' + booking.params.timer);
-        booking.params.idStation = 0;
+//        booking.params.idStation = 0;
         $("#firstName").css({display: "block"});
         $("#lastName").css({display: "block"});
         $("#timer").html("20mn 00s");
@@ -51,15 +51,15 @@ var booking = {
         }, 1000);
         sessionStorage.setItem('timer', booking.params.timer);  //stock les infos de session - raz lors de la fermeture de session.
         console.log('pour vérifier que booking.params.timer a une valeur dans la méthode timer en appel sessionSTorage' + booking.params.timer);
-        sessionStorage.setItem('idStation', booking.params.idStation);
+//        sessionStorage.setItem('idStation', booking.params.idStation);
     },
     
-    display(idStation){
-        if (idStation === booking.params.idStation) {
-        //hide form
-            $("#firstName").css({display: "none"});
-            $("#lastName").css({display: "none"});
-        }
+    display(/*idStation*/){
+//        if (idStation === booking.params.idStation) {
+//        //hide form
+////            $("#firstName").css({display: "none"});
+////            $("#lastName").css({display: "none"});
+//        }
         $("#timer").css({display: "block"});
     },
     
@@ -67,11 +67,11 @@ var booking = {
         booking.params = {};
         if (sessionStorage.getItem('timer')) {
             booking.params.timer = sessionStorage.getItem('timer');
-            booking.params.idStation = sessionStorage.getItem('idStation');
+//            booking.params.idStation = sessionStorage.getItem('idStation');
             console.log('pour vérifier que booking.params.timer a une valeur dans la méthode params' + booking.params.timer);
         }else {
             booking.params.timer = false; 
-            booking.params.idStation = 0;
+//            booking.params.idStation = 0;
         }
     },
     
@@ -80,9 +80,9 @@ var booking = {
         if (sessionStorage.getItem('timer')) { //pour vérifier la présence du timer en cache sessionStorage
             booking.params.timer = sessionStorage.getItem('timer');     //affecte le timer existant
             console.log('pour vérifier que booking.params.timer a une valeur dans la méthode init' + booking.params.timer);
-            booking.params.idStation = sessionStorage.getItem('idStation'); //affect l'id station existant
+            //booking.params.idStation = sessionStorage.getItem('idStation'); //affect l'id station existant
             booking.timer();
-            booking.display(booking.params.idStation); //pour faire apparaitre le timer contenu/en cours
+            booking.display(/*booking.params.idStation*/); //pour faire apparaitre le timer contenu/en cours
         }
     }
 };    
@@ -105,43 +105,134 @@ var booking = {
         this.mouseup();
     }
 };*/
-
+//$("#buttonResa").click(function () {
+//    var idStation = $("#id_station").val();
+//    console.log(idStation);
+//    console.log(booking.params.timer);
+//    console.log('clik boutton résa' + $('#lastName').val());
+//        if ($('#lastName').val() !== "" && $('#firstName').val() !== "" && $('canvas').val() !== "") {
+//            console.log('tous les champs sont remplis' + ' nouvelle résa');
+//            $('#lastName').removeClass("hilight");
+//            $('#firstName').removeClass("hilight");
+//            $('canvas').removeClass("hilight");           
+//            booking.start(idStation);                
+//        }else if ($('#lastName').val() !== localStorage.getItem('stockLastName') && $('#firstName').val() !== localStorage.getItem('stockFirstName') && $('#canvas').val() === ""){
+//            console.log('tous les champs sont vides');
+//            console.log($('#lastName').val(), localStorage.getItem('stockLastName'), $('#firstName').val(), $('canvas').val());
+//            $("#buttonResa").disabled = true;
+//            $('#lastName').addClass("hilight");     
+//            $('#firstName').addClass("hilight");
+//            $('canvas').addClass("hilight");
+//        }else if ($('#lastName').val() === "" && $('#firstName').val() === "" && $('canvas').val() !== "") {
+//            console.log('canvas est rempli pas les autres');
+//            $("#buttonResa").disabled = true;
+//            $('#lastName').addClass("hilight");     
+//            $('#firstName').addClass("hilight");
+//            $('canvas').removeClass("hilight");
+//        }else if($('#lastName').val() !== "" && $('#firstName').val() === "" && $('canvas').val() !== ""){
+//            console.log('cnavas et lastName sont remplis');
+//            $("#buttonResa").disabled = true;
+//            $('#lastName').removeClass("hilight");     
+//            $('#firstName').addClass("hilight");
+//            $('canvas').removeClass("hilight");
+//        }else if($('#lastName').val() === "" && $('#firstName').val() !== "" && $('canvas').val() !== "") {
+//            console.log('cnavas et firstName sont remplis');
+//            $("#buttonResa").disabled = true;
+//            $('#lastName').addClass("hilight");     
+//            $('#firstName').removeClass("hilight");
+//            $('canvas').removeClass("hilight");
+//        }else if ($('#lastName').val() !== "" && $('#firstName').val() !== "" && $('canvas').val() === "") {
+//            console.log('first et lastName sont remplis');
+//            $("#buttonResa").disabled = true;
+//            $('#lastName').removeClass("hilight");     
+//            $('#firstName').removeClass("hilight");
+//            $('canvas').addClass("hilight");
+//        }else if (booking.params.timer !== undefined && booking.params.timer !== false) {
+//            console.log('booking existant');
+//            console.log(booking.params.timer);
+//            $('#lastName').val(localStorage.getItem('stockLastName'));
+//            $('#firstName').val(localStorage.getItem('stockFirstName'));
+//            $('canvas').val("ok");
+//            var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
+//            if (r === true) { //pour reset le counter
+//                booking.stop();
+//                booking.start(idStation);
+//            };
+//        }
+//});    
+//    switch(f) {
+//        default :
+//        console.log('booking existant');
+//            console.log(booking.params.timer);
+//            $('#lastName').val(localStorage.getItem('stockLastName'));
+//            $('#firstName').val(localStorage.getItem('stockFirstName'));
+//            $('#canvas').val("ok");
+//            var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
+//            if (r === true) { //pour reset le counter
+//                booking.stop();
+//                booking.start(idStation);
+//            };
+//            break;          
+//    }
+//});
+    
 $("#buttonResa").click(function () {
-    var idStation = $("#id_station").val();
+    //var idStation = $("#id_station").val();
     console.log('clik boutton résa' + $('#lastName').val());
+  //  console.log(idStation);
     if ($('#lastName').val() === "" || $('#firstName').val() === "" || $('canvas').val() === "") { //gère le fait q'un champ soit vide
         $("#buttonResa").disabled = true;
-        if (/*$('#lastName').val() === "" && $('#firstName').val() === "" &&*/ $('canvas').val() === "") {
+        if ($('#lastName').val() === "" && $('#firstName').val() === "" && $('canvas').val() === "") { //all empty
             $('#lastName').addClass("hilight");     
             $('#firstName').addClass("hilight");
             $('canvas').addClass("hilight");
-        } else if (($('#firstName').val() === "") && ($('#lastName').val() !== "")) {            
+        } else if (($('#firstName').val() === "") && ($('#lastName').val() !== "") && ($('canvas').val() === "")) {  // canvas + prenom empty          
             $('#firstName').addClass("hilight");
             $('#lastName').removeClass("hilight");
-        } else if (($('#lastName').val() === "") && ($('#firstName').val() !== "")) {
+            $('canvas').addClass("hilight");
+        } else if (($('#lastName').val() === "") && ($('#firstName').val() !== "") && ($('canvas').val() === "")) { //canvas + nom empty
             $('#lastName').addClass("hilight");
             $('#firstName').removeClass("hilight");
-        } else if ($('canvas').val() === "") {
             $('canvas').addClass("hilight");
+        } else if (($('#lastName').val() !== "") && ($('#firstName').val() !== "") && ($('canvas').val() === "")) { //canvas empty
+            $('#lastName').removeClass("hilight");
+            $('#firstName').removeClass("hilight");
+            $('canvas').addClass("hilight");
+        } else if (($('#lastName').val() === "") && ($('#firstName').val() !== "") && ($('canvas').val() !== "")) {     //nom empty
+            $('#lastName').addClass("hilight");
+            $('#firstName').removeClass("hilight");
+            $('canvas').removeClass("hilight");
+        } else if (($('#lastName').val() !== "") && ($('#firstName').val() === "") && ($('canvas').val() !== "")) {     //prenom empty
+            $('#lastName').removeClass("hilight");
+            $('#firstName').addClass("hilight");
+            $('canvas').removeClass("hilight");
         }
-//        else if ($('#lastName').val() !== "" || $('#firstName').val() !== ""/* || $('canvas').val() === ""*/) { //gère le fait q'un champ soit remplit{
+//    } else if ($('#lastName').val() !== "" || $('#firstName').val() !== ""/* || $('canvas').val() === ""*/) { //gère le fait q'un champ soit remplit{
 //            $('#firstName').removeClass("hilight");
 //            $('#lastName').removeClass("hilight");
 //            $('canvas').removeClass("hilight");
 //        } //alert('les champs nom,prénom et signature sont indispensables pour créer une réservation');
     }else if (booking.params.timer === undefined || booking.params.timer === false) {
           //booking non existant 
-        booking.start(idStation);
+        $('#lastName').removeClass("hilight");
+        $('#firstName').removeClass("hilight");
+        $('canvas').removeClass("hilight");
+        clearall();
+        booking.start(/*idStation*/);
         console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa ' + booking.params.timer);
     }else{
+        $('#lastName').removeClass("hilight");
+        $('#firstName').removeClass("hilight");
+        $('canvas').removeClass("hilight");
         $('#lastName').val(localStorage.getItem('stockLastName'));
         $('#firstName').val(localStorage.getItem('stockFirstName'));
         console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa ' + booking.params.timer);
         var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
-            if (r === true) { //pour reset le counter
-            booking.stop();
-            booking.start(idStation);
-            }
+        if (r === true) { //pour reset le counter
+        clearall();
+        booking.stop();
+        booking.start(/*idStation*/);
+        }
     }
 });
 

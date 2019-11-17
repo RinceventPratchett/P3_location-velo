@@ -13,6 +13,7 @@ $('#canvas').mousedown(function(e){
 		
     paint = true; // bascule la valeur de paint
     $('#canvas').val("ok"); //pour authoriser la reservation de vélo
+    $('canvas').removeClass("hilight"); //si le champ etait hilgihted   
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop); //pour enregistrer la position de la souris dans le canvas lors du click maintenu 
     redraw(); // maj du canvas avc fonction redraw()
     
@@ -37,7 +38,7 @@ $('#canvas').mouseleave(function(e){
 var clickX = new Array();   //definit les array qui contiendront la position du click
 var clickY = new Array();
 var clickDrag = new Array();
-var paint;
+var paint = false;
 
 function addClick(x, y, dragging) //fonction qui déclenche l'enregistrement des positions
 {
@@ -47,24 +48,26 @@ function addClick(x, y, dragging) //fonction qui déclenche l'enregistrement des
 };
 
 function redraw(){ 
-    context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
-  
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height); 
     context.strokeStyle = "#222222";
     context.lineJoin = "round";
     context.lineWidth = 3;
 			
-for(var i=0; i < clickX.length; i++) {		
-    context.beginPath();
+    for(var i=0; i < clickX.length; i++) {		
+        context.beginPath();
         if(clickDrag[i] && i){
             context.moveTo(clickX[i-1], clickY[i-1]);
         }else{
             context.moveTo(clickX[i]-1, clickY[i]);
         }
-    context.lineTo(clickX[i], clickY[i]);
-    context.closePath();
-    context.stroke();
-    
+        context.lineTo(clickX[i], clickY[i]);
+        context.closePath();
+        context.stroke();
   }
+};
+
+function clearall(){
+    context.clearRect(0,0,context.canvas.width,context.canvas.height);
 };
 // Set up touch events for mobile, etc
 //canvas.addEventListener("touchstart", function (e) {
