@@ -217,8 +217,8 @@ $("#buttonResa").click(function () {
         $('#lastName').removeClass("hilight");
         $('#firstName').removeClass("hilight");
         $('canvas').removeClass("hilight");
-        $("lastName").css({display: "none"});
-        $("firstName").css({display: "none"});
+        $("#lastName").css({display: "none"});
+        $("#firstName").css({display: "none"});
         $('canvas').css({display: "none"});
         clearall();
         booking.start(/*idStation*/);
@@ -235,8 +235,8 @@ $("#buttonResa").click(function () {
         clearall();
         booking.stop();
         booking.start(/*idStation*/);
-        $("lastName").css({display: "none"});
-        $("firstName").css({display: "none"});
+        $("#lastName").css({display: "none"});
+        $("#firstName").css({display: "none"});
         $('canvas').css({display: "none"});
         }
     }
