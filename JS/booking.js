@@ -46,6 +46,9 @@ var booking = {
             // If the count down is over, write some text 
             if (finResa < 0) {
                 booking.stop();
+                $('canvas').css({display: "block"});
+                $("#lastName").css({display: "block"});
+                $("#firstName").css({display: "block"});
                 console.log('fin resa');
             }
         }, 1000);
