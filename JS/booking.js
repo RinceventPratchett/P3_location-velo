@@ -217,6 +217,9 @@ $("#buttonResa").click(function () {
         $('#lastName').removeClass("hilight");
         $('#firstName').removeClass("hilight");
         $('canvas').removeClass("hilight");
+        $("lastName").css({display: "none"});
+        $("firstName").css({display: "none"});
+        $('canvas').css({display: "none"});
         clearall();
         booking.start(/*idStation*/);
         console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa ' + booking.params.timer);
@@ -232,6 +235,9 @@ $("#buttonResa").click(function () {
         clearall();
         booking.stop();
         booking.start(/*idStation*/);
+        $("lastName").css({display: "none"});
+        $("firstName").css({display: "none"});
+        $('canvas').css({display: "none"});
         }
     }
 });
