@@ -36,49 +36,46 @@ $('#canvas').mouseleave(function(){
 
 // Evénements Tactiles
 //on clic sur le tactile
-// Set up touch events for mobile, etc
-canvas.addEventListener("touchstart", function (e) {
-        mousePos = getTouchPos(canvas, e);
-  var touch = e.touches[0];
-  var mouseEvent = new MouseEvent("mousedown", {
-    clientX: touch.clientX,
-    clientY: touch.clientY
-  });
-  canvas.dispatchEvent(mouseEvent);
+canvas.addEventListener("touchstart", function (e)
+{
+// Mouse down location
+    var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft;
+    var mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop;
+
+    paint = true;
+    addClick(mouseX, mouseY, false);
+    redraw();
 }, false);
 
+//on bouge sur le tactile
 canvas.addEventListener("touchmove", function (e) {
-  var touch = e.touches[0];
-  var mouseEvent = new MouseEvent("mousemove", {
-    clientX: touch.clientX,
-    clientY: touch.clientY
-  });
-  canvas.dispatchEvent(mouseEvent);
+    var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft; // condition ? express si vrai : express si faux
+    var mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop;
+
+    if (paint) {
+        addClick(mouseX, mouseY, true);
+        redraw();
+    }
+    e.preventDefault();
 }, false);
 
-function getTouchPos(canvasDom, touchEvent) {
-  var rect = canvasDom.getBoundingClientRect();
-  return {
-    x: touchEvent.touches[0].clientX - rect.left,
-    y: touchEvent.touches[0].clientY - rect.top
-  };
-}
-// Prevent scrolling when touching the canvas
-document.body.addEventListener("touchstart", function (e) {
-  if (e.target == canvas) {
-    e.preventDefault();
-  }
+//on lache le tactile
+canvas.addEventListener("touchend", function () {
+    paint = false;
 }, false);
-document.body.addEventListener("touchend", function (e) {
-  if (e.target == canvas) {
-    e.preventDefault();
-  }
-}, false);
-document.body.addEventListener("touchmove", function (e) {
-  if (e.target == canvas) {
-    e.preventDefault();
-  }
-}, false);
+
+
+var clickX = new Array();   //definit les array qui contiendront la position du click
+var clickY = new Array();
+var clickDrag = new Array();
+var paint = false;
+
+function addClick(x, y, dragging) //fonction qui déclenche l'enregistrement des positions
+{
+  clickX.push(x);
+  clickY.push(y);
+  clickDrag.push(dragging);
+};
 
 function redraw(){ 
  
