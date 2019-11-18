@@ -47,9 +47,7 @@ var booking = {
                 $('canvas').css({display: "block"});
                 $("#lastName").css({display: "block"});
                 $("#firstName").css({display: "block"});
-                clearall();
                 //remise a zero du canvas
-                window.location.reload();
                 console.log('fin resa');
             }
         }, 1000);
