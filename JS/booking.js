@@ -47,7 +47,6 @@ var booking = {
                 $('canvas').css({display: "block"});
                 $("#lastName").css({display: "block"});
                 $("#firstName").css({display: "block"});
-                //remise a zero du canvas
                 console.log('fin resa');
             }
         }, 1000);
@@ -124,7 +123,6 @@ $("#buttonResa").click(function () {
         $("#lastName").css({display: "none"});
         $("#firstName").css({display: "none"});
         $('canvas').css({display: "none"});
-        clearall();
         booking.start();
         console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa ' + booking.params.timer);
     }else{
@@ -136,7 +134,6 @@ $("#buttonResa").click(function () {
         console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa ' + booking.params.timer);
         var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
         if (r === true) { //pour reset le counter
-        clearall();
         booking.stop();
         booking.start();
         $("#lastName").css({display: "none"});
