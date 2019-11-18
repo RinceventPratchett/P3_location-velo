@@ -36,7 +36,7 @@ $('#canvas').mouseleave(function(){
 
 // Evénements Tactiles
 //on clic sur le tactile
-canvas.addEventListener("touchstart", function (e)
+$('#canvas').addEventListener("touchstart", function (e)
 {
 // Mouse down location
     var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft;
@@ -48,7 +48,7 @@ canvas.addEventListener("touchstart", function (e)
 }, false);
 
 //on bouge sur le tactile
-canvas.addEventListener("touchmove", function (e) {
+$('#canvas').addEventListener("touchmove", function (e) {
     var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft;
     var mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop;
 
@@ -60,7 +60,7 @@ canvas.addEventListener("touchmove", function (e) {
 }, false);
 
 //on lache le tactile
-canvas.addEventListener("touchend", function () {
+$('#canvas').addEventListener("touchend", function () {
     paint = false;
 }, false);
 
