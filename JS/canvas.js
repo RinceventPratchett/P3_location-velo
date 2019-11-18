@@ -13,8 +13,8 @@ $('#canvas').mousedown(function(e){
 		
     paint = true; // bascule la valeur de paint
     $('#canvas').val("ok"); //pour authoriser la reservation de vélo
-    $('canvas').removeClass("hilight"); //si le champ etait hilgihted   
-    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop); //pour enregistrer la position de la souris dans le canvas lors du click maintenu 
+    $('#canvas').removeClass("hilight"); //si le champ etait hilgihted   
+    addClick(mouseX, mouseY); //pour enregistrer la position de la souris dans le canvas lors du click maintenu 
     redraw(); 
     
 });
@@ -26,11 +26,11 @@ $('#canvas').mousemove(function(e){
     }
 });
 
-$('#canvas').mouseup(function(e){
+$('#canvas').mouseup(function(){
     paint = false;
 });
 
-$('#canvas').mouseleave(function(e){
+$('#canvas').mouseleave(function(){
     paint = false;
 });
 
@@ -48,11 +48,10 @@ function addClick(x, y, dragging) //fonction qui déclenche l'enregistrement des
 };
 
 function redraw(){ 
-    context.clearRect(0,0, context.canvas.width, context.canvas.height); 
+ 
     context.strokeStyle = "#222222";
     context.lineJoin = "round";
-    context.lineWidth = 3;
-			
+    context.lineWidth = 2;
     for(var i=0; i < clickX.length; i++) {		
         context.beginPath();
         if(clickDrag[i] && i){
@@ -66,7 +65,16 @@ function redraw(){
   }
 };
 
-function clearall()
-{
-    context.clearRect(0,0, context.canvas.width, context.canvas.height);
+function clearall() {
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 };
+
+var effacer = document.getElementById('erase');
+
+effacer.addEventListener("click", function () {
+    clickX = new Array();
+    clickY = new Array();
+    clickDrag = new Array();
+    var paint = false;
+    clearall();    
+});
