@@ -45,7 +45,7 @@ canvas.addEventListener("touchstart", function (e)
     paint = true;
     addClick(mouseX, mouseY, false);
     redraw();
-}, false);
+});
 
 //on bouge sur le tactile
 canvas.addEventListener("touchmove", function (e) {
@@ -57,12 +57,12 @@ canvas.addEventListener("touchmove", function (e) {
         redraw();
     }
     e.preventDefault();
-}, false);
+});
 
 //on lache le tactile
 canvas.addEventListener("touchend", function () {
     paint = false;
-}, false);
+});
 
 
 var clickX = new Array();   //definit les array qui contiendront la position du click
