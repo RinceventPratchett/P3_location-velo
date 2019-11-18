@@ -106,9 +106,14 @@ function markerClick(station) {
 
         if (station.available_bikes > 0) { //ouverture du formulaire de resa
             $("#rent").css({display: "flex"});
+            $("input").css({display: "block"});
+            $("canvas").css({display: "block"});
 
         } else {
-            $("#rent").css({display: "none"});
+            $("input").css({display: "none"});
+            $("canvas").css({display: "none"});
+            $("timer").css({display: "block"});
+            
         }
     } else if (station.status === 'CLOSED') { //affichage limité en cas de statut fermé
         $(".detailsStation").css({display: "block"});
@@ -122,10 +127,6 @@ function markerClick(station) {
         $(".stationnement").css({display: "none"});
 
     }
-    //            if (booking.params.timer !== false) { //pour recupérer le num de station pour perso le message d'alerte
-    //                booking.display(station.number);
-    //            }
-
 }
 
 ajaxGet(url, successAjax);
