@@ -46,16 +46,7 @@ canvas.addEventListener("touchstart", function (e) {
   });
   canvas.dispatchEvent(mouseEvent);
 }, false);
-/*canvas.addEventListener("touchstart", function (e)
-{
-// Mouse down location
-    var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft;
-    var mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop;
 
-    paint = true;
-    addClick(mouseX, mouseY, false);
-    redraw();
-});*/
 canvas.addEventListener("touchmove", function (e) {
   var touch = e.touches[0];
   var mouseEvent = new MouseEvent("mousemove", {
@@ -65,17 +56,6 @@ canvas.addEventListener("touchmove", function (e) {
   canvas.dispatchEvent(mouseEvent);
 }, false);
 
-/*//on bouge sur le tactile
-canvas.addEventListener("touchmove", function (e) {
-    var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft; //
-    var mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop;
-
-    if (paint) {
-        addClick(mouseX, mouseY, true);
-        redraw();
-    }
-    e.preventDefault();
-});*/
 function getTouchPos(canvasDom, touchEvent) {
   var rect = canvasDom.getBoundingClientRect();
   return {
@@ -83,23 +63,6 @@ function getTouchPos(canvasDom, touchEvent) {
     y: touchEvent.touches[0].clientY - rect.top
   };
 }
-/*//on lache le tactile
-canvas.addEventListener("touchend", function () {
-    paint = false;
-});
-
-
-var clickX = new Array();   //definit les array qui contiendront la position du click
-var clickY = new Array();
-var clickDrag = new Array();
-var paint = false;
-
-function addClick(x, y, dragging) //fonction qui déclenche l'enregistrement des positions
-{
-  clickX.push(x);
-  clickY.push(y);
-  clickDrag.push(dragging);
-};*/
 // Prevent scrolling when touching the canvas
 document.body.addEventListener("touchstart", function (e) {
   if (e.target == canvas) {
