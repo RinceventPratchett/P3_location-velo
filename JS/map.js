@@ -34,6 +34,7 @@ const markers = L.markerClusterGroup(); //initialise le cluster des markers
 map.addEventListener("click", function () {
     $("#billboard").css({display: "none"}); //pour effacer le panneau lors d'un click sur la map 
     $("#map").css({width: "100%"});
+    window.location.reload();
 });
 
 /*

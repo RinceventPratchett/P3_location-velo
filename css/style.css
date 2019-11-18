@@ -16,11 +16,11 @@ header{
 }
 
 #velov{
-    height: 45rem;
+    height: 22.5rem;
 }
 
 #map{
-   height: 45rem;
+   height: 22.5rem;
    max-width: 98%;
    margin-left: 1%;
    margin-right: 1%;
@@ -190,13 +190,10 @@ button{
 
 
 canvas{
-  /*  width: 80%;*/
     margin-top: 2%;  
     background-color: white;
     border-radius: 5px;
     cursor: pointer;
-
-/*    color: black;*/
 }
 -mobile{
     
@@ -205,15 +202,23 @@ canvas{
 @media all and (max-width: 900px){
     #velov{
         height: min-content;
-/*        display: flex;
-        flex-direction: column;*/
+        display: flex;
+        flex-direction: column;
     }
-/*    #map{
+    #map{
         height: 22.5rem;
-        width: 98% !important;
+        width: auto !important;
     }
-    */
-/*    #billboard{
-        height: min-content;
-    }*/
+
+    #billboard{
+        width: auto;
+    }
+    header{
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0;
+    font-size: 0.7em;
+    }
 }
