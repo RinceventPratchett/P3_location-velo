@@ -1,4 +1,5 @@
-/* 
+/*              ---signature canvas ou autre a mettre.---
+ * 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -43,6 +44,8 @@ canvas.addEventListener("touchstart", function (e)
     var mouseY = e.changedTouches[0].pageY - this.offsetTop;
 
     paint = true;
+    $('#canvas').val("ok"); //pour authoriser la reservation de vélo
+    $('#canvas').removeClass("hilight"); //si le champ etait hilighted   
     addClick(mouseX, mouseY, false);
     redraw();
 }, false);
