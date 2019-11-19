@@ -11,16 +11,24 @@ header{
     padding: 2.5vw;
 }
 
+#station{
+    height: 22.5rem;
+    width: auto;
+
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
 .diaporama{
-    
+    text-align: center;
 }
 
 #velov{
-    height: 22.5rem;
+
 }
 
 #map{
-   height: 22.5rem;
+   height: 39rem;
    max-width: 98%;
    margin-left: 1%;
    margin-right: 1%;
@@ -31,6 +39,7 @@ header{
     display: none;
     margin-right: 0.5%;
     margin-left: 0.5%;
+    margin-bottom: 0.5%;
     padding-bottom: 1.5%;
     width: 50%;
     height: min-content;
@@ -58,7 +67,7 @@ header{
     text-transform: uppercase;
     width: 80%;
     margin-left: 10%;
-    margin-top: 1rem;
+    margin-top: 5px;
     height: auto;
     border-radius: 5px;
     background-color: black;
@@ -72,7 +81,7 @@ header{
     justify-content: center;
     width: 80%;
     border: solid black 1px;
-    margin-top: 1rem;
+    margin-top: 5px;
     padding-bottom: 1rem;
     margin-left: 10%;
     border-radius: 5px;
@@ -93,14 +102,14 @@ header{
     height: auto;
 }
 #lastName{
-    margin-top: 1rem;
+    margin-top: 3px;;
 }
 
 #rent span{
     width: 80%;
     text-align: center; 
     text-transform: uppercase;
-    margin-top: 1%;
+    margin-top: 1rem;
     background-color: graytext;
     border-radius: 5px;
     height: auto;     
@@ -130,7 +139,7 @@ button{
     vertical-align: middle;
     width: 80%;
     border: solid black 1px;
-    margin-top: 1rem;
+    margin-top: 5px;
     margin-left: 10%;
     border-radius: 5px;
     background-color: black;
@@ -145,7 +154,7 @@ button{
     text-align: center;
     width: 80%;
     border: solid black 1px;
-    margin-top: 1rem;
+    margin-top: 5px;
     padding-bottom: 1rem;
     margin-left: 10%;
     border-radius: 5px;
@@ -159,7 +168,7 @@ button{
     text-align: center;
     width: 80%;
     border: solid black 1px;
-    margin-top: 1rem;
+    margin-top: 5px;
     padding-bottom: 1rem;
     margin-left: 10%;
     border-radius: 5px;
@@ -173,7 +182,7 @@ button{
     text-align: center;    
     width: 80%;
     border: solid black 1px;
-    margin-top: 1rem;
+    margin-top: 5px;
     padding-bottom: 1rem;
     margin-left: 10%;
     border-radius: 5px;
@@ -194,7 +203,7 @@ button{
 
 
 canvas{
-    margin-top: 2%;  
+    margin-top: 5px;  
     background-color: white;
     border-radius: 5px;
     cursor: pointer;

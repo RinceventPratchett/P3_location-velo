@@ -26,7 +26,7 @@ var booking = {
     timer(){
         if (!booking.params.timer) { //si le timer n'est pas initié
             console.log('pour vérifier que booking.params.timer a une valeur dans la méthode timer ' + booking.params.timer);
-        booking.params.timer = new Date().getTime() + (1000 * 60/* * 20*/);//1000 au lieu de 100 + 
+        booking.params.timer = new Date().getTime() + (100 * 60/* * 20*/);//1000 au lieu de 100 + 
         }
         console.log('timer : ' + booking.params.timer);
         // Update the count down every 1 second

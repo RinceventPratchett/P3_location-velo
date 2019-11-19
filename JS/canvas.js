@@ -70,7 +70,7 @@ var clickY = new Array();
 var clickDrag = new Array();
 var paint = false;
 
-function addClick(x, y, dragging) //fonction qui déclenche l'enregistrement des positions
+function addClick(x, y, dragging) //fonction qui déclenche l'enregistrement des positions via le glissé-déposé.
 {
   clickX.push(x);
   clickY.push(y);
