@@ -20,6 +20,7 @@ var booking = {
         $("#firstName").css({display: "block"});
         $("#lastName").css({display: "block"});
         $("#timer").html("20mn 00s");
+        clearall();
     },
     
     timer(){
@@ -123,70 +124,6 @@ $("#buttonResa").click(function () {
     }   
 });
         
-    
-    
-    
-    
-//    if ($('#lastName').val() === "" || $('#firstName').val() === "" || $('canvas').val() === "") { //gère le fait q'un champ soit vide
-//        $("#buttonResa").disabled = true;
-//        if ($('#lastName').val() === "" && $('#firstName').val() === "" && $('canvas').val() === "") { //all empty
-//            $('#lastName').addClass("hilight");     
-//            $('#firstName').addClass("hilight");
-//            $('canvas').addClass("hilight");
-//            alert('les champs nom,prénom et signature sont indispensables pour créer une réservation');
-//        } else if (($('#firstName').val() === "") && ($('#lastName').val() !== "") && ($('canvas').val() === "")) {  // canvas + prenom empty          
-//            $('#firstName').addClass("hilight");
-//            $('#lastName').removeClass("hilight");
-//            $('canvas').addClass("hilight");
-//            alert('les champs nom,prénom et signature sont indispensables pour créer une réservation');
-//        } else if (($('#lastName').val() === "") && ($('#firstName').val() !== "") && ($('canvas').val() === "")) { //canvas + nom empty
-//            $('#lastName').addClass("hilight");
-//            $('#firstName').removeClass("hilight");
-//            $('canvas').addClass("hilight");
-//            alert('les champs nom,prénom et signature sont indispensables pour créer une réservation');
-//        } else if (($('#lastName').val() !== "") && ($('#firstName').val() !== "") && ($('canvas').val() === "")) { //canvas empty
-//            $('#lastName').removeClass("hilight");
-//            $('#firstName').removeClass("hilight");
-//            $('canvas').addClass("hilight");
-//            alert('les champs nom,prénom et signature sont indispensables pour créer une réservation');
-//        } else if (($('#lastName').val() === "") && ($('#firstName').val() !== "") && ($('canvas').val() !== "")) {     //nom empty
-//            $('#lastName').addClass("hilight");
-//            $('#firstName').removeClass("hilight");
-//            $('canvas').removeClass("hilight");
-//            alert('les champs nom,prénom et signature sont indispensables pour créer une réservation');
-//        } else if (($('#lastName').val() !== "") && ($('#firstName').val() === "") && ($('canvas').val() !== "")) {     //prenom empty
-//            $('#lastName').removeClass("hilight");
-//            $('#firstName').addClass("hilight");
-//            $('canvas').removeClass("hilight");
-//            alert('les champs nom,prénom et signature sont indispensables pour créer une réservation');
-//        }
-//    }else if (booking.params.timer === undefined || booking.params.timer === false) {
-//          //booking non existant 
-//        $('#lastName').removeClass("hilight");
-//        $('#firstName').removeClass("hilight");
-//        $('canvas').removeClass("hilight");
-//        $("#lastName").css({display: "none"});
-//        $("#firstName").css({display: "none"});
-//        $('canvas').css({display: "none"});
-//        booking.start();
-//        console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa ' + booking.params.timer);
-//    }else{
-//        $('#lastName').removeClass("hilight");
-//        $('#firstName').removeClass("hilight");
-//        $('canvas').removeClass("hilight");
-//        $('#lastName').val(localStorage.getItem('stockLastName'));
-//        $('#firstName').val(localStorage.getItem('stockFirstName'));
-//        console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa ' + booking.params.timer);
-//        var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
-//        if (r === true) { //pour reset le counter
-//        booking.stop();
-//        booking.start();
-//        $("#lastName").css({display: "none"});
-//        $("#firstName").css({display: "none"});
-//        $('canvas').css({display: "none"});
-//        }
-//    }
-
 
 // pour stocker les infos saisies lors de la session (pas de reset si fermeture du nav)
 var stockNomPrenom = () => {

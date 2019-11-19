@@ -4,14 +4,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var canvas  = $('canvas')[0]; //il faut spécifier le canvas rechercher pour qu'il reçoive les propriétés.
-var context = canvas.getContext('2d');
+const effacer = document.getElementById('erase');
 
+let canvas  = $('canvas')[0]; //il faut spécifier le canvas rechercher pour qu'il reçoive les propriétés.
+let context = canvas.getContext('2d');
+
+let clickX = new Array();   //definit les array qui contiendront la position du click
+let clickY = new Array();
+let clickDrag = new Array();
+let paint = false;
 
 $('#canvas').mousedown(function(e){
     var mouseX = e.pageX - this.offsetLeft;      
-    var mouseY = e.pageY - this.offsetTop;
-		
+    var mouseY = e.pageY - this.offsetTop;		
     paint = true; // bascule la valeur de paint
     $('#canvas').val("ok"); //pour authoriser la reservation de vélo
     $('#canvas').removeClass("hilight"); //si le champ etait hilgihted   
@@ -67,14 +72,7 @@ canvas.addEventListener("touchend", function () {
     paint = false;
 }, false);
 
-
-var clickX = new Array();   //definit les array qui contiendront la position du click
-var clickY = new Array();
-var clickDrag = new Array();
-var paint = false;
-
-function addClick(x, y, dragging) //fonction qui déclenche l'enregistrement des positions via le glissé-déposé.
-{
+function addClick(x, y, dragging) { //fonction qui déclenche l'enregistrement des positions via le glissé-déposé.
   clickX.push(x);
   clickY.push(y);
   clickDrag.push(dragging);
@@ -100,14 +98,13 @@ function redraw(){
 
 function clearall() {
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-};
-
-var effacer = document.getElementById('erase');
-
-effacer.addEventListener("click", function () {
     clickX = new Array();
     clickY = new Array();
     clickDrag = new Array();
-    var paint = false;
-    clearall();    
+    paint = false;
+    $('#canvas').val("");
+};
+
+effacer.addEventListener("click", function () {
+    clearall();   
 });
