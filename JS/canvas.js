@@ -49,8 +49,8 @@ canvas.addEventListener("touchstart", function (e)
 
 //on bouge sur le tactile
 canvas.addEventListener("touchmove", function (e) {
-    var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft; // condition ? express si vrai : express si faux
-    var mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop;
+    var mouseX = e.changedTouches[0].pageX - this.offsetLeft; // condition ? express si vrai : express si faux
+    var mouseY = e.changedTouches[0].pageY - this.offsetTop;
 
     if (paint) {
         addClick(mouseX, mouseY, true);
