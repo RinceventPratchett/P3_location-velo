@@ -39,8 +39,8 @@ $('#canvas').mouseleave(function(){
 canvas.addEventListener("touchstart", function (e)
 {
 // Mouse down location
-    var mouseX = (e.changedTouches ? e.changedTouches[0].pageX : e.pageX) - this.offsetLeft;
-    var mouseY = (e.changedTouches ? e.changedTouches[0].pageY : e.pageY) - this.offsetTop;
+    var mouseX = e.changedTouches[0].pageX - this.offsetLeft;
+    var mouseY = e.changedTouches[0].pageY - this.offsetTop;
 
     paint = true;
     addClick(mouseX, mouseY, false);
