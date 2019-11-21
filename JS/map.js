@@ -3,9 +3,10 @@
 /* 
 Pour appeler la map mapbox
  */
-let map = L.map('map').setView([45.76, 4.85], 13);
+const map = L.map('map').setView([45.76, 4.85], 13);
+const markers = L.markerClusterGroup(); //initialise le cluster des markers
 
-var myMap={
+var Mymap={    
     init() {
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>\n\
@@ -15,8 +16,8 @@ var myMap={
 	accessToken: 'pk.eyJ1Ijoib2Nwcm9qZWN0NjkiLCJhIjoiY2sya2kzeWZpMTRnczNubWw5ZWNpN2pmYyJ9.oxsBCTb68dqIZhCi_2pySw'
         }).addTo(map);
     }
-};
-    
+};  
+
 //créer l'objet icon qui servira de marker
 const icons = L.Icon.extend({
     options: {
@@ -29,15 +30,6 @@ const icons = L.Icon.extend({
 const greenIcon = new icons({iconUrl: '../images/leaf-green.png'});
 const redIcon = new icons({iconUrl: '../images/leaf-red.png'});
 const orangeIcon = new icons({iconUrl: '../images/leaf-orange.png'});
-
-const markers = L.markerClusterGroup(); //initialise le cluster des markers
-//pour refermer le bilboard lors du click dans la map
-
-map.addEventListener("click", function () {
-    $("#billboard").css({display: "none"}); //pour effacer le panneau lors d'un click sur la map 
-    $("#map").css({width: "100%"});
-//    window.location.reload();
-});
 
 /*
  * successAjax Executé au succès de la requete ajax du wenservice JCdecault
@@ -60,7 +52,7 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
         } else if (statutStation === 'CLOSED') {
             color = redIcon;
         }
-        var marker = L.marker([coordLat, coordLng], {icon: color}); //pour ajouter les popup sur chaque marker 
+        var marker = L.marker([coordLat, coordLng], {icon: color});
         marker.stationData = station;        
         marker.addEventListener("click", function (e) { //écouter le click pour chaque maker
             markerClick(e.target.stationData); //récupère l'objet target correspondant au marker cliké
@@ -72,7 +64,7 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
 };
 
 function markerClick(station) {
-    $(".statut").empty();   //pour vider les champs si ils ont déjà été appelé 
+    $(".statut").empty();   //pour vider les champs si ils ont déjà été appelés 
     $(".detailsStation").empty();
     $(".nameStation").empty();
     $(".address").empty();
@@ -82,7 +74,7 @@ function markerClick(station) {
     $("#billboard").css({display: "block"});
     $("#map").css({width: "75%"});
     console.log('station num :' + station.number + 'function marker addeventlistener');
-    $("#id_station").val(station.number); //pour récupérer l'id de la station et l'attribuer à l'input html 
+    $("#id_station").val(station.name); //pour récupérer l'id de la station et l'attribuer à l'input html 
 
     if (station.status === 'OPEN') { //verification du statut pour déffinir les infos à afficher
         $(".statut").append("statut : open");
@@ -120,6 +112,16 @@ function markerClick(station) {
         $(".stationnement").css({display: "none"});
 
     }
-}
-myMap.init(map);
+};
+
+
+
+
 ajaxGet(url, successAjax);
+Mymap.init(map);
+
+
+map.addEventListener("click", function () {
+    $("#billboard").css({display: "none"}); //pour effacer le panneau lors d'un click sur la map 
+    $("#map").css({width: "100%"});
+});

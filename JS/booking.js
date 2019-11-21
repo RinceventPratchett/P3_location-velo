@@ -10,6 +10,9 @@ var booking = {
         booking.display();
     // Set the timer
         booking.timer();
+        //$("#resume").html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reserve pour " + booking.timer()); ligne de code qui plante la fonction, stop du code ....
+        $("#resume").empty();
+        $("#resume").html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : " + $("#id_station").val());
     },
 
     stop(){
@@ -20,7 +23,6 @@ var booking = {
         $("#firstName").css({display: "block"});
         $("#lastName").css({display: "block"});
         $("#timer").html("20mn 00s");
-        clearall();
     },
     
     timer(){
@@ -47,6 +49,8 @@ var booking = {
                 $('canvas').css({display: "block"});
                 $("#lastName").css({display: "block"});
                 $("#firstName").css({display: "block"});
+                $("#resume").empty();
+                $("#resume").html("votre temps de réservation est expiré");
                 console.log('fin resa');
             }
         }, 1000);
@@ -123,7 +127,6 @@ $("#buttonResa").click(function () {
         console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa ' + booking.params.timer);
     }   
 });
-        
 
 // pour stocker les infos saisies lors de la session (pas de reset si fermeture du nav)
 var stockNomPrenom = () => {
@@ -154,6 +157,8 @@ $(document).ready(function(){
 
 
 stockNomPrenom();
+$("#resume").empty();
+$("#resume").html("en attente de réservation");
 booking.init();
 
 

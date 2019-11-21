@@ -1,6 +1,9 @@
 body{
     margin: 0;
     overflow-x: hidden;
+    background-image: url("../images/velo-v-.jpg");
+    background-size: cover;
+    font-size: 1rem;
 }
 
 header{
@@ -8,7 +11,9 @@ header{
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
+    color: white;
     padding: 2.5vw;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 #station{
@@ -207,6 +212,15 @@ canvas{
     background-color: white;
     border-radius: 5px;
     cursor: pointer;
+}
+
+#resume{
+    background-color: gray;
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 0.5%;
+    margin-top: 0.25%;
 }
 -mobile{
     
