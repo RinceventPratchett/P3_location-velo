@@ -153,12 +153,12 @@ $(document).ready(function(){
         $("#canvas").removeAttr('height');
         $("#canvas").attr({height:230, width:170});
     }
+    $("#resume").empty();
+    $("#resume").html("en attente de réservation");
 });
 
 
 stockNomPrenom();
-$("#resume").empty();
-$("#resume").html("en attente de réservation");
 booking.init();
 
 
