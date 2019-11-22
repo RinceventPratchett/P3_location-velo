@@ -20,10 +20,15 @@ class Mymap{
 	maxZoom: 18,
 	id: 'mapbox.streets',
 	accessToken: 'pk.eyJ1Ijoib2Nwcm9qZWN0NjkiLCJhIjoiY2sya2kzeWZpMTRnczNubWw5ZWNpN2pmYyJ9.oxsBCTb68dqIZhCi_2pySw'
-        }).addTo(NewMap.map);
+        }).addTo(MyMap.map);
     }
 };  
- 
+
+ //pour instancier le marker vert/rouge/orange 
+const greenIcon = new Mymap.icons({iconUrl: '../images/leaf-green.png'});
+const redIcon =  new MyMap.icons({iconUrl: '../images/leaf-red.png'});
+const orangeIcon = new MyMap.icons({iconUrl: '../images/leaf-orange.png'});   
+
 /*
  * successAjax Executé au succès de la requete ajax du wenservice JCdecault
  * 
@@ -50,9 +55,9 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
         marker.addEventListener("click", function (e) { //écouter le click pour chaque maker
             markerClick(e.target.stationData); //récupère l'objet target correspondant au marker cliké
         });
-        NewMap.markers.addLayer(marker); //pour ajouter les marker au cluster.
+        Mymap.markers.addLayer(marker); //pour ajouter les marker au cluster.
     });
-    NewMap.markers.addTo(NewMap.map);
+    MyMap.markers.addTo(MyMap.map);
     return true;
 };
 
@@ -106,19 +111,13 @@ function markerClick(station) {
 
     }
 };
-
 var NewMap = new Mymap;
-//pour instancier le marker vert/rouge/orange 
-const greenIcon = new NewMap.icons({iconUrl: '../images/leaf-green.png'});
-const redIcon =  new NewMap.icons({iconUrl: '../images/leaf-red.png'});
-const orangeIcon = new NewMap.icons({iconUrl: '../images/leaf-orange.png'});   
-
 
 ajaxGet(url, successAjax);
-NewMap.init(NewMap.map);
+MyMap.init(Mymap.map);
 
 
-NewMap.map.addEventListener("click", function () {
+MyMap.map.addEventListener("click", function () {
     $("#billboard").css({display: "none"}); //pour effacer le panneau lors d'un click sur la map 
     $("#map").css({width: "100%"});
 });
