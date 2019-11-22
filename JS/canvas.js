@@ -46,7 +46,7 @@ class Canvas {
         });
         // Evénements Tactiles
         //on clic sur le tactile
-        this._canvas.bind("touchstart", function (e){ //bind = addEventListener en Jquery !
+        $('canvas').addEventListener("touchstart", function (e){ //bind = addEventListener en Jquery !
         // Mouse down location
             var mouseX = e.changedTouches[0].pageX - this.offsetLeft;
             var mouseY = e.changedTouches[0].pageY - this.offsetTop;
@@ -59,7 +59,7 @@ class Canvas {
         }, false);
 
         //on bouge sur le tactile
-        this._canvas.bind("touchmove", function (e) {
+        $('canvas').addEventListener("touchmove", function (e) {
             var mouseX = e.changedTouches[0].pageX - this.offsetLeft; // condition ? express si vrai : express si faux
             var mouseY = e.changedTouches[0].pageY - this.offsetTop;
 
@@ -70,11 +70,12 @@ class Canvas {
             e.preventDefault();
         }, false);
         //on lache le tactile
-        this._canvas.bind("touchend", function () {
+        $('canvas').addEventListener("touchend", function () {
             that.paint = false;
         }, false);
     }
     get canvas() { //getter -> fonction spécifique qui permet de récupérer un objet js
+        console.log(this._canvas + "dans le get canvas");
         return this._canvas;
     }
     clearAll() {
