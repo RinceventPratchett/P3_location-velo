@@ -32,7 +32,6 @@ class MyMap{
  */
 function successAjax(detailsStation) { //l'utilisation de var permet l'appel du contenu dans toute la fonction
     var details = JSON.parse(detailsStation);
-    console.log(details);//pour faire un controle sur la console
     details.forEach(function (station) { //pour récupérer les détail de chaque station
         var coordLat = station.position.lat;
         var coordLng = station.position.lng;
@@ -49,8 +48,7 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
         marker.stationData = station;        
         marker.addEventListener("click", function (e) { //écouter le click pour chaque maker
             markerClick(e.target.stationData); //récupère l'objet target correspondant au marker cliké
-            console.log(window.location);
-            window.location.hash = '#billboard';
+            window.location.hash = '#billboard'; //pour rejoindre l'ancre créer par l'id billboard
 
         });
         NewMap.markers.addLayer(marker); //pour ajouter les marker au cluster.
@@ -69,7 +67,6 @@ function markerClick(station) {
     $("#velov").css({display: "flex"});
     $("#billboard").css({display: "block"});
     $("#map").css({width: "75%"});
-    console.log('station num :' + station.number + 'function marker addeventlistener');
     $("#id_station").val(station.name); //pour récupérer l'id de la station et l'attribuer à l'input html 
      
     

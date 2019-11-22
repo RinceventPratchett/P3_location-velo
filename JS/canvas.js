@@ -83,7 +83,6 @@ class Canvas {
         clickY = new Array();
         clickDrag = new Array();
         this.paint = false;
-        console.log("clearAll : " + this._canvas);
         this._canvas.val("");
     }
     redraw(){  
@@ -110,9 +109,6 @@ class Canvas {
 }
 
 var ObjCanvas = new Canvas($('canvas'));
-
-ObjCanvas.canvas.val('ttt');
-console.log($('canvas').val());
 
 effacer.addEventListener("click", function () {    
    ObjCanvas.clearAll();

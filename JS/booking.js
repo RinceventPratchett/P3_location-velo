@@ -6,7 +6,6 @@
 //creation de l'objet booking 
 var booking = {
     start(){ //méthode pour démarer le booking
-        console.log('booking qui demarre');
         booking.display();
     // Set the timer
         booking.timer();
@@ -16,10 +15,8 @@ var booking = {
     },
 
     stop(){
-        console.log('fonction stop');
         clearInterval(booking.loop);
         booking.params.timer = false;
-        console.log('pour vérifier que booking.params.timer est bien a false ' + booking.params.timer);
         $("#firstName").css({display: "block"});
         $("#lastName").css({display: "block"});
         $("#timer").html("20mn 00s");
@@ -28,10 +25,8 @@ var booking = {
     
     timer(){
         if (!booking.params.timer) { //si le timer n'est pas initié
-            console.log('pour vérifier que booking.params.timer a une valeur dans la méthode timer ' + booking.params.timer);
         booking.params.timer = new Date().getTime() + (100 * 60/* * 20*/);//1000 au lieu de 100 + 
         }
-        console.log('timer : ' + booking.params.timer);
         // Update the count down every 1 second
         booking.loop = setInterval(function () {
 
@@ -52,11 +47,9 @@ var booking = {
                 $("#firstName").css({display: "block"});
                 $("#resume").empty();
                 $("#resume").html("votre temps de réservation est expiré");
-                console.log('fin resa');
             }
         }, 1000);
         sessionStorage.setItem('timer', booking.params.timer);  //stock les infos de session - raz lors de la fermeture de session.
-        console.log('pour vérifier que booking.params.timer a une valeur dans la méthode timer en appel sessionSTorage' + booking.params.timer);
     },
     
     display(){
@@ -67,7 +60,6 @@ var booking = {
         booking.params = {};
         if (sessionStorage.getItem('timer')) {
             booking.params.timer = sessionStorage.getItem('timer');
-            console.log('pour vérifier que booking.params.timer a une valeur dans la méthode params' + booking.params.timer);
         }else {
             booking.params.timer = false; 
         }
@@ -77,7 +69,6 @@ var booking = {
         //code à éxécuter au chargement de la page
         if (sessionStorage.getItem('timer')) { //pour vérifier la présence du timer en cache sessionStorage
             booking.params.timer = sessionStorage.getItem('timer');     //affecte le timer existant
-            console.log('pour vérifier que booking.params.timer a une valeur dans la méthode init' + booking.params.timer);
             booking.timer();
             booking.display(); //pour faire apparaitre le timer contenu/en cours
         }
@@ -124,7 +115,6 @@ $("#buttonResa").click(function () {
         firstName.css({display: "none"});
         canvas.css({display: "none"});
         booking.start();
-        console.log('pour vérifier que booking.params.timer a une valeur dans la fonction bouton résa ' + booking.params.timer);
     }   
 });
 
