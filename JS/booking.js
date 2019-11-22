@@ -12,6 +12,8 @@ var booking = {
         //$("#resume").html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reserve pour " + booking.timer()); ligne de code qui plante la fonction, stop du code ....
         $("#resume").empty();
         $("#resume").html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : " + $("#id_station").val());
+        window.location.hash = '#resume';
+
     },
 
     stop(){
@@ -19,8 +21,9 @@ var booking = {
         booking.params.timer = false;
         $("#firstName").css({display: "block"});
         $("#lastName").css({display: "block"});
-        $("#timer").html("20mn 00s");
+        $("#timer").html("20mn 00s");        
         ObjCanvas.clearAll(); //pour effacer le canvas à la fin de la résa
+        window.location.hash = '#resume';
     },
     
     timer(){
@@ -89,11 +92,12 @@ $("#buttonResa").click(function () {
         } else {
             myObject.removeClass("hilight"); 
         }
-    }
+    }  
     
     setState (lastName, lastName.val() === "");
     setState (firstName, firstName.val() === "");
     setState (canvas, canvas.val() === "");
+    
     let shouldBook = false;
     
     if (hasError){
@@ -141,7 +145,7 @@ $(document).ready(function(){
     if (largeurwidth <= 900) {
         $("#canvas").removeAttr('width');
         $("#canvas").removeAttr('height');
-        $("#canvas").attr({height:230, width:170});
+        $("#canvas").attr({height:115, width:200});
     }
     $("#resume").empty();
     $("#resume").html("en attente de réservation");

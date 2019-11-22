@@ -3,7 +3,7 @@
 
 class MyMap{
     constructor() {
-        this.map = L.map('map').setView([45.76, 4.85], 13);
+        this.map = L.map('map', {gestureHandling: true}).setView([45.76, 4.85], 13);
         this.markers = L.markerClusterGroup(); //initialise le cluster des markers
         this.icons = L.Icon.extend({
             options: {
