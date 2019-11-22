@@ -49,6 +49,9 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
         marker.stationData = station;        
         marker.addEventListener("click", function (e) { //écouter le click pour chaque maker
             markerClick(e.target.stationData); //récupère l'objet target correspondant au marker cliké
+            console.log(window.location);
+            window.location.hash = '#billboard';
+
         });
         NewMap.markers.addLayer(marker); //pour ajouter les marker au cluster.
     });
@@ -68,8 +71,9 @@ function markerClick(station) {
     $("#map").css({width: "75%"});
     console.log('station num :' + station.number + 'function marker addeventlistener');
     $("#id_station").val(station.name); //pour récupérer l'id de la station et l'attribuer à l'input html 
-
-    if (station.status === 'OPEN') { //verification du statut pour déffinir les infos à afficher
+     
+    
+    if (station.status === 'OPEN') { //verification du statut pour déffinir les infos à afficher        
         $(".statut").append("statut : open");
         $(".detailsStation").css({display: "block"});
         $(".detailsStation").append("Détails de la station"); //texte qui apparait
@@ -108,7 +112,7 @@ function markerClick(station) {
 };
 
 var NewMap = new MyMap;
-//pour instancier le marker vert/rouge/orange 
+//pour instancier les marker vert/rouge/orange 
 const greenIcon = new NewMap.icons({iconUrl: '../images/leaf-green.png'});
 const redIcon =  new NewMap.icons({iconUrl: '../images/leaf-red.png'});
 const orangeIcon = new NewMap.icons({iconUrl: '../images/leaf-orange.png'});   
