@@ -1,12 +1,18 @@
 //Required ajax.js + booking.js
 
-/* 
-Pour appeler la map mapbox
- */
-const map = L.map('map').setView([45.76, 4.85], 13);
-const markers = L.markerClusterGroup(); //initialise le cluster des markers
 
-var Mymap={    
+class Mymap{
+    constructor() {
+        this.map = L.map('map').setView([45.76, 4.85], 13);
+        this.markers = L.markerClusterGroup(); //initialise le cluster des markers
+        this.icons = L.Icon.extend({
+            options: {
+                iconSize: [38, 95],
+                iconAnchor: [22, 94],
+                popupAnchor: [-3, -76]
+    }
+});
+    }
     init() {
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>\n\
@@ -14,23 +20,10 @@ var Mymap={
 	maxZoom: 18,
 	id: 'mapbox.streets',
 	accessToken: 'pk.eyJ1Ijoib2Nwcm9qZWN0NjkiLCJhIjoiY2sya2kzeWZpMTRnczNubWw5ZWNpN2pmYyJ9.oxsBCTb68dqIZhCi_2pySw'
-        }).addTo(map);
+        }).addTo(NewMap.map);
     }
 };  
-
-//créer l'objet icon qui servira de marker
-const icons = L.Icon.extend({
-    options: {
-        iconSize: [38, 95],
-        iconAnchor: [22, 94],
-        popupAnchor: [-3, -76]
-    }
-});
-//pour instancier le marker vert/rouge/orange 
-const greenIcon = new icons({iconUrl: '../images/leaf-green.png'});
-const redIcon = new icons({iconUrl: '../images/leaf-red.png'});
-const orangeIcon = new icons({iconUrl: '../images/leaf-orange.png'});
-
+ 
 /*
  * successAjax Executé au succès de la requete ajax du wenservice JCdecault
  * 
@@ -47,7 +40,7 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
         var remainingPark = station.available_bike_stands;
         var statutStation = station.status;
         var color = greenIcon; 
-        if (statutStation === 'OPEN' && (dispo <= 2 || remainingPark <= 2)) {
+        if (statutStation === 'OPEN' && (dispo <= 2 || remainingPark <= 2)) { //condition d'attribution du marker orange
             color = orangeIcon;
         } else if (statutStation === 'CLOSED') {
             color = redIcon;
@@ -57,9 +50,9 @@ function successAjax(detailsStation) { //l'utilisation de var permet l'appel du 
         marker.addEventListener("click", function (e) { //écouter le click pour chaque maker
             markerClick(e.target.stationData); //récupère l'objet target correspondant au marker cliké
         });
-        markers.addLayer(marker); //pour ajouter les marker au cluster.
+        NewMap.markers.addLayer(marker); //pour ajouter les marker au cluster.
     });
-    markers.addTo(map);
+    NewMap.markers.addTo(NewMap.map);
     return true;
 };
 
@@ -114,14 +107,18 @@ function markerClick(station) {
     }
 };
 
-
+var NewMap = new Mymap;
+//pour instancier le marker vert/rouge/orange 
+const greenIcon = new NewMap.icons({iconUrl: '../images/leaf-green.png'});
+const redIcon =  new NewMap.icons({iconUrl: '../images/leaf-red.png'});
+const orangeIcon = new NewMap.icons({iconUrl: '../images/leaf-orange.png'});   
 
 
 ajaxGet(url, successAjax);
-Mymap.init(map);
+NewMap.init(NewMap.map);
 
 
-map.addEventListener("click", function () {
+NewMap.map.addEventListener("click", function () {
     $("#billboard").css({display: "none"}); //pour effacer le panneau lors d'un click sur la map 
     $("#map").css({width: "100%"});
 });

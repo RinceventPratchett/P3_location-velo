@@ -23,6 +23,7 @@ var booking = {
         $("#firstName").css({display: "block"});
         $("#lastName").css({display: "block"});
         $("#timer").html("20mn 00s");
+        ObjCanvas.clearAll(); //pour effacer le canvas à la fin de la résa
     },
     
     timer(){
@@ -56,7 +57,6 @@ var booking = {
         }, 1000);
         sessionStorage.setItem('timer', booking.params.timer);  //stock les infos de session - raz lors de la fermeture de session.
         console.log('pour vérifier que booking.params.timer a une valeur dans la méthode timer en appel sessionSTorage' + booking.params.timer);
-//        sessionStorage.setItem('idStation', booking.params.idStation);
     },
     
     display(){
