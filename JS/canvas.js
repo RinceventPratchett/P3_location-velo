@@ -24,7 +24,7 @@ class Canvas {
             that.paint = true; // bascule la valeur de paint
             cible.val("ok"); //pour authoriser la reservation de vélo
             cible.removeClass("hilight"); //si le champ etait hilgihted   
-            that.addClick(mouseX, mouseY); //pour enregistrer la position de la souris dans le canvas lors du click maintenu 
+            that.addClick(mouseX, mouseY, false); //pour enregistrer la position de la souris dans le canvas lors du click maintenu 
             that.redraw();     
         });
         
@@ -44,7 +44,7 @@ class Canvas {
         });
         // Evénements Tactiles
         //on clic sur le tactile
-        $('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
+        this._canvas.on("touchstart", function (e){ //bind = addEventListener en Jquery !
         // Mouse down location
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
             //alert('touch start');
@@ -59,7 +59,7 @@ class Canvas {
         });
 
         //on bouge sur le tactile
-       $('canvas').on("touchmove", function (e) {            
+       this._canvas.on("touchmove", function (e) {            
             e.preventDefault();
             var mouseX = e.originalEvent.changedTouches[0].pageX - $(this).offset().left; // condition ? express si vrai : express si faux
             var mouseY = e.originalEvent.changedTouches[0].pageY - $(this).offset().top;
@@ -72,7 +72,7 @@ class Canvas {
             }
         });
         //on lache le tactile
-        $('canvas').on("touchend", function (e) {
+        this._canvas.on("touchend", function (e) {
             e.preventDefault();
             that.paint = false;
             //alert('touch end');
