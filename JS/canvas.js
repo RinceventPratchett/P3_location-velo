@@ -54,10 +54,12 @@ class Canvas {
         // Mouse down location
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
             //alert('touch start');
-            var mouseX = parseInt(e.originalEvent.changedTouches[0].pageX) - this.offsetLeft;
-            var mouseY = parseInt(e.originalEvent.changedTouches[0].pageY) - this.offsetTop;
+            alert(typeof e.originalEvent.changedTouches[0].pageX);
+            alert(typeof this.offsetLeft);
+            //var mouseX = parseInt(e.originalEvent.changedTouches[0].pageX) - this.offsetLeft;
+            //var mouseY = parseInt(e.originalEvent.changedTouches[0].pageY) - this.offsetTop;
             
-            alert(mouseX);
+            //alert(mouseX);
             that.paint = true;
             cible.val("ok"); //pour authoriser la reservation de vélo
             cible.removeClass("hilight"); //si le champ etait hilighted   
