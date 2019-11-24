@@ -164,7 +164,7 @@ $(window).resize(function(){
 });    
 
 $(document).ready(function(){
-    alert('v1.3.2');
+    alert('v1.3.3');
     resizeCanvas();
     $("#resume").empty();
     if (booking.params.timer === undefined || booking.params.timer === false) {
