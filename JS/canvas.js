@@ -81,7 +81,7 @@ class Canvas {
             else{
                 
             }*/
-        }, false);
+        });
         //on lache le tactile
         /*$('canvas').on("touchend", function (e) {
             e.preventDefault();
