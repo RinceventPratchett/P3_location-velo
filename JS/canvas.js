@@ -46,7 +46,7 @@ class Canvas {
         });*/
         // Evénements Tactiles
         //on clic sur le tactile
-        $('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
+        /*$('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
         // Mouse down location
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
             //alert('touch start');
@@ -81,7 +81,13 @@ class Canvas {
             alert(test);
             that.paint = false;
             //alert('touch end');
-        }, false);
+        }, false);*/
+        
+        $('canvas').on("touchend", function () {
+            alert('touchend');
+        });
+        
+        
          
         effacer.click(function () {    
            that.clearAll();
