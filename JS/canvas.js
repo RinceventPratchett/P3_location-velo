@@ -44,10 +44,13 @@ class Canvas {
         this._canvas.mouseleave(function(){
             that.paint = false;
         });*/
-        
+        $('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
+            e.preventDefault(); 
+             alert('start ' + this.offsetLeft);
+        });
         // Evénements Tactiles
         //on clic sur le tactile
-        $('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
+        /*$('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
         // Mouse down location
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
             //alert('touch start');
@@ -61,10 +64,10 @@ class Canvas {
             cible.removeClass("hilight"); //si le champ etait hilighted   
             that.addClick(mouseX, mouseY);
             that.redraw();
-        }, false);
+        }, false);*/
 
         //on bouge sur le tactile
-        $('canvas').on("touchmove", function (e) {            
+       /*$('canvas').on("touchmove", function (e) {            
             e.preventDefault();
             var mouseX = e.changedTouches[0].pageX - $(this).offset().left; // condition ? express si vrai : express si faux
             var mouseY = e.changedTouches[0].pageY - $(this).offset().top;
@@ -87,7 +90,7 @@ class Canvas {
          
         effacer.click(function () {    
            that.clearAll();
-        });
+        });*/
     }
     get canvas() { //getter -> fonction spécifique qui permet de récupérer un objet js
         console.log(this._canvas + "dans le get canvas");
