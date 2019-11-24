@@ -63,9 +63,9 @@ class Canvas {
             that.paint = true;
             cible.val("ok"); //pour authoriser la reservation de vélo
             cible.removeClass("hilight"); //si le champ etait hilighted   
-            that.addClick(mouseX, mouseY);
-            that.redraw();
-        }, false);
+            //that.addClick(mouseX, mouseY);
+            //that.redraw();
+        });
 
         //on bouge sur le tactile
        /*$('canvas').on("touchmove", function (e) {            
