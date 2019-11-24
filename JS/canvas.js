@@ -19,7 +19,7 @@ class Canvas {
         this._canvas = cible;
         this.context = cible[0].getContext('2d');  //index du canvas indispensable pour appliquer le context      
         var that = this; //pour pouvoir utiliser le this venant du constructeur dans les fonctions enfant
-        /*this._canvas.mousedown(function(e){
+        this._canvas.mousedown(function(e){
             var mouseX = e.pageX - this.offsetLeft;      
             var mouseY = e.pageY - this.offsetTop;
             
@@ -43,10 +43,10 @@ class Canvas {
 
         this._canvas.mouseleave(function(){
             that.paint = false;
-        });*/
+        });
         // Evénements Tactiles
         //on clic sur le tactile
-        /*$('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
+        $('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
         // Mouse down location
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
             //alert('touch start');
@@ -56,7 +56,7 @@ class Canvas {
             that.paint = true;
             cible.val("ok"); //pour authoriser la reservation de vélo
             cible.removeClass("hilight"); //si le champ etait hilighted   
-            that.addClick(mouseX, mouseY, false);
+            that.addClick(mouseX, mouseY);
             that.redraw();
         }, false);
 
@@ -69,9 +69,7 @@ class Canvas {
             //alert('move' + mouseX);
             if (e.paint) {
                 that.paint = true;    
-                cible.val("ok"); //pour authoriser la reservation de vélo
-                cible.removeClass("hilight"); //si le champ etait hilighted   
-                that.addClick(mouseX, mouseY, false);
+                that.addClick(mouseX, mouseY, true);
                 that.redraw();
             }
         });
@@ -81,13 +79,7 @@ class Canvas {
             alert(test);
             that.paint = false;
             //alert('touch end');
-        }, false);*/
-        
-        $('canvas').on("touchend", function () {
-            alert('touchend');
-        });
-        
-        
+        }, false);
          
         effacer.click(function () {    
            that.clearAll();
