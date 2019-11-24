@@ -11,7 +11,7 @@ let clickDrag = new Array();
 
 let effacer = $('#erase');
 
-
+var test = '';
 
 class Canvas {
     constructor(cible) { //cible est un obj jquery
@@ -78,6 +78,7 @@ class Canvas {
         //on lache le tactile
         $('canvas').on("touchend", function (e) {
             e.preventDefault();
+            alert(test);
             that.paint = false;
             //alert('touch end');
         }, false);
@@ -115,6 +116,7 @@ class Canvas {
         }        
     }
     addClick(x, y, dragging) { //fonction qui déclenche l'enregistrement des positions via le glissé-déposé.
+        test += 't :' + x + y + ' - ');
         clickX.push(x);
         clickY.push(y);
         clickDrag.push(dragging);
