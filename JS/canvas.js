@@ -19,7 +19,7 @@ class Canvas {
         this._canvas = cible;
         this.context = cible[0].getContext('2d');  //index du canvas indispensable pour appliquer le context      
         var that = this; //pour pouvoir utiliser le this venant du constructeur dans les fonctions enfant
-        this._canvas.mousedown(function(e){
+        /*this._canvas.mousedown(function(e){
             var mouseX = e.pageX - this.offsetLeft;      
             var mouseY = e.pageY - this.offsetTop;
             
@@ -43,7 +43,7 @@ class Canvas {
 
         this._canvas.mouseleave(function(){
             that.paint = false;
-        });
+        });*/
         
         // Evénements Tactiles
         //on clic sur le tactile
@@ -54,6 +54,7 @@ class Canvas {
             
             var mouseX = e.changedTouches[0].pageX - $(this).offset().left;
             var mouseY = e.changedTouches[0].pageY - $(this).offset().top;
+            alert('mouse ' + e.originalEvent.changedTouches[0].pageX + ' - ' + e.changedTouches[0].pageX + ' - ' + mouseX + ' - ' + $(this).offset().left + ' - ');
 
             that.paint = true;
             cible.val("ok"); //pour authoriser la reservation de vélo
