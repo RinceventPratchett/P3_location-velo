@@ -51,10 +51,10 @@ class Canvas {
         // Mouse down location
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
             //alert('touch start');
-            
-            var mouseX = e.changedTouches[0].pageX - $(this).offset().left;
-            var mouseY = e.changedTouches[0].pageY - $(this).offset().top;
-            alert('mouse ' + e.originalEvent.changedTouches[0].pageX + ' - ' + e.changedTouches[0].pageX + ' - ' + mouseX + ' - ' + $(this).offset().left + ' - ');
+            alert('start');
+            var mouseX = e.changedTouches[0].pageX - this.offsetLeft;
+            var mouseY = e.changedTouches[0].pageY - this.offsetTop;
+            alert('mouse ' + e.originalEvent.changedTouches[0].pageX + ' - ' + e.changedTouches[0].pageX + ' - ' + mouseX + ' - ' + this.offsetLeft + ' - ');
 
             that.paint = true;
             cible.val("ok"); //pour authoriser la reservation de vélo
