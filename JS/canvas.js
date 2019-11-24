@@ -44,27 +44,25 @@ class Canvas {
         this._canvas.mouseleave(function(){
             that.paint = false;
         });*/
-        $('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
+        /*$('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
             e.preventDefault(); 
              alert('start ' + e.originalEvent.changedTouches[0].pageX + ' - ' + this.offsetLeft);
-        });
+        });*/
         // Evénements Tactiles
         //on clic sur le tactile
-        /*$('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
+        $('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
         // Mouse down location
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
             //alert('touch start');
-            alert('start');
-            var mouseX = e.changedTouches[0].pageX - this.offsetLeft;
-            var mouseY = e.changedTouches[0].pageY - this.offsetTop;
-            alert('mouse ' + e.originalEvent.changedTouches[0].pageX + ' - ' + e.changedTouches[0].pageX + ' - ' + mouseX + ' - ' + this.offsetLeft + ' - ');
-
+            var mouseX = e.originalEvent.changedTouches[0].pageX - this.offsetLeft;
+            var mouseY = e.originalEvent.changedTouches[0].pageY - this.offsetTop;
+            
             that.paint = true;
             cible.val("ok"); //pour authoriser la reservation de vélo
             cible.removeClass("hilight"); //si le champ etait hilighted   
             that.addClick(mouseX, mouseY);
             that.redraw();
-        }, false);*/
+        }, false);
 
         //on bouge sur le tactile
        /*$('canvas').on("touchmove", function (e) {            
@@ -121,7 +119,8 @@ class Canvas {
         }        
     }
     addClick(x, y, dragging) { //fonction qui déclenche l'enregistrement des positions via le glissé-déposé.
-        test += 't :' + x + y + ' - ';
+        //test += 't :' + x + y + ' - ';
+        alert(x + ' - ' + y);
         clickX.push(x);
         clickY.push(y);
         clickDrag.push(dragging);
