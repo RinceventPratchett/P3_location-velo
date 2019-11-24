@@ -46,7 +46,7 @@ class Canvas {
         });*/
         $('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
             e.preventDefault(); 
-             alert('start ' + this.offsetLeft);
+             alert('start ' + e.originalEvent.changedTouches[0].pageX + ' - ' + e.changedTouches[0].pageX + ' - ' + this.offsetLeft);
         });
         // Evénements Tactiles
         //on clic sur le tactile
