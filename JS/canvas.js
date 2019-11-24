@@ -9,7 +9,7 @@ let clickX = new Array();   //definit les array qui contiendront la position du 
 let clickY = new Array();
 let clickDrag = new Array();
 
-const effacer = document.getElementById('erase');
+let effacer = document.getElementById('erase');
 
 
 
@@ -73,6 +73,9 @@ class Canvas {
         document.getElementById('canvas').addEventListener("touchend", function () {
             that.paint = false;
         }, false);
+        effacer.addEventListener("click", function () {    
+           that.clearAll();
+        });
     }
     get canvas() { //getter -> fonction spécifique qui permet de récupérer un objet js
         console.log(this._canvas + "dans le get canvas");
@@ -106,13 +109,12 @@ class Canvas {
         clickX.push(x);
         clickY.push(y);
         clickDrag.push(dragging);
-    }    
+    }
+
 }
 
 var ObjCanvas = new Canvas($('canvas'));
 
-effacer.addEventListener("click", function () {    
-   ObjCanvas.clearAll();
-});
+
 
 

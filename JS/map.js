@@ -10,8 +10,8 @@ class MyMap{
                 iconSize: [38, 95],
                 iconAnchor: [22, 94],
                 popupAnchor: [-3, -76]
-    }
-});
+            }        
+        });
     }
     init() {
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -20,9 +20,10 @@ class MyMap{
 	maxZoom: 18,
 	id: 'mapbox.streets',
 	accessToken: 'pk.eyJ1Ijoib2Nwcm9qZWN0NjkiLCJhIjoiY2sya2kzeWZpMTRnczNubWw5ZWNpN2pmYyJ9.oxsBCTb68dqIZhCi_2pySw'
-        }).addTo(NewMap.map);
+        }).addTo(this.map);
     }
 };  
+ 
  
 /*
  * successAjax Executé au succès de la requete ajax du wenservice JCdecault
@@ -31,32 +32,32 @@ class MyMap{
  * @return true
  */
 function successAjax(detailsStation) { //l'utilisation de var permet l'appel du contenu dans toute la fonction
-    var details = JSON.parse(detailsStation);
-    details.forEach(function (station) { //pour récupérer les détail de chaque station
-        var coordLat = station.position.lat;
-        var coordLng = station.position.lng;
-        var dispo = station.available_bikes;
-        var remainingPark = station.available_bike_stands;
-        var statutStation = station.status;
-        var color = greenIcon; 
-        if (statutStation === 'OPEN' && (dispo <= 2 || remainingPark <= 2)) { //condition d'attribution du marker orange
-            color = orangeIcon;
-        } else if (statutStation === 'CLOSED') {
-            color = redIcon;
-        }
-        var marker = L.marker([coordLat, coordLng], {icon: color});
-        marker.stationData = station;        
-        marker.addEventListener("click", function (e) { //écouter le click pour chaque maker
-            markerClick(e.target.stationData); //récupère l'objet target correspondant au marker cliké
-            window.location.hash = '#billboard'; //pour rejoindre l'ancre créer par l'id billboard
+        var details = JSON.parse(detailsStation);
+        details.forEach(function (station) { //pour récupérer les détail de chaque station
+            var coordLat = station.position.lat;
+            var coordLng = station.position.lng;
+            var dispo = station.available_bikes;
+            var remainingPark = station.available_bike_stands;
+            var statutStation = station.status;
+            var color = greenIcon; 
+            if (statutStation === 'OPEN' && (dispo <= 2 || remainingPark <= 2)) { //condition d'attribution du marker orange
+                color = orangeIcon;
+            } else if (statutStation === 'CLOSED') {
+                color = redIcon;
+            }
+            var marker = L.marker([coordLat, coordLng], {icon: color});
+            marker.stationData = station;        
+            marker.addEventListener("click", function (e) { //écouter le click pour chaque maker
+                markerClick(e.target.stationData); //récupère l'objet target correspondant au marker cliké
+                window.location.hash = '#billboard'; //pour rejoindre l'ancre créer par l'id billboard
 
-        });
+            });
         NewMap.markers.addLayer(marker); //pour ajouter les marker au cluster.
-    });
+        });
     NewMap.markers.addTo(NewMap.map);
     return true;
 };
-
+ 
 function markerClick(station) {
     $(".statut").empty();   //pour vider les champs si ils ont déjà été appelés 
     $(".detailsStation").empty();
@@ -112,11 +113,11 @@ var NewMap = new MyMap;
 //pour instancier les marker vert/rouge/orange 
 const greenIcon = new NewMap.icons({iconUrl: '../images/leaf-green.png'});
 const redIcon =  new NewMap.icons({iconUrl: '../images/leaf-red.png'});
-const orangeIcon = new NewMap.icons({iconUrl: '../images/leaf-orange.png'});   
+const orangeIcon = new NewMap.icons({iconUrl: '../images/leaf-orange.png'});  
 
 
 ajaxGet(url, successAjax);
-NewMap.init(NewMap.map);
+NewMap.init(MyMap.map);
 
 
 NewMap.map.addEventListener("click", function () {
