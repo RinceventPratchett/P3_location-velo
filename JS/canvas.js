@@ -11,8 +11,6 @@ let clickDrag = new Array();
 
 let effacer = $('#erase');
 
-var test = '';
-
 class Canvas {
     constructor(cible) { //cible est un obj jquery
         this.paint = false; //pour récupérer le paint dans le 
@@ -57,7 +55,6 @@ class Canvas {
             var mouseX = e.originalEvent.changedTouches[0].pageX - this.offsetLeft;
             var mouseY = e.originalEvent.changedTouches[0].pageY - this.offsetTop;
             
-            alert(mouseX + ' - ' + mouseY);
             that.paint = true;
             cible.val("ok"); //pour authoriser la reservation de vélo
             cible.removeClass("hilight"); //si le champ etait hilighted   
@@ -80,7 +77,7 @@ class Canvas {
         });
         //on lache le tactile
         $('canvas').on("touchend", function (e) {
-            alert('end - ' + test);
+            alert('end');
             e.preventDefault();
             that.paint = false;
             //alert('touch end');
@@ -119,7 +116,6 @@ class Canvas {
         }        
     }
     addClick(x, y, dragging) { //fonction qui déclenche l'enregistrement des positions via le glissé-déposé.
-        //test += 't :' + x + y + ' - ';
         clickX.push(x);
         clickY.push(y);
         clickDrag.push(dragging);
