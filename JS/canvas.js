@@ -9,12 +9,12 @@ let clickX = new Array();   //definit les array qui contiendront la position du 
 let clickY = new Array();
 let clickDrag = new Array();
 
-let effacer = document.getElementById('erase');
+let effacer = $('#erase');
 
 
 
 class Canvas {
-    constructor(cible) {
+    constructor(cible) { //cible est un obj jquery
         this.paint = false; //pour récupérer le paint dans le 
         this._canvas = cible;
         this.context = cible[0].getContext('2d');  //index du canvas indispensable pour appliquer le context      
@@ -46,7 +46,7 @@ class Canvas {
         });
         // Evénements Tactiles
         //on clic sur le tactile
-        document.getElementById('canvas').addEventListener("touchstart", function (e){ //bind = addEventListener en Jquery !
+        this._canvas.bind("touchstart", function (e){ //bind = addEventListener en Jquery !
         // Mouse down location
             var mouseX = e.changedTouches[0].pageX - this.offsetLeft;
             var mouseY = e.changedTouches[0].pageY - this.offsetTop;
@@ -59,7 +59,7 @@ class Canvas {
         }, false);
 
         //on bouge sur le tactile
-        document.getElementById('canvas').addEventListener("touchmove", function (e) {
+        this._canvas.bind("touchmove", function (e) {
             var mouseX = e.changedTouches[0].pageX - this.offsetLeft; // condition ? express si vrai : express si faux
             var mouseY = e.changedTouches[0].pageY - this.offsetTop;
 
@@ -70,10 +70,10 @@ class Canvas {
             e.preventDefault();
         }, false);
         //on lache le tactile
-        document.getElementById('canvas').addEventListener("touchend", function () {
+        this._canvas.bind("touchend", function () {
             that.paint = false;
         }, false);
-        effacer.addEventListener("click", function () {    
+        effacer.click(function () {    
            that.clearAll();
         });
     }
