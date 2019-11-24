@@ -42,9 +42,38 @@ class Canvas {
         this._canvas.mouseleave(function(){
             that.paint = false;
         });
+        
+        document.getElementById('canvas').addEventListener("touchstart", function (e){ //bind = addEventListener en Jquery !
+        // Mouse down location
+            var mouseX = e.changedTouches[0].pageX - this.offsetLeft;
+            var mouseY = e.changedTouches[0].pageY - this.offsetTop;
+
+            that.paint = true;
+            cible.val("ok"); //pour authoriser la reservation de vélo
+            cible.removeClass("hilight"); //si le champ etait hilighted   
+            that.addClick(mouseX, mouseY, false);
+            that.redraw();
+        }, false);
+
+        //on bouge sur le tactile
+        document.getElementById('canvas').addEventListener("touchmove", function (e) {
+            var mouseX = e.changedTouches[0].pageX - this.offsetLeft; // condition ? express si vrai : express si faux
+            var mouseY = e.changedTouches[0].pageY - this.offsetTop;
+
+            if (that.paint) {
+                that.addClick(mouseX, mouseY, true);
+                that.redraw();
+            }
+            e.preventDefault();
+        }, false);
+        //on lache le tactile
+        document.getElementById('canvas').addEventListener("touchend", function () {
+            that.paint = false;
+        }, false);
+        
         // Evénements Tactiles
         //on clic sur le tactile
-        this._canvas.on("touchstart", function (e){ //bind = addEventListener en Jquery !
+        /*this._canvas.on("touchstart", function (e){ //bind = addEventListener en Jquery !
         // Mouse down location
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
             //alert('touch start');
@@ -76,7 +105,7 @@ class Canvas {
             e.preventDefault();
             that.paint = false;
             //alert('touch end');
-        });
+        });*/
          
         effacer.click(function () {    
            that.clearAll();
