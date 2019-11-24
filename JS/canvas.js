@@ -66,14 +66,13 @@ class Canvas {
         });
 
         //on bouge sur le tactile
-       /*$('canvas').on("touchmove", function (e) {            
+       $('canvas').on("touchmove", function (e) {            
             e.preventDefault();
-            var mouseX = e.changedTouches[0].pageX - $(this).offset().left; // condition ? express si vrai : express si faux
-            var mouseY = e.changedTouches[0].pageY - $(this).offset().top;
+            var mouseX = e.originalEvent.changedTouches[0].pageX - this.offsetLeft; // condition ? express si vrai : express si faux
+            var mouseY = e.originalEvent.changedTouches[0].pageY - this.offsetTop;
             
-            alert('move - ' + test);
             //alert('move' + mouseX);
-            if (e.paint) {
+            if (that.paint) {
                 that.paint = true;    
                 that.addClick(mouseX, mouseY, true);
                 that.redraw();
@@ -85,11 +84,11 @@ class Canvas {
             e.preventDefault();
             that.paint = false;
             //alert('touch end');
-        }, false);
+        });
          
         effacer.click(function () {    
            that.clearAll();
-        });*/
+        });
     }
     get canvas() { //getter -> fonction spécifique qui permet de récupérer un objet js
         console.log(this._canvas + "dans le get canvas");
@@ -121,7 +120,6 @@ class Canvas {
     }
     addClick(x, y, dragging) { //fonction qui déclenche l'enregistrement des positions via le glissé-déposé.
         //test += 't :' + x + y + ' - ';
-        alert(x + ' - ' + y);
         clickX.push(x);
         clickY.push(y);
         clickDrag.push(dragging);
