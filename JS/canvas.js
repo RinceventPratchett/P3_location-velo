@@ -50,8 +50,8 @@ class Canvas {
         // Mouse down location
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
             alert('touch start');
-            var mouseX = e.originalEvent.changedTouches[0].pageX - this.offsetLeft;
-            var mouseY = e.originalEvent.changedTouches[0].pageY - this.offsetTop;
+            var mouseX = e.originalEvent.changedTouches[0].pageX - $(this).offset().left;
+            var mouseY = e.originalEvent.changedTouches[0].pageY - $(this).offset().top;
 
             that.paint = true;
             cible.val("ok"); //pour authoriser la reservation de vélo
@@ -64,8 +64,8 @@ class Canvas {
         $('canvas').on("touchmove", function (e) {            
             e.preventDefault();
             alert('touch move');
-            var mouseX = e.originalEvent.changedTouches[0].pageX - this.offsetLeft; // condition ? express si vrai : express si faux
-            var mouseY = e.originalEvent.changedTouches[0].pageY - this.offsetTop;
+            var mouseX = e.originalEvent.changedTouches[0].pageX - $(this).offset().left; // condition ? express si vrai : express si faux
+            var mouseY = e.originalEvent.changedTouches[0].pageY - $(this).offset().top;
 
             if (that.paint) {
                 that.addClick(mouseX, mouseY, true);
