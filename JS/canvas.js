@@ -49,7 +49,7 @@ class Canvas {
         $('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
         // Mouse down location
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
-            alert('touch start');
+            //alert('touch start');
             var mouseX = e.originalEvent.changedTouches[0].pageX - $(this).offset().left;
             var mouseY = e.originalEvent.changedTouches[0].pageY - $(this).offset().top;
 
@@ -66,7 +66,7 @@ class Canvas {
             var mouseX = e.originalEvent.changedTouches[0].pageX - $(this).offset().left; // condition ? express si vrai : express si faux
             var mouseY = e.originalEvent.changedTouches[0].pageY - $(this).offset().top;
             
-            alert('move' + mouseX);
+            //alert('move' + mouseX);
             if (e.paint) {
                 that.paint = true;    
                 cible.val("ok"); //pour authoriser la reservation de vélo
@@ -79,7 +79,7 @@ class Canvas {
         $('canvas').on("touchend", function (e) {
             e.preventDefault();
             that.paint = false;
-            alert('touch end');
+            //alert('touch end');
         }, false);
          
         effacer.click(function () {    
