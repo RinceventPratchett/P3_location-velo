@@ -49,8 +49,8 @@ class Canvas {
         $('.canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
         // Mouse down location
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
-            var mouseX = e.changedTouches[0].pageX - this.offsetLeft;
-            var mouseY = e.changedTouches[0].pageY - this.offsetTop;
+            var mouseX = e.originalEvent.changedTouches[0].pageX - this.offsetLeft;
+            var mouseY = e.originalEvent.changedTouches[0].pageY - this.offsetTop;
 
             that.paint = true;
             cible.val("ok"); //pour authoriser la reservation de vélo
@@ -62,8 +62,8 @@ class Canvas {
         //on bouge sur le tactile
         $('.canvas').on("touchmove", function (e) {
             e.preventDefault();
-            var mouseX = e.changedTouches[0].pageX - this.offsetLeft; // condition ? express si vrai : express si faux
-            var mouseY = e.changedTouches[0].pageY - this.offsetTop;
+            var mouseX = e.originalEvent.changedTouches[0].pageX - this.offsetLeft; // condition ? express si vrai : express si faux
+            var mouseY = e.originalEvent.changedTouches[0].pageY - this.offsetTop;
 
             if (that.paint) {
                 that.addClick(mouseX, mouseY, true);
