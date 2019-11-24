@@ -61,13 +61,13 @@ class Canvas {
         }, false);*/
 
         //on bouge sur le tactile
-        $('canvas').on("swipe", function (e) {            
+        $('canvas').on("touchstart", function (e) {            
             e.preventDefault();
-            alert('touch move' + $.e.special.swipe.horizontalDistanceThreshold);
+            
             
             var mouseX = e.originalEvent.changedTouches[0].pageX - $(this).offset().left; // condition ? express si vrai : express si faux
             var mouseY = e.originalEvent.changedTouches[0].pageY - $(this).offset().top;
-            
+            alert('touchstart' + mouseX);
             /*if (e.paint) {
                 that.paint = true;    
                 cible.val("ok"); //pour authoriser la reservation de vélo
