@@ -46,7 +46,7 @@ class Canvas {
         });
         // Evénements Tactiles
         //on clic sur le tactile
-        $('canvas').on("touchstart", function (e){ //bind = addEventListener en Jquery !
+        /*$('canvas').on("taphold", function (e){ //bind = addEventListener en Jquery !
         // Mouse down location
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
             alert('touch start');
@@ -58,26 +58,37 @@ class Canvas {
             cible.removeClass("hilight"); //si le champ etait hilighted   
             that.addClick(mouseX, mouseY, false);
             that.redraw();
-        }, false);
+        }, false);*/
 
         //on bouge sur le tactile
-        $('canvas').on("touchmove", function (e) {            
+        $('canvas').on("swipe", function (e) {            
             e.preventDefault();
-            alert('touch move');
+            alert('touch move' + $.e.special.swipe.horizontalDistanceThreshold);
+            
             var mouseX = e.originalEvent.changedTouches[0].pageX - $(this).offset().left; // condition ? express si vrai : express si faux
             var mouseY = e.originalEvent.changedTouches[0].pageY - $(this).offset().top;
-
-            if (that.paint) {
+            
+            /*if (e.paint) {
+                that.paint = true;    
+                cible.val("ok"); //pour authoriser la reservation de vélo
+                cible.removeClass("hilight"); //si le champ etait hilighted   
+                that.addClick(mouseX, mouseY, false);
+                that.redraw();
+            }else if (){
                 that.addClick(mouseX, mouseY, true);
                 that.redraw();
             }
+            else{
+                
+            }*/
         }, false);
         //on lache le tactile
-        $('canvas').on("touchend", function (e) {
+        /*$('canvas').on("touchend", function (e) {
             e.preventDefault();
             that.paint = false;
             alert('touch end');
         }, false);
+         */
         effacer.click(function () {    
            that.clearAll();
         });
