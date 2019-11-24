@@ -52,8 +52,8 @@ class Canvas {
         // Mouse down location
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
             //alert('touch start');
-            var mouseX = e.originalEvent.changedTouches[0].pageX - this.offsetLeft;
-            var mouseY = e.originalEvent.changedTouches[0].pageY - this.offsetTop;
+            var mouseX = e.originalEvent.changedTouches[0].pageX - $(this).offset().left;
+            var mouseY = e.originalEvent.changedTouches[0].pageY - $(this).offset().top;
             
             that.paint = true;
             cible.val("ok"); //pour authoriser la reservation de vélo
@@ -77,7 +77,6 @@ class Canvas {
         });
         //on lache le tactile
         $('canvas').on("touchend", function (e) {
-            alert('end');
             e.preventDefault();
             that.paint = false;
             //alert('touch end');
