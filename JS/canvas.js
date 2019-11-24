@@ -19,7 +19,7 @@ class Canvas {
         this._canvas = cible;
         this.context = cible[0].getContext('2d');  //index du canvas indispensable pour appliquer le context      
         var that = this; //pour pouvoir utiliser le this venant du constructeur dans les fonctions enfant
-        /*this._canvas.mousedown(function(e){
+        this._canvas.mousedown(function(e){
             var mouseX = e.pageX - this.offsetLeft;      
             var mouseY = e.pageY - this.offsetTop;
             
@@ -43,7 +43,7 @@ class Canvas {
 
         this._canvas.mouseleave(function(){
             that.paint = false;
-        });*/
+        });
         
         // Evénements Tactiles
         //on clic sur le tactile
@@ -52,8 +52,8 @@ class Canvas {
             e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
             //alert('touch start');
             
-            var mouseX = e.originalEvent.changedTouches[0].pageX - $(this).offset().left;
-            var mouseY = e.originalEvent.changedTouches[0].pageY - $(this).offset().top;
+            var mouseX = e.changedTouches[0].pageX - $(this).offset().left;
+            var mouseY = e.changedTouches[0].pageY - $(this).offset().top;
 
             that.paint = true;
             cible.val("ok"); //pour authoriser la reservation de vélo
@@ -65,8 +65,8 @@ class Canvas {
         //on bouge sur le tactile
         $('canvas').on("touchmove", function (e) {            
             e.preventDefault();
-            var mouseX = e.originalEvent.changedTouches[0].pageX - $(this).offset().left; // condition ? express si vrai : express si faux
-            var mouseY = e.originalEvent.changedTouches[0].pageY - $(this).offset().top;
+            var mouseX = e.changedTouches[0].pageX - $(this).offset().left; // condition ? express si vrai : express si faux
+            var mouseY = e.changedTouches[0].pageY - $(this).offset().top;
             
             alert('move - ' + test);
             //alert('move' + mouseX);
@@ -78,8 +78,8 @@ class Canvas {
         });
         //on lache le tactile
         $('canvas').on("touchend", function (e) {
-            e.preventDefault();
             alert('end - ' + test);
+            e.preventDefault();
             that.paint = false;
             //alert('touch end');
         }, false);
