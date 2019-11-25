@@ -263,6 +263,7 @@ canvas{
 @media all and (max-width: 900px){
     body{
         overflow-x: visible;
+        text-align: center;
     }
 
     #velov{
