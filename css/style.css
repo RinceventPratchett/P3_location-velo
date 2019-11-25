@@ -23,8 +23,13 @@ header{
     position: relative;    
     margin: auto;
     width: 50%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
 }
+
 
 .diaporama div {
     position: relative;
@@ -270,23 +275,18 @@ canvas{
         width: auto;
     }
     .diaporama{
-        margin-left: 0;
-    }
-    .diaporama div {
-        display: flex;
-        flex-direction: column;
-    }
-    label{
-        display: flex;
-        position: relative;
-        margin: 15px auto;
-        justify-content: center;
-        font-size : 1rem;
-    }
-    .mySlides{
-        width: 250px;
-        height: auto;
+    background-size: contain; /*pour que nos images de fond soient à la fois contraintes dans 
+         le conteneur mais occupe le plus d’espace dans celui-ci tout en conservant leur proportions d’origine.*/
+    position: relative;    
+    margin: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+.feature {
+    margin-top: 10px;
 }
 
 /*--------------------------------------------------------------------------------------------
