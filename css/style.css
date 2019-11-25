@@ -31,16 +31,16 @@ header{
     justify-content: center;
     background-size: contain; /*pour que nos images de fond soient à la fois contraintes dans 
          le conteneur mais occupe le plus d’espace dans celui-ci tout en conservant leur proportions d’origine.*/
-    margin-bottom: 1em;
     width: 75%;
-        margin-left: 12%;
+    position: relative;
 }
+
 .diaporama div {
     position: relative;
 }
 label{
     position: absolute;
-    top: -30px;
+    top: -10px;
     font-size: 2rem;
     color: white;
     font-weight: bold;
@@ -52,7 +52,6 @@ label{
     background-color: activecaption;
     width: 500px;
     height: auto;
-
 }
 
 .w3-button{
@@ -62,11 +61,20 @@ label{
     max-width: 2rem;
     max-height: 2rem;
     vertical-align: middle;
+    position: absolute;
+    top: 50%;
+}
+#stop1{
+    left: 10%;
+}
+#stop2 {
+    right: -30%;;
 }
 
 .feature {
    display: flex;
    justify-content: center;
+   margin-top: -10px;
 }
 .feature .w3-button {
     width: 8rem;
@@ -266,10 +274,6 @@ canvas{
     margin: 0.33%;
     border-radius: 5px;
 }
--mobile{
-    
-}
-
 @media all and (max-width: 900px){
 
     #velov{
@@ -285,17 +289,26 @@ canvas{
     #billboard{
         width: auto;
     }
-    .diaporama {
-        height: 14rem;
+    .diaporama{
+        margin-left: 0;
     }
     .diaporama div {
         display: flex;
         flex-direction: column;
     }
     label{
+        display: flex;
         position: relative;
+        margin: 15px auto;
+        justify-content: center;
+        font-size : 1rem;
     }
+    .mySlides{
+        width: 250px;
+        height: auto;
 }
+}
+
 /*--------------------------------------------------------------------------------------------
 /*slider
 ----------------------------------------------------------------------------------------------*/

@@ -18,7 +18,7 @@ function showDivs(n) {
     for (i = 0; i < x.length; i++) {
         x[i].style.display = "none";
     }
-    x[slideIndex-1].style.display = "block";
+    x[slideIndex-1].style.display = "flex";
     
 }
 
@@ -36,7 +36,7 @@ function carousel() {
     if (slideIndex > x.length) {
         slideIndex = 1;
     }
-    x[slideIndex-1].style.display = "block";
+    x[slideIndex-1].style.display = "flex";
     var t = setTimeout(carousel, 3000);
     t;// Change image every 3 seconds
     stop.addEventListener("click", function(){
