@@ -29,9 +29,18 @@ and open the template in the editor.
         <main>
             <div class="diaporama">
                 <button id="stop1" class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-                <img class="mySlides w3-animate-top" src="/images/resa-en-cours.png" alt="image reservation d'un vélo faite" />
-                <img class="mySlides w3-animate-bottom" src="/images/marker-diapo.png" alt="image reservation d'un vélo faite" />
-                <img class="mySlides w3-animate-top" src="/images/map-diapo.png" alt="image reservation d'un vélo faite" />
+                <div class="mySlides w3-animate-top">   
+                    <img src="/images/resa-en-cours.png" alt="image reservation d'un vélo faite" />
+                    <label>résa effectué</label>
+                </div>
+                <div class="mySlides w3-animate-bottom">
+                    <img src="/images/marker-diapo.png" alt="image reservation d'un vélo faite" />
+                    <label>Selectionné la station voulu</label>
+                </div>
+                <div class="mySlides w3-animate-top">
+                    <img src="/images/map-diapo.png" alt="image reservation d'un vélo faite" />
+                    <label>Selectionné la zone qui vous interesse</label>                
+                </div>
                 <button id="stop2" class="w3-button w3-display-right" onclick="plusDivs(+1)">&#10095;</button>
             </div>
             <div class="feature">
