@@ -10,6 +10,19 @@ function plusDivs(n) {
     showDivs(slideIndex += n);
 }
 
+document.onkeydown = function(e) { 
+            switch (e.keyCode) { 
+                case 37: 
+                    str = 'Left Key pressed!';
+                    
+                    slideIndex-1;
+                    break; 
+                case 39: 
+                    str = 'Right Key pressed!';
+                    
+                    break;  
+            } 
+        }; 
 function showDivs(n) {
     var i;
     var x = document.getElementsByClassName("mySlides");
@@ -23,12 +36,15 @@ function showDivs(n) {
 }
 
 carousel();
+        //var t = setTimeout(carousel, 3000);
+var play = document.getElementById("play");
+var slider = setTimeout(carousel, 5000);
 
 function carousel() {
     var i;
     var x = document.getElementsByClassName("mySlides");
-    var stop = document.getElementById("stop1") && document.getElementById("stop2") && document.getElementById("pause");
-    var play = document.getElementById("play");
+    var stop = document.getElementById("pause");
+
     for (i = 0; i < x.length; i++) {
         x[i].style.display = "none";
     }
@@ -37,12 +53,14 @@ function carousel() {
         slideIndex = 1;
     }
     x[slideIndex-1].style.display = "inline-block";
-    var t = setTimeout(carousel, 3000);
-    t;// Change image every 3 seconds
+    var slider = setTimeout(carousel, 5000);
+    console.log(slider + " le premier t");
     stop.addEventListener("click", function(){
-       clearTimeout(t);
-    });
-    play.addEventListener("click", function (){
-        setTimeout(carousel, 3000);;
+       clearTimeout(slider);
     });
 }
+play.addEventListener("click", function (e){
+        carousel();
+        console.log(carousel());
+        
+});
