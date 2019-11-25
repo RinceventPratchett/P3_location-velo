@@ -288,7 +288,7 @@ canvas{
     .diaporama {
         height: 14rem;
     }
-    diaporama div {
+    .diaporama div {
         display: flex;
         flex-direction: column;
     }
