@@ -31,7 +31,7 @@ header{
     justify-content: center;
     background-size: contain; /*pour que nos images de fond soient à la fois contraintes dans 
          le conteneur mais occupe le plus d’espace dans celui-ci tout en conservant leur proportions d’origine.*/
-    width: 75%;
+    width: 100%;
     position: relative;
 }
 
@@ -54,22 +54,8 @@ label{
     height: auto;
 }
 
-.w3-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 2rem;
-    max-height: 2rem;
-    vertical-align: middle;
-    position: absolute;
-    top: 50%;
-}
-#stop1{
-    left: 10%;
-}
-#stop2 {
-    right: -30%;;
-}
+
+
 
 .feature {
    display: flex;
@@ -275,6 +261,9 @@ canvas{
     border-radius: 5px;
 }
 @media all and (max-width: 900px){
+    body{
+        overflow-x: visible;
+    }
 
     #velov{
         height: min-content;
