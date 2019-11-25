@@ -40,7 +40,7 @@ header{
 }
 label{
     position: absolute;
-    top: -30px;;
+    top: -30px;
     font-size: 2rem;
     color: white;
     font-weight: bold;
@@ -286,7 +286,7 @@ canvas{
         width: auto;
     }
     .diaporama {
-        height: 18rem;
+        height: 14rem;
     }
 }
 /*--------------------------------------------------------------------------------------------
