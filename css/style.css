@@ -14,7 +14,7 @@ header{
     color: white;
     padding: 2.5vw;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    font-size: 2.5em;
+    font-size: 1.5rem;
 }
 
 #station{
@@ -34,6 +34,17 @@ header{
     margin-bottom: 1em;
     width: 75%;
         margin-left: 12%;
+}
+.diaporama div {
+    position: relative;
+}
+label{
+    position: absolute;
+    top: -30px;;
+    font-size: 2rem;
+    color: white;
+    font-weight: bold;
+    background-color: black;
 }
 .diaporama img{
     text-align: center;
@@ -260,6 +271,7 @@ canvas{
 }
 
 @media all and (max-width: 900px){
+
     #velov{
         height: min-content;
         display: flex;
@@ -273,17 +285,8 @@ canvas{
     #billboard{
         width: auto;
     }
-    header{
-    display: block;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    padding: 0;
-    font-size: 0.7em;
-    }
-
-    .diaporama img{
-    width: 250px;
+    .diaporama {
+        height: 18rem;
     }
 }
 /*--------------------------------------------------------------------------------------------
