@@ -39,7 +39,7 @@ header{
     text-align: center;
     box-shadow: 0px 15px 10px -5px #777;
     background-color: activecaption;
-    width: 500px;%;
+    width: 500px;
     height: auto;
 
 }
@@ -280,6 +280,10 @@ canvas{
     text-transform: uppercase;
     padding: 0;
     font-size: 0.7em;
+    }
+
+    .diaporama img{
+    width: 250px;
     }
 }
 /*--------------------------------------------------------------------------------------------
