@@ -9,13 +9,11 @@ var booking = {
         booking.display();
     // Set the timer
         booking.timer();
-        //$("#resume").html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reserve pour " + booking.timer()); ligne de code qui plante la fonction, stop du code ....
         $("#resume").empty();
         $("#resume").html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : " 
             + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
     
         window.location.hash = '#resume';
-        console.log($('.timer'));
     },
 
     stop(){
@@ -127,37 +125,6 @@ $("#buttonResa").click(function () {
     }   
 });
 
-// pour stocker les infos saisies lors de la session (pas de reset si fermeture du nav)
-var stockNomPrenom = () => {
-    var lastName = $('#lastName');
-//    var firstName = document.getElementById('firstName'); mise en place de Jquery
-    var firstName = $('#firstName');
-    if (localStorage.getItem('stockLastName')) {
-        lastName.val(localStorage.getItem('stockLastName')); //pour restaurer le champ Nom
-    }
-    lastName.change(function () {
-        localStorage.setItem('stockLastName', lastName.val()); //pour enregistrer les modificarions faites dans le champs au moment de la saisie
-    });
-    if (localStorage.getItem('stockFirstName')) {
-        firstName.val(localStorage.getItem('stockFirstName'));
-    } 
-   firstName.change(function () {
-        localStorage.setItem('stockFirstName', firstName.val());
-    });
-};
-function resizeCanvas(){
-    console.log('fonction resize');
-    let largeurwidth = $("body").width();
-    if (largeurwidth <= 900) {
-        $("#canvas").removeAttr('width');
-        $("#canvas").removeAttr('height');
-        $("#canvas").attr({height:115, width:200});
-    }else{
-        $("#canvas").removeAttr('width');
-        $("#canvas").removeAttr('height');
-        $("#canvas").attr({height:165, width:300});
-    }
-};
 
 $(window).resize(function(){
     resizeCanvas();
@@ -174,6 +141,38 @@ $(document).ready(function(){
             + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
     }
 });
+
+
+// pour stocker les infos saisies lors de la session (pas de reset si fermeture du nav)
+var stockNomPrenom = () => {
+    var lastName = $('#lastName');
+//    var firstName = document.getElementById('firstName');
+    var firstName = $('#firstName');
+    if (localStorage.getItem('stockLastName')) {
+        lastName.val(localStorage.getItem('stockLastName')); //pour restaurer le champ Nom
+    }
+    lastName.change(function () {
+        localStorage.setItem('stockLastName', lastName.val()); //pour enregistrer les modificarions faites dans le champs au moment de la saisie
+    });
+    if (localStorage.getItem('stockFirstName')) {
+        firstName.val(localStorage.getItem('stockFirstName'));
+    } 
+   firstName.change(function () {
+        localStorage.setItem('stockFirstName', firstName.val());
+    });
+};
+function resizeCanvas(){
+    let largeurwidth = $("body").width();
+    if (largeurwidth <= 900) {
+        $("#canvas").removeAttr('width');
+        $("#canvas").removeAttr('height');
+        $("#canvas").attr({height:115, width:200});
+    }else{
+        $("#canvas").removeAttr('width');
+        $("#canvas").removeAttr('height');
+        $("#canvas").attr({height:165, width:300});
+    }
+};
 
 
 stockNomPrenom();

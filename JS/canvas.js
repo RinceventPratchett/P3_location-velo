@@ -84,7 +84,6 @@ class Canvas {
         });
     }
     get canvas() { //getter -> fonction spécifique qui permet de récupérer un objet js
-        console.log(this._canvas + "dans le get canvas");
         return this._canvas;
     }
     clearAll() {
