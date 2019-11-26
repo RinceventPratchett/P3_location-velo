@@ -48,7 +48,6 @@ function carousel() {
     
     x[slideIndex-1].style.display = "inline-block";
     var slider = setTimeout(carousel, 5000);
-    console.log(slider + " le premier t");
     
     stop.addEventListener("click", function(){
        clearTimeout(slider);
