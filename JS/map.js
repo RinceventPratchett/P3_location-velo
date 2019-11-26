@@ -12,7 +12,7 @@ class MyMap{
                 popupAnchor: [-3, -76]
             }        
         });
-        var that = this;
+        //var that = this;
     }
     init() {
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -44,11 +44,11 @@ class MyMap{
                 var dispo = station.available_bikes;
                 var remainingPark = station.available_bike_stands;
                 var statutStation = station.status;
-                var color = that.greenIcon; 
+                var color = NewMap.greenIcon; 
                 if (statutStation === 'OPEN' && (dispo <= 2 || remainingPark <= 2)) { //condition d'attribution du marker orange
-                    color = that.orangeIcon;
+                    color = NewMap.orangeIcon;
                 } else if (statutStation === 'CLOSED') {
-                    color = that.redIcon;
+                    color = NewMap.redIcon;
                 }
                 var marker = L.marker([coordLat, coordLng], {icon: color});
                 marker.stationData = station;        
@@ -121,7 +121,7 @@ var NewMap = new MyMap;
 
 NewMap.init(MyMap.map);
 ajaxGet(url, function(detailsStation) { NewMap.successAjax(detailsStation);});
-console.log("v 1.1");
+console.log("v 1.3");
 
 
 NewMap.map.addEventListener("click", function () {
