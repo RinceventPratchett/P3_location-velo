@@ -120,7 +120,8 @@ var NewMap = new MyMap;
 
 
 NewMap.init(MyMap.map);
-ajaxGet(url, NewMap.successAjax);
+ajaxGet(url, function(detailsStation) { NewMap.successAjax(detailsStation);});
+console.log("v 1.1");
 
 
 NewMap.map.addEventListener("click", function () {
