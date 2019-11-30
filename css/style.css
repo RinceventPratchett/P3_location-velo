@@ -235,12 +235,10 @@ canvas{
     background-size: contain; /*pour que nos images de fond soient à la fois contraintes dans 
          le conteneur mais occupe le plus d’espace dans celui-ci tout en conservant leur proportions d’origine.*/
     position: relative;    
-    margin: auto;
+    margin: 0 0 10px 0;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     }
     
 .feature {
@@ -264,15 +262,15 @@ canvas{
 
 .diaporama div {
     position: relative;
-    margin: 0 auto;
+
 }
 .mySlides{
     display: none;
+    flex-direction: column;
+    align-items: center;
 }
 
 label {
-    position: absolute;
-    top: 0;
     font-size: 1.5rem;
     color: white;
     font-weight: bold;
@@ -287,7 +285,7 @@ label {
 .feature {
    display: flex;
    justify-content: center;
-   margin-top: -10px;
+   
 }
 
 .feature .w3-button {

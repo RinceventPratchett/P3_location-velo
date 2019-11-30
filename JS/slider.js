@@ -26,7 +26,7 @@ class Diaporama {
         } else { // Sinon on passe à l'image suivante
             this.imageNum++; // En augmentant de 1 l'attribut
         }
-        this.items[this.imageNum].style.display = "block"; // Fait apparaître l'image suivante
+        this.items[this.imageNum].style.display = "flex"; // Fait apparaître l'image suivante
     }
 
     // Méthode qui fait fonctionner le diaporama en arrière
@@ -38,7 +38,7 @@ class Diaporama {
         } else { // Sinon on passe à l'image précédente
             this.imageNum--; // En diminuant de 1 la valeur de l'attribut
         }
-        this.items[this.imageNum].style.display = "block"; // Fait apparaître l'image précédente        
+        this.items[this.imageNum].style.display = "flex"; // Fait apparaître l'image précédente        
     }
     pause() {
         if(this.timeOut) {
