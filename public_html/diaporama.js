@@ -92,3 +92,7 @@ ajaxGet("https://api.jcdecaux.com/vls/v1/stations?contract=Lyon&apiKey=aaa4da906
     var stationElt = document.getElementById("station");
     stationElt.appendChild(detailsElt);
 });
+
+
+
+

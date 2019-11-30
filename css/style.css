@@ -266,6 +266,9 @@ canvas{
     position: relative;
     margin: 0 auto;
 }
+.mySlides{
+    display: none;
+}
 
 label {
     position: absolute;
@@ -290,4 +293,15 @@ label {
 .feature .w3-button {
     width: 8rem;
     height: 2rem;
+}
+
+.position1{
+    transition: all 1s ease-in;
+
+    transform: rotate3d(0,1,0, 60deg) translate3d(250px, 0px, 0px);
+}
+.position2{
+    transition: all 1s ease-in;
+
+    transform: rotate3d(0,1,0, 60deg) translate3d(0px, 0px, 0px);
 }

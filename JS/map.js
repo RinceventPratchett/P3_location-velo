@@ -1,3 +1,4 @@
+
 //Required ajax.js + booking.js
 
 
@@ -12,7 +13,6 @@ class MyMap{
                 popupAnchor: [-3, -76]
             }        
         });
-        //var that = this;
     }
     init() {
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -27,7 +27,10 @@ class MyMap{
         this.redIcon =  new NewMap.icons({iconUrl: '../images/leaf-red.png'});
         this.orangeIcon = new NewMap.icons({iconUrl: '../images/leaf-orange.png'});  
 
-    
+        this.map.addEventListener("click", function () {
+            $("#billboard").css({display: "none"}); //pour effacer le panneau lors d'un click sur la map 
+            $("#map").css({width: "100%"});
+        });
     }
  
 /*
@@ -38,93 +41,104 @@ class MyMap{
  */
     successAjax(detailsStation) { //l'utilisation de var permet l'appel du contenu dans toute la fonction
             var details = JSON.parse(detailsStation);
+            var mapObj =this; // on garde le context pour la callback du foreach
+            /*Developers are often confused by what a callback is because of the name of the damned thing.
+
+A callback function is a function which is:
+
+    accessible by another function, and
+    is invoked after the first function if that first function completes
+
+A nice way of imagining how a callback function works is that it is a function that is "called at the back" 
+of the function it is passed into.
+
+Maybe a better name would be a "call after" function.
+
+This construct is very useful for asynchronous behaviour where we want an activity to take place 
+whenever a previous event completes.*/
+			
             details.forEach(function (station) { //pour récupérer les détail de chaque station
                 var coordLat = station.position.lat;
                 var coordLng = station.position.lng;
                 var dispo = station.available_bikes;
                 var remainingPark = station.available_bike_stands;
                 var statutStation = station.status;
-                var color = NewMap.greenIcon; 
+                var color = mapObj.greenIcon; 
                 if (statutStation === 'OPEN' && (dispo <= 2 || remainingPark <= 2)) { //condition d'attribution du marker orange
-                    color = NewMap.orangeIcon;
+                    color = mapObj.orangeIcon;
                 } else if (statutStation === 'CLOSED') {
-                    color = NewMap.redIcon;
+                    color = mapObj.redIcon;
                 }
                 var marker = L.marker([coordLat, coordLng], {icon: color});
                 marker.stationData = station;        
                 marker.addEventListener("click", function (e) { //écouter le click pour chaque maker
-                    markerClick(e.target.stationData); //récupère l'objet target correspondant au marker cliké
+                    mapObj.markerClick(e.target.stationData); //récupère l'objet target correspondant au marker cliké
                     window.location.hash = '#billboard'; //pour rejoindre l'ancre créer par l'id billboard
 
                 });
-            NewMap.markers.addLayer(marker); //pour ajouter les marker au cluster.
-            });
-        NewMap.markers.addTo(NewMap.map);
+            mapObj.markers.addLayer(marker); //pour ajouter les marker au cluster.
+            });//end foreach
+			
+        this.markers.addTo(NewMap.map);
         return true;
+    }
+	
+    markerClick(station) {
+        $(".statut").empty();   //pour vider les champs si ils ont déjà été appelés 
+        $(".detailsStation").empty();
+        $(".nameStation").empty();
+        $(".address").empty();
+        $(".dispo").empty();
+        $(".stationnement").empty();
+        $("#velov").css({display: "flex"});
+        $("#billboard").css({display: "block"});
+        $("#map").css({width: "75%"});
+        $("#id_station").val(station.name); //pour récupérer l'id de la station et l'attribuer à l'input html 
+
+
+        if (station.status === 'OPEN') { //verification du statut pour déffinir les infos à afficher        
+            $(".statut").append("statut : open");
+            $(".detailsStation").css({display: "block"});
+            $(".detailsStation").append("Détails de la station"); //texte qui apparait
+            $(".nameStation").css({display: "block"});
+            $(".nameStation").append(station.name);
+            $(".address").css({display: "block"});
+            $(".address").append("adresse : " + station.address);
+            $(".dispo").css({display: "block"});
+            $(".dispo").append(station.available_bikes + " vélo'v disponible(s)");
+            $(".stationnement").css({display: "block"});
+            $(".stationnement").append(station.available_bike_stands + " place(s) restante(s)");
+
+            if (station.available_bikes > 0) { //ouverture du formulaire de resa
+                $("#rent").css({display: "flex"});
+                $("input").css({display: "block"});
+                $("canvas").css({display: "block"});
+
+            } else {
+                $("input").css({display: "none"});
+                $("canvas").css({display: "none"});
+                $("timer").css({display: "block"});
+
+            }
+        } else if (station.status === 'CLOSED') { //affichage limité en cas de statut fermé
+            $(".detailsStation").css({display: "block"});
+            $(".detailsStation").append("détails de la station");
+            $(".statut").append("statut : closed");
+            $(".nameStation").css({display: "block"});
+            $(".nameStation").append(station.name);
+            $(".address").css({display: "none"}); //pour faire disparaitre le bloc vide
+            $(".dispo").css({display: "none"});
+            $("#rent").css({display: "none"});
+            $(".stationnement").css({display: "none"});
+        }
     }
 }; 
 
-function markerClick(station) {
-    $(".statut").empty();   //pour vider les champs si ils ont déjà été appelés 
-    $(".detailsStation").empty();
-    $(".nameStation").empty();
-    $(".address").empty();
-    $(".dispo").empty();
-    $(".stationnement").empty();
-    $("#velov").css({display: "flex"});
-    $("#billboard").css({display: "block"});
-    $("#map").css({width: "75%"});
-    $("#id_station").val(station.name); //pour récupérer l'id de la station et l'attribuer à l'input html 
-     
-    
-    if (station.status === 'OPEN') { //verification du statut pour déffinir les infos à afficher        
-        $(".statut").append("statut : open");
-        $(".detailsStation").css({display: "block"});
-        $(".detailsStation").append("Détails de la station"); //texte qui apparait
-        $(".nameStation").css({display: "block"});
-        $(".nameStation").append(station.name);
-        $(".address").css({display: "block"});
-        $(".address").append("adresse : " + station.address);
-        $(".dispo").css({display: "block"});
-        $(".dispo").append(station.available_bikes + " vélo'v disponible(s)");
-        $(".stationnement").css({display: "block"});
-        $(".stationnement").append(station.available_bike_stands + " place(s) restante(s)");
-
-        if (station.available_bikes > 0) { //ouverture du formulaire de resa
-            $("#rent").css({display: "flex"});
-            $("input").css({display: "block"});
-            $("canvas").css({display: "block"});
-
-        } else {
-            $("input").css({display: "none"});
-            $("canvas").css({display: "none"});
-            $("timer").css({display: "block"});
-            
-        }
-    } else if (station.status === 'CLOSED') { //affichage limité en cas de statut fermé
-        $(".detailsStation").css({display: "block"});
-        $(".detailsStation").append("détails de la station");
-        $(".statut").append("statut : closed");
-        $(".nameStation").css({display: "block"});
-        $(".nameStation").append(station.name);
-        $(".address").css({display: "none"}); //pour faire disparaitre le bloc vide
-        $(".dispo").css({display: "none"});
-        $("#rent").css({display: "none"});
-        $(".stationnement").css({display: "none"});
-
-    }
-};
-
-var NewMap = new MyMap;
-//pour instancier les marker vert/rouge/orange 
 
 
-NewMap.init(MyMap.map);
-ajaxGet(url, function(detailsStation) { NewMap.successAjax(detailsStation);});
-console.log("v 1.3");
 
-
-NewMap.map.addEventListener("click", function () {
-    $("#billboard").css({display: "none"}); //pour effacer le panneau lors d'un click sur la map 
-    $("#map").css({width: "100%"});
+var NewMap = new MyMap();
+NewMap.init();
+ajaxGet(url, function(detailsStation) { 
+    NewMap.successAjax(detailsStation);
 });

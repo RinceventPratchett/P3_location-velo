@@ -1,73 +1,98 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-var slideIndex = 1;
-showDivs(slideIndex);
 
-function plusDivs(n) {
-    showDivs(slideIndex += n);
+
+class Diaporama {
+    constructor() {        
+        this.items = document.getElementsByClassName("mySlides"); // Attribut de sélection des figures;;
+        this.imageNum = 0; // Attribut qui permet de parcourir les images
+        this.init();
+    }
+    init(){
+        this.suivant();
+        this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
+    }
+    // Méthode qui récupére les touches du clavier et actionne le diaporama en fonction de la touche
+    infosClavier(e) {
+        if(e.keyCode === 39) {
+            document.addEventListener("keydown", ObjDiaporama.pause(), ObjDiaporama.suivant()); // Appui sur la touche =>
+        } else if(e.keyCode === 37) {
+            document.addEventListener("keydown", ObjDiaporama.pause(), ObjDiaporama.precedent()); // Appui sur la touche <=
+        }
+    }   
+    // Méthode qui fait fonctionner le diaporama en avant
+    suivant() {
+        this.items[this.imageNum].style.display = "none"; // Fait disparaître l'image active
+        if(this.imageNum === 2) { // Si le diaporama est à la dernière image
+            this.imageNum = 0; // On repasse l'attribut à 0 pour faire réapparaître la première image
+        } else { // Sinon on passe à l'image suivante
+            this.imageNum++; // En augmentant de 1 l'attribut
+        }
+        this.items[this.imageNum].style.display = "block"; // Fait apparaître l'image suivante
+    }
+
+    // Méthode qui fait fonctionner le diaporama en arrière
+    precedent() {
+        //this.timer = clearInterval();
+        this.items[this.imageNum].style.display = "none"; // Fait disparaître l'image active
+        if(this.imageNum === 0) { // Si le diaporama est à la première image
+            this.imageNum = 2; // On passe l'attribut à 4 pour faire réapparaître l'image précédente
+        } else { // Sinon on passe à l'image précédente
+            this.imageNum--; // En diminuant de 1 la valeur de l'attribut
+        }
+        this.items[this.imageNum].style.display = "block"; // Fait apparaître l'image précédente        
+    }
+    pause() {
+        if(this.timeOut) {
+            clearTimeout(this.timeOut);
+        }else{
+            clearInterval(this.timer); //pour arreter le defilement auto 
+        }
+        this.timeOut = setTimeout(this.init.bind(this), 15000);
+    }
+    playPause() {
+        if (this.timeOut) {
+            clearTimeout(this.timeOut);
+            this.timeOut = 0;
+            clearInterval(this.timer);
+            this.init();
+        }else if(this.timer){
+            clearInterval(this.timer);
+            this.timer = "Null";
+            this.timeOut = setTimeout(this.init.bind(this), 15000);
+        }else{
+            this.init();
+        }
+    }
 }
 
-function showDivs(n) {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    
-    if (n > x.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = x.length} ;
-    
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-        
-    }
-    
-    x[slideIndex-1].style.display = "inline-block"; //pour reculer d'une slide
-    
-}
-
-carousel();
-        //var t = setTimeout(carousel, 3000);
-var play = document.getElementById("play");
-var slider = setTimeout(carousel, 5000);
-
-function carousel() {
-    
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    var stop = document.getElementById("pause");
-
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-    }
-    
-    slideIndex++;
-    if (slideIndex > x.length) {
-        slideIndex = 1;
-    }
-    
-    x[slideIndex-1].style.display = "inline-block";
-    var slider = setTimeout(carousel, 5000);
-    
-    stop.addEventListener("click", function(){
-       clearTimeout(slider);
-    });
-}
-play.addEventListener("click", function (e){
-        carousel();
-        slideIndex = 1;        
+// Le bouton droit appel la méthode "suivant" du diaporama
+//document.getElementById("btnDroit").addEventListener("click", Diaporama.suivant.bind());
+$('#btnDroit').click(function(){
+    ObjDiaporama.pause();
+    ObjDiaporama.suivant();
 });
-/*---------------------------------NON Fonctionnel pour le moment--------------------------------*/
-document.onkeydown = function(e) { 
-        switch (e.keyCode) { 
-            case 37: 
-                str = 'Left Key pressed!';
 
-                slideIndex-1;
-                break; 
-            case 39: 
-                str = 'Right Key pressed!';
+// Le bouton gauche appel la méthode "précédent" du diaporama
+//document.getElementById("btnGauche").addEventListener("click", Diaporama.precedent.bind(Diaporama));
+$('#btnGauche').click(function(){
+    ObjDiaporama.pause();
+    ObjDiaporama.precedent();
+});
 
-                break;  
-        } 
-};
+
+var ObjDiaporama = new Diaporama();
+// Gestion de l'appui et du relâchement d'une touche du clavier
+document.addEventListener("keydown", ObjDiaporama.infosClavier.bind(Diaporama));//pour que le diaporama puisse recevoir le keydown de chaque touche
+
+document.getElementById("playPause").addEventListener("click", function(){
+    ObjDiaporama.playPause();
+}); 
+//
+//
+//$('#play-pause').click(function(){
+//    
+//    if (ObjDiaporama.timeOut != undefined){
+//        clearTimeout(ObjDiaporama.timeOut());
+//    }else{
+//        ObjDiaporama.timeOut;
+//    }       
+//});  
