@@ -241,6 +241,16 @@ canvas{
     flex-direction: column;
     }
     
+    label {
+    font-size: 1rem;
+    color: white;
+    font-weight: bold;
+    background-color: black;
+    margin: 3px;
+    padding: 3px;
+    border-radius: 5px;
+    }
+    
 .feature {
     margin-top: 10px;
     }
