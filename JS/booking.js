@@ -13,7 +13,7 @@ var booking = {
         $("#resume").html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : " 
             + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
     
-        window.location.hash = '#resume';
+
     },
 
     stop(){
