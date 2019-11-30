@@ -27,20 +27,27 @@ and open the template in the editor.
         <header>Bienvenue sur le site de oclocvelo qui donne accès au disponibilité de vélo'v instantanément</header>
         
         <main>
-           <div class="diaporama">
-                <div class="mySlides w3-animate-top">   
+            <div class="diaporama">
+                <div class="mySlides">   
                             <img src="/images/resa-en-cours.png" alt="image reservation d'un vélo faite" />
-                            <label>résa effectué</label>
-                        </div>
-                <div class="mySlides w3-animate-bottom">
+                            <label>réservation effectué pour les 20 prochaines minutes</label>
+                </div>
+                <div class="mySlides">
+                            <img src="/images/map-diapo.png" alt="image comprenant les 3 types de markers existant" />
+                            <label> Marker vert : Station ouverte et disponibilité OK <br>
+                                    Marker orange : Vélo'v et/ou place de staionnement limité <br>
+                                    Marker rouge : Station fermée au public
+                            </label>                
+                </div>
+                <div class="mySlides">
                             <img src="/images/marker-diapo.png" alt="image reservation d'un vélo faite" />
-                            <label>Selectionné la station voulu</label>
-                        </div>
-                <div class="mySlides w3-animate-last">
-                            <img src="/images/form-diapo.png" alt="image reservation d'un vélo faite" />
-                            <label>Selectionné la zone qui vous interesse</label>                
-                        </div>
-                    </div>    
+                            <label>Selectionnez la station voulu</label>
+                </div>
+                <div class="mySlides">
+                            <img src="/images/nouvelle-reservation.png" alt="image reservation d'un vélo faite" />
+                            <label>Remplissez le formulaire de réservation</label>                
+                </div>
+            </div>    
                
             <div class="feature">
                 <button id="btnGauche" class="w3-button w3-display-left" >&#10094;</button>

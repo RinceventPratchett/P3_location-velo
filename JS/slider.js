@@ -21,7 +21,7 @@ class Diaporama {
     // Méthode qui fait fonctionner le diaporama en avant
     suivant() {
         this.items[this.imageNum].style.display = "none"; // Fait disparaître l'image active
-        if(this.imageNum === 2) { // Si le diaporama est à la dernière image
+        if(this.imageNum === 3) { // Si le diaporama est à la dernière image
             this.imageNum = 0; // On repasse l'attribut à 0 pour faire réapparaître la première image
         } else { // Sinon on passe à l'image suivante
             this.imageNum++; // En augmentant de 1 l'attribut
@@ -34,7 +34,7 @@ class Diaporama {
         //this.timer = clearInterval();
         this.items[this.imageNum].style.display = "none"; // Fait disparaître l'image active
         if(this.imageNum === 0) { // Si le diaporama est à la première image
-            this.imageNum = 2; // On passe l'attribut à 4 pour faire réapparaître l'image précédente
+            this.imageNum = 3; // On passe l'attribut à 4 pour faire réapparaître l'image précédente
         } else { // Sinon on passe à l'image précédente
             this.imageNum--; // En diminuant de 1 la valeur de l'attribut
         }
@@ -57,7 +57,7 @@ class Diaporama {
         }else if(this.timer){
             clearInterval(this.timer);
             this.timer = "Null";
-            this.timeOut = setTimeout(this.init.bind(this), 15000);
+            this.timeOut = "Null";
         }else{
             this.init();
         }
