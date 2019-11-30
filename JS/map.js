@@ -30,6 +30,7 @@ class MyMap{
         this.map.addEventListener("click", function () {
             $("#billboard").css({display: "none"}); //pour effacer le panneau lors d'un click sur la map 
             $("#map").css({width: "100%"});
+            window.location = '';
         });
     }
  
@@ -73,6 +74,7 @@ whenever a previous event completes.*/
                 marker.stationData = station;        
                 marker.addEventListener("click", function (e) { //écouter le click pour chaque maker
                     mapObj.markerClick(e.target.stationData); //récupère l'objet target correspondant au marker cliké
+                    window.location.hash = '';
                     window.location.hash = '#billboard'; //pour rejoindre l'ancre créer par l'id billboard
 
                 });
