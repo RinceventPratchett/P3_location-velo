@@ -42,7 +42,7 @@ class Diaporama {
     }
     pause() {
         if(this.timeOut) {
-            clearTimeout(this.timeOut);
+            clearTimeout(this.timeOut); //pour relancer si le diapo est en pause de 15 secondes
         }else{
             clearInterval(this.timer); //pour arreter le defilement auto 
         }
@@ -59,7 +59,8 @@ class Diaporama {
             this.timer = "Null";
             this.timeOut = "Null";
         }else{
-            this.init();
+            //this.init();
+            this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
         }
     }
 }

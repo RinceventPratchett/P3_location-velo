@@ -23,7 +23,7 @@ var booking = {
         $("#lastName").css({display: "block"});
         $(".timer").html("20mn 00s");        
         ObjCanvas.clearAll(); //pour effacer le canvas à la fin de la résa
-        window.location.hash = '#resume';
+        //window.location.hash = '#resume';
     },
     
     timer(){
