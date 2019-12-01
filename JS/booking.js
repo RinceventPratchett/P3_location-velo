@@ -126,23 +126,6 @@ $("#buttonResa").click(function () {
 });
 
 
-$(window).resize(function(){
-    resizeCanvas();
-});    
-
-$(document).ready(function(){
-    //alert('v1.4.2');
-    resizeCanvas();
-    $("#resume").empty();
-    if (booking.params.timer === undefined || booking.params.timer === false) {
-        $("#resume").html("en attente de réservation");
-    } else {
-        $("#resume").html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : " 
-            + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
-    }
-});
-
-
 // pour stocker les infos saisies lors de la session (pas de reset si fermeture du nav)
 var stockNomPrenom = () => {
     var lastName = $('#lastName');
@@ -174,6 +157,21 @@ function resizeCanvas(){
     }
 };
 
+$(window).resize(function(){
+    resizeCanvas();
+});    
+
+$(document).ready(function(){
+    //alert('v1.4.2');
+    resizeCanvas();
+    $("#resume").empty();
+    if (booking.params.timer === undefined || booking.params.timer === false) {
+        $("#resume").html("en attente de réservation");
+    } else {
+        $("#resume").html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : " 
+            + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
+    }
+});
 
 stockNomPrenom();
 booking.init();

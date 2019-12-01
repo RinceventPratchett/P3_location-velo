@@ -55,7 +55,9 @@ class Diaporama {
             clearTimeout(this.timeOut);
             this.timeOut = 0;
             clearInterval(this.timer);
-            this.init();
+            this.timer = setInterval(this.suivant.bind(this),5000);
+            document.getElementById("playPause").textContent = "";
+            document.getElementById("playPause").textContent = "Pause";
             console.log(' l-57 if fction playPause');
         }else if(this.timer){
             clearInterval(this.timer);
@@ -69,7 +71,6 @@ class Diaporama {
 }
 
 // Le bouton droit appel la méthode "suivant" du diaporama
-//document.getElementById("btnDroit").addEventListener("click", Diaporama.suivant.bind());
 $('#btnDroit').click(function(){
     ObjDiaporama.pause();
     ObjDiaporama.suivant();
@@ -90,13 +91,3 @@ document.addEventListener("keydown", ObjDiaporama.infosClavier.bind(Diaporama));
 document.getElementById("playPause").addEventListener("click", function(){
     ObjDiaporama.playPause();
 }); 
-//
-//
-//$('#play-pause').click(function(){
-//    
-//    if (ObjDiaporama.timeOut != undefined){
-//        clearTimeout(ObjDiaporama.timeOut());
-//    }else{
-//        ObjDiaporama.timeOut;
-//    }       
-//});  

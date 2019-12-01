@@ -32,6 +32,49 @@ label {
 #velov{
 
 }
+/*--------------------------------------------------------------------------------------------
+                slider
+----------------------------------------------------------------------------------------------*/
+
+.diaporama {
+    position: relative;    
+    margin: auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.diaporama div {
+    position: relative;
+
+}
+.mySlides{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+.diaporama div img {
+    box-shadow: 0px 15px 10px -5px #777;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.feature {
+   display: flex;
+   justify-content: center;
+   
+}
+
+.feature .button {
+    width: 8rem;
+    height: 2rem;
+}
 
 #map{
    height: 30rem;
@@ -264,50 +307,9 @@ canvas{
     margin-top: 10px;
     }
 }
-/*--------------------------------------------------------------------------------------------
-/*slider
-----------------------------------------------------------------------------------------------*/
-
-.diaporama {
-    position: relative;    
-    margin: auto;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 
 
-.diaporama div {
-    position: relative;
-
-}
-.mySlides{
-    display: none;
-    flex-direction: column;
-    align-items: center;
-
-}
-
-
-.diaporama div img {
-    box-shadow: 0px 15px 10px -5px #777;
-    height: 300px;
-    margin: 0 auto;
-}
-
-.feature {
-   display: flex;
-   justify-content: center;
-   
-}
-
-.feature .button {
-    width: 8rem;
-    height: 2rem;
-}
-
+/*-------------------------------------------------------------------------*/
 .position1{
     transition: all 1s ease-in;
 
