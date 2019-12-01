@@ -9,6 +9,8 @@ class Diaporama {
     init(){
         this.suivant();
         this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
+        document.getElementById("playPause").textContent = "";
+        document.getElementById("playPause").textContent = "Pause";
     }
     // Méthode qui récupére les touches du clavier et actionne le diaporama en fonction de la touche
     infosClavier(e) {
@@ -60,10 +62,8 @@ class Diaporama {
             this.timer = "Null";
             this.timeOut = "Null";
             console.log(' l-62 else if fction playPause');
-        }else{
-            //this.init();
-            this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
-            console.log(' l-66 else fction playPause');
+            document.getElementById("playPause").textContent = "";
+            document.getElementById("playPause").textContent = "Play";
         }
     }
 }
