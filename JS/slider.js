@@ -13,9 +13,9 @@ class Diaporama {
     // Méthode qui récupére les touches du clavier et actionne le diaporama en fonction de la touche
     infosClavier(e) {
         if(e.keyCode === 39) {
-            document.addEventListener("keydown", ObjDiaporama.pause(), ObjDiaporama.suivant()); // Appui sur la touche =>
+            document.addEventListener("keydown",  ObjDiaporama.suivant(), ObjDiaporama.pause()); // Appui sur la touche =>
         } else if(e.keyCode === 37) {
-            document.addEventListener("keydown", ObjDiaporama.pause(), ObjDiaporama.precedent()); // Appui sur la touche <=
+            document.addEventListener("keydown", ObjDiaporama.precedent(), ObjDiaporama.pause()); // Appui sur la touche <=
         }
     }   
     // Méthode qui fait fonctionner le diaporama en avant
@@ -54,13 +54,16 @@ class Diaporama {
             this.timeOut = 0;
             clearInterval(this.timer);
             this.init();
+            console.log(' l-57 if fction playPause');
         }else if(this.timer){
             clearInterval(this.timer);
             this.timer = "Null";
             this.timeOut = "Null";
+            console.log(' l-62 else if fction playPause');
         }else{
             //this.init();
             this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
+            console.log(' l-66 else fction playPause');
         }
     }
 }
