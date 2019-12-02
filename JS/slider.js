@@ -19,8 +19,10 @@ class Diaporama {
     infosClavier(e) {
         if(e.keyCode === 39) {
             document.addEventListener("keydown",  ObjDiaporama.suivant(), ObjDiaporama.pause()); // Appui sur la touche =>
+            console.log('l-19 fleche droite ' + ObjDiaporama.pause);
         } else if(e.keyCode === 37) {
             document.addEventListener("keydown", ObjDiaporama.precedent(), ObjDiaporama.pause()); // Appui sur la touche <=
+            console.log('l-22 fleche gauche ' + ObjDiaporama.pause);
         }
     }   
     // Méthode qui fait fonctionner le diaporama en avant
@@ -50,13 +52,16 @@ class Diaporama {
         if(this.timeOut !== 'Null') {
             clearTimeout(this.timeOut);
             this.timeOut = 'Null';//pour relancer si le diapo est en pause de 15 secondes
+            console.log(' l-51 if this TimeOut fction pause');
         }else{
             clearInterval(this.timer);
             this.timer = 'Null';//pour arreter le defilement auto
+            console.log(' l-54 else this.timer fction pause');
         }
-        document.getElementById("playPause").textContent = "";
-        document.getElementById("playPause").textContent = "Play";
+//        document.getElementById("playPause").textContent = "";
+//        document.getElementById("playPause").textContent = "Play";
         this.timeOut = setTimeout(this.init.bind(this), 15000);
+        console.log('l-57 exec this.timeOut ' + this.timeOut);
     }
     playPause() {
         if (this.timeOut !=='Null') {
@@ -66,10 +71,12 @@ class Diaporama {
             this.timer = setInterval(this.suivant.bind(this),5000);
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Pause";
+            console.log(' l-73 if this.timeOut fction playPause');
         }else if(this.timer){
             clearInterval(this.timer);
             this.timer = "Null";
             this.timeOut = 0;
+            console.log(' l-78 else if this.timer fction playPause');
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Play";
         }
@@ -83,16 +90,49 @@ $('#btnDroit').click(function(){
 });
 
 // Le bouton gauche appel la méthode "précédent" du diaporama
+//document.getElementById("btnGauche").addEventListener("click", Diaporama.precedent.bind(Diaporama));
 $('#btnGauche').click(function(){
     ObjDiaporama.pause();
     ObjDiaporama.precedent();
 });
 
+
+
+
+
+let controler = document.getElementById("feature");
+let slides = document.getElementsByClassName("mySlides");
+
+function resizeWIndow(){    
+    let largeurwidth = $("body").width();
+    if (largeurwidth <= 900) {
+        console.log(document.getElementsByTagName("button")[1]);
+        controler.remove();      
+        Object.entries(slides).forEach( function() { //pour convertir un objet en array Object.entries()
+            if(!document.getElementById("feature")){
+                $("label").before(controler);
+                console.log(document.getElementsByTagName("button")[1]);
+                document.getElementsByTagName("button")[1].id = "playPause";
+                console.log(document.getElementsByTagName("button")[1]);
+                 
+            }
+             
+        });    
+    }
+}
 var ObjDiaporama = new Diaporama();
+
+window.onload = function(){
+    let largeurwidth = $("body").width();
+    if (largeurwidth <= 900) {
+        resizeWIndow();
+    }
+}
 
 // Gestion de l'appui et du relâchement d'une touche du clavier
 document.addEventListener("keydown", ObjDiaporama.infosClavier.bind(Diaporama));//pour que le diaporama puisse recevoir le keydown de chaque touche
 
-document.getElementById("playPause").addEventListener("click", function(){
+ document.getElementById("playPause").addEventListener("click", function(){
     ObjDiaporama.playPause();
-});
+}); 
+    
