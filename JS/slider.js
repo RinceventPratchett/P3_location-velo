@@ -96,6 +96,33 @@ $('#btnGauche').click(function(){
 });
 
 
+
+let controler = document.getElementById("feature");
+let slides = document.getElementsByClassName("mySlides");
+
+function resizeWIndow(){
+    console.log(slides);
+    console.log(typeof slides);
+    
+    let largeurwidth = $("body").width();
+    if (largeurwidth <= 900) {
+        controler.remove();      
+        Object.entries(slides).forEach( function() { //pour convertir un objet en array Object.entries()
+            if(!document.getElementById('feature')){
+                $('label').before(controler);
+            }
+            
+        });
+    }
+}
+$(window).resize(function(){
+    resizeWIndow();
+});    
+$(document).ready(function(){
+    //alert('v1.4.2');
+    resizeWindow();
+});
+
 var ObjDiaporama = new Diaporama();
 // Gestion de l'appui et du relâchement d'une touche du clavier
 document.addEventListener("keydown", ObjDiaporama.infosClavier.bind(Diaporama));//pour que le diaporama puisse recevoir le keydown de chaque touche

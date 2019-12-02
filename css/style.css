@@ -64,16 +64,16 @@ label {
     margin: 5px;
     padding: 5px;
     border-radius: 5px;
-    height: 80px;
+    height: 90px;
 }
 
-.feature {
+main #feature {
    display: flex;
    justify-content: center;
    
 }
 
-.feature .button {
+#feature .button {
     width: 8rem;
     height: 2rem;
 }
@@ -290,24 +290,24 @@ canvas{
         width: auto;
     }
     .diaporama{
-    background-size: contain; /*pour que nos images de fond soient à la fois contraintes dans 
+        background-size: contain; /*pour que nos images de fond soient à la fois contraintes dans 
          le conteneur mais occupe le plus d’espace dans celui-ci tout en conservant leur proportions d’origine.*/
-    position: relative;    
-    margin: 0 0 10px 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+        position: relative;    
+        margin: 0 0 10px 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
     }
     
     label {
-    height: auto;
-    margin: 3px;
-    padding: 3px;
+        height: auto;
+        margin: 3px;
+        padding: 3px;
     }
-    
-.feature {
-    margin-top: 10px;
-    }
+
+/*    .diaporama .mySlides .feature{
+        display: flex;
+    }*/
 }
 
 
