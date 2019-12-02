@@ -124,8 +124,6 @@ $("#buttonResa").click(function () {
         booking.start();
     }   
 });
-
-
 // pour stocker les infos saisies lors de la session (pas de reset si fermeture du nav)
 var stockNomPrenom = () => {
     var lastName = $('#lastName');
@@ -162,7 +160,6 @@ $(window).resize(function(){
 });    
 
 $(document).ready(function(){
-    //alert('v1.4.2');
     resizeCanvas();
     $("#resume").empty();
     if (booking.params.timer === undefined || booking.params.timer === false) {

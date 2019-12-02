@@ -43,21 +43,7 @@ class MyMap{
     successAjax(detailsStation) { //l'utilisation de var permet l'appel du contenu dans toute la fonction
             var details = JSON.parse(detailsStation);
             var mapObj =this; // on garde le context pour la callback du foreach
-            /*Developers are often confused by what a callback is because of the name of the damned thing.
-
-A callback function is a function which is:
-
-    accessible by another function, and
-    is invoked after the first function if that first function completes
-
-A nice way of imagining how a callback function works is that it is a function that is "called at the back" 
-of the function it is passed into.
-
-Maybe a better name would be a "call after" function.
-
-This construct is very useful for asynchronous behaviour where we want an activity to take place 
-whenever a previous event completes.*/
-			
+  			
             details.forEach(function (station) { //pour récupérer les détail de chaque station
                 var coordLat = station.position.lat;
                 var coordLng = station.position.lng;
@@ -144,3 +130,17 @@ NewMap.init();
 ajaxGet(url, function(detailsStation) { 
     NewMap.successAjax(detailsStation);
 });
+          /*Developers are often confused by what a callback is because of the name of the damned thing.
+
+A callback function is a function which is:
+
+    accessible by another function, and
+    is invoked after the first function if that first function completes
+
+A nice way of imagining how a callback function works is that it is a function that is "called at the back" 
+of the function it is passed into.
+
+Maybe a better name would be a "call after" function.
+
+This construct is very useful for asynchronous behaviour where we want an activity to take place 
+whenever a previous event completes.*/

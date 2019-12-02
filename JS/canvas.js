@@ -23,14 +23,14 @@ class Canvas {
             
             that.paint = true; // bascule la valeur de paint
             cible.val("ok"); //pour authoriser la reservation de vélo
-            cible.removeClass("hilight"); //si le champ etait hilgihted   
+            cible.removeClass("hilight"); //si le champ etait hilighted   
             that.addClick(mouseX, mouseY, false); //pour enregistrer la position de la souris dans le canvas lors du click maintenu 
-            that.redraw();     
+            that.redraw();     //dessine les mouvements enregistrés
         });
         
         this._canvas.mousemove(function(e){
             if(that.paint){ //si valeur a true la souris est considéré comme la pointe du stylo 
-                that.addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true); //
+                that.addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true); //calacule des coordonnées X et Y en retirant le décalage calculé par le offsetTop
                 that.redraw();
             }
         });
@@ -62,10 +62,9 @@ class Canvas {
         //on bouge sur le tactile
        this._canvas.on("touchmove", function (e) {            
             e.preventDefault();
-            var mouseX = e.originalEvent.changedTouches[0].pageX - $(this).offset().left; // condition ? express si vrai : express si faux
+            var mouseX = e.originalEvent.changedTouches[0].pageX - $(this).offset().left; 
             var mouseY = e.originalEvent.changedTouches[0].pageY - $(this).offset().top;
             
-            //alert('move' + mouseX);
             if (that.paint) {
                 that.paint = true;    
                 that.addClick(mouseX, mouseY, true);
@@ -95,6 +94,7 @@ class Canvas {
         this._canvas.val("");
     }
     redraw(){  
+        
         this.context.strokeStyle = "#222222";
         this.context.lineJoin = "round";
         this.context.lineWidth = 2;

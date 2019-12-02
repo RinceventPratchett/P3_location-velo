@@ -19,10 +19,8 @@ class Diaporama {
     infosClavier(e) {
         if(e.keyCode === 39) {
             document.addEventListener("keydown",  ObjDiaporama.suivant(), ObjDiaporama.pause()); // Appui sur la touche =>
-            console.log('l-19 fleche droite ' + ObjDiaporama.pause);
         } else if(e.keyCode === 37) {
             document.addEventListener("keydown", ObjDiaporama.precedent(), ObjDiaporama.pause()); // Appui sur la touche <=
-            console.log('l-22 fleche gauche ' + ObjDiaporama.pause);
         }
     }   
     // Méthode qui fait fonctionner le diaporama en avant
@@ -52,16 +50,13 @@ class Diaporama {
         if(this.timeOut !== 'Null') {
             clearTimeout(this.timeOut);
             this.timeOut = 'Null';//pour relancer si le diapo est en pause de 15 secondes
-            console.log(' l-51 if this TimeOut fction pause');
         }else{
             clearInterval(this.timer);
             this.timer = 'Null';//pour arreter le defilement auto
-            console.log(' l-54 else this.timer fction pause');
         }
         document.getElementById("playPause").textContent = "";
         document.getElementById("playPause").textContent = "Play";
         this.timeOut = setTimeout(this.init.bind(this), 15000);
-        console.log('l-57 exec this.timeOut ' + this.timeOut);
     }
     playPause() {
         if (this.timeOut !=='Null') {
@@ -71,12 +66,10 @@ class Diaporama {
             this.timer = setInterval(this.suivant.bind(this),5000);
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Pause";
-            console.log(' l-73 if this.timeOut fction playPause');
         }else if(this.timer){
             clearInterval(this.timer);
             this.timer = "Null";
             this.timeOut = 0;
-            console.log(' l-78 else if this.timer fction playPause');
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Play";
         }
@@ -90,7 +83,6 @@ $('#btnDroit').click(function(){
 });
 
 // Le bouton gauche appel la méthode "précédent" du diaporama
-//document.getElementById("btnGauche").addEventListener("click", Diaporama.precedent.bind(Diaporama));
 $('#btnGauche').click(function(){
     ObjDiaporama.pause();
     ObjDiaporama.precedent();
@@ -103,4 +95,4 @@ document.addEventListener("keydown", ObjDiaporama.infosClavier.bind(Diaporama));
 
 document.getElementById("playPause").addEventListener("click", function(){
     ObjDiaporama.playPause();
-}); 
+});
