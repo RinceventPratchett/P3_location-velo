@@ -63,19 +63,19 @@ class Diaporama {
         console.log('l-57 exec this.timeOut ' + this.timeOut);
     }
     playPause() {
-        if (this.timeOut !== 'Null') {
+        if (this.timeOut !=='Null') {
             clearTimeout(this.timeOut);
             this.timeOut = 'Null';
             clearInterval(this.timer);
             this.timer = setInterval(this.suivant.bind(this),5000);
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Pause";
-            console.log(' l-57 if fction playPause');
+            console.log(' l-73 if this.timeOut fction playPause');
         }else if(this.timer){
             clearInterval(this.timer);
             this.timer = "Null";
-            this.timeOut = "Null";
-            console.log(' l-62 else if fction playPause');
+            this.timeOut = 0;
+            console.log(' l-78 else if this.timer fction playPause');
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Play";
         }
