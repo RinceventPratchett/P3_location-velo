@@ -5,10 +5,12 @@ class Diaporama {
         this.items = document.getElementsByClassName("mySlides"); // Attribut de sélection des figures;;
         this.imageNum = 0; // Attribut qui permet de parcourir les images
         this.init();
+        
     }
     init(){
         this.suivant();
         this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
+        this.timeOut = 'Null';
         document.getElementById("playPause").textContent = "";
         document.getElementById("playPause").textContent = "Pause";
     }
@@ -16,8 +18,10 @@ class Diaporama {
     infosClavier(e) {
         if(e.keyCode === 39) {
             document.addEventListener("keydown",  ObjDiaporama.suivant(), ObjDiaporama.pause()); // Appui sur la touche =>
+            console.log('l-19 fleche droite ' + ObjDiaporama.pause);
         } else if(e.keyCode === 37) {
             document.addEventListener("keydown", ObjDiaporama.precedent(), ObjDiaporama.pause()); // Appui sur la touche <=
+            console.log('l-22 fleche gauche ' + ObjDiaporama.pause);
         }
     }   
     // Méthode qui fait fonctionner le diaporama en avant
@@ -42,18 +46,26 @@ class Diaporama {
         }
         this.items[this.imageNum].style.display = "flex"; // Fait apparaître l'image précédente        
     }
+
     pause() {
-        if(this.timeOut) {
-            clearTimeout(this.timeOut); //pour relancer si le diapo est en pause de 15 secondes
+        if(this.timeOut !== 'Null') {
+            clearTimeout(this.timeOut);
+            this.timeOut = 'Null';//pour relancer si le diapo est en pause de 15 secondes
+            console.log(' l-51 if this TimeOut fction pause');
         }else{
-            clearInterval(this.timer); //pour arreter le defilement auto 
+            clearInterval(this.timer);
+            this.timer = 'Null';//pour arreter le defilement auto
+            console.log(' l-54 else this.timer fction pause');
         }
+        document.getElementById("playPause").textContent = "";
+        document.getElementById("playPause").textContent = "Play";
         this.timeOut = setTimeout(this.init.bind(this), 15000);
+        console.log('l-57 exec this.timeOut ' + this.timeOut);
     }
     playPause() {
         if (this.timeOut) {
             clearTimeout(this.timeOut);
-            this.timeOut = 0;
+            this.timeOut = 'Null';
             clearInterval(this.timer);
             this.timer = setInterval(this.suivant.bind(this),5000);
             document.getElementById("playPause").textContent = "";

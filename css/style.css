@@ -16,18 +16,7 @@ header{
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     font-size: 1.5rem;
 }
-label {
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    color: white;
-    font-weight: bold;
-    background-color: black;
-    margin: 5px;
-    padding: 5px;
-    border-radius: 5px;
-    height: 80px;
-}
+
 
 #velov{
 
@@ -63,6 +52,19 @@ label {
     box-shadow: 0px 15px 10px -5px #777;
     height: 300px;
     margin: 0 auto;
+}
+
+label {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    background-color: black;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    height: 80px;
 }
 
 .feature {
@@ -129,7 +131,7 @@ label {
     align-items: center;
     justify-content: center;
     width: 80%;
-    border: solid black 1px;
+    border: solid 1px;
     margin-top: 5px;
     padding-bottom: 1rem;
     margin-left: 10%;
@@ -159,7 +161,7 @@ label {
     text-align: center; 
     text-transform: uppercase;
     margin-top: 1rem;
-    background-color: graytext;
+    background-color: #6d6d6d;
     border-radius: 5px;
     height: auto;     
 }
@@ -176,7 +178,7 @@ button{
     width: 80%;
     text-transform: uppercase;
     margin: 2%;  
-    background-color: graytext;
+    background-color: #6d6d6d;
     border-radius: 5px;
     color: white;
     height: auto;
@@ -187,7 +189,7 @@ button{
     text-align: center;
     vertical-align: middle;
     width: 80%;
-    border: solid black 1px;
+    border: solid 1px;
     margin-top: 5px;
     margin-left: 10%;
     border-radius: 5px;
@@ -202,7 +204,7 @@ button{
     text-transform: uppercase;
     text-align: center;
     width: 80%;
-    border: solid black 1px;
+    border: solid 1px;
     margin-top: 5px;
     padding-bottom: 1rem;
     margin-left: 10%;
@@ -216,7 +218,7 @@ button{
     display: none;
     text-align: center;
     width: 80%;
-    border: solid black 1px;
+    border: solid 1px;
     margin-top: 5px;
     padding-bottom: 1rem;
     margin-left: 10%;
@@ -230,7 +232,7 @@ button{
     display: none;
     text-align: center;    
     width: 80%;
-    border: solid black 1px;
+    border: solid 1px;
     margin-top: 5px;
     padding-bottom: 1rem;
     margin-left: 10%;
