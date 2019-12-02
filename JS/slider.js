@@ -63,7 +63,7 @@ class Diaporama {
         console.log('l-57 exec this.timeOut ' + this.timeOut);
     }
     playPause() {
-        if (this.timeOut) {
+        if (this.timeOut !== 'Null') {
             clearTimeout(this.timeOut);
             this.timeOut = 'Null';
             clearInterval(this.timer);
