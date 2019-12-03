@@ -14,6 +14,8 @@ class Diaporama {
         this.timeOut = 'Null';
         document.getElementById("playPause").textContent = "";
         document.getElementById("playPause").textContent = "Pause";
+                console.log('passage pause l-17');
+
     }
     // Méthode qui récupére les touches du clavier et actionne le diaporama en fonction de la touche
     infosClavier(e) {
@@ -58,8 +60,9 @@ class Diaporama {
             this.timer = 'Null';//pour arreter le defilement auto
             console.log(' l-54 else this.timer fction pause');
         }
-//        document.getElementById("playPause").textContent = "";
-//        document.getElementById("playPause").textContent = "Play";
+        document.getElementById("playPause").textContent = "";
+        document.getElementById("playPause").textContent = "Play";
+        console.log('passage play l-63');
         this.timeOut = setTimeout(this.init.bind(this), 15000);
         console.log('l-57 exec this.timeOut ' + this.timeOut);
     }
@@ -71,6 +74,8 @@ class Diaporama {
             this.timer = setInterval(this.suivant.bind(this),5000);
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Pause";
+                    console.log('passage pause l-75');
+
             console.log(' l-73 if this.timeOut fction playPause');
         }else if(this.timer){
             clearInterval(this.timer);
@@ -79,6 +84,7 @@ class Diaporama {
             console.log(' l-78 else if this.timer fction playPause');
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Play";
+            console.log('paasage play l-83');
         }
     }
 }
@@ -96,43 +102,12 @@ $('#btnGauche').click(function(){
     ObjDiaporama.precedent();
 });
 
-
-
-
-
-let controler = document.getElementById("feature");
-let slides = document.getElementsByClassName("mySlides");
-
-function resizeWIndow(){    
-    let largeurwidth = $("body").width();
-    if (largeurwidth <= 900) {
-        console.log(document.getElementsByTagName("button")[1]);
-        controler.remove();      
-        Object.entries(slides).forEach( function() { //pour convertir un objet en array Object.entries()
-            if(!document.getElementById("feature")){
-                $("label").before(controler);
-                console.log(document.getElementsByTagName("button")[1]);
-                document.getElementsByTagName("button")[1].id = "playPause";
-                console.log(document.getElementsByTagName("button")[1]);
-                 
-            }
-             
-        });    
-    }
-}
 var ObjDiaporama = new Diaporama();
-
-window.onload = function(){
-    let largeurwidth = $("body").width();
-    if (largeurwidth <= 900) {
-        resizeWIndow();
-    }
-}
 
 // Gestion de l'appui et du relâchement d'une touche du clavier
 document.addEventListener("keydown", ObjDiaporama.infosClavier.bind(Diaporama));//pour que le diaporama puisse recevoir le keydown de chaque touche
 
- document.getElementById("playPause").addEventListener("click", function(){
+ document.getElementsByTagName("button")[1].addEventListener("click", function(){
     ObjDiaporama.playPause();
 }); 
     

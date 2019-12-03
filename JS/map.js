@@ -51,9 +51,9 @@ class MyMap{
                 var remainingPark = station.available_bike_stands;
                 var statutStation = station.status;
                 var color = mapObj.greenIcon; 
-                if (statutStation === 'OPEN' && (dispo <= 2 || remainingPark <= 2)) { //condition d'attribution du marker orange
+                if (statutStation === 'OPEN' && ((dispo <= 2 && dispo > 0)  || remainingPark <= 2)) { //condition d'attribution du marker orange
                     color = mapObj.orangeIcon;
-                } else if (statutStation === 'CLOSED') {
+                } else if (statutStation === 'CLOSED' || dispo === 0) {
                     color = mapObj.redIcon;
                 }
                 var marker = L.marker([coordLat, coordLng], {icon: color});
@@ -121,9 +121,6 @@ class MyMap{
         }
     }
 }; 
-
-
-
 
 var NewMap = new MyMap();
 NewMap.init();
