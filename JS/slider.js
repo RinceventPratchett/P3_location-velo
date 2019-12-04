@@ -5,6 +5,7 @@ class Diaporama {
         this.items = document.getElementsByClassName("mySlides"); // Attribut de sélection des figures;;
         this.imageNum = 0; // Attribut qui permet de parcourir les images
         this.timeOut = 'Null';
+        this.label = document.getElementsByTagName("label");
         //this.init();
         this.start();
     }
@@ -30,6 +31,7 @@ class Diaporama {
     }
     start() {
         this.items[this.imageNum].style.display = "flex";
+        this.label[this.imageNum].style.display = "flex";
         this.init();
     }
     // Méthode qui fait fonctionner le diaporama en avant
@@ -37,6 +39,7 @@ class Diaporama {
         //this.items[this.imageNum].style.display = "none"; // Fait disparaître l'image active
         console.log(this.items);
         this.items[this.imageNum].className += " position2 ";
+        this.label[this.imageNum].style.display = "none";
         
         if(this.imageNum === 3) { // Si le diaporama est à la dernière image
             this.imageNum = 0; // On repasse l'attribut à 0 pour faire réapparaître la première image
@@ -46,6 +49,7 @@ class Diaporama {
              this.items[this.imageNum].classList.remove("position2");
         }
         this.items[this.imageNum].style.display = "flex"; // Fait apparaître l'image suivante
+        this.label[this.imageNum].style.display = "flex";
         //this.items[this.imageNum++].className += " position1 ";
     }
 

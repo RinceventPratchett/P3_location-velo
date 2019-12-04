@@ -60,7 +60,7 @@ header{
 
 label {
     font-size: 1rem;
-    display: flex;
+    display: none;
     align-items: center;
     color: white;
     font-weight: bold;
@@ -324,8 +324,11 @@ canvas{
 .position2{
     z-index: 1;
     position: absolute;
-    right: -120px;;
-    transition: all 1s ease-in;
+    right: 0;
+    top: 0;
+    transition: all 1s ease-out;
 
     transform: rotate3d(0,1,0, 60deg) translate3d(0px, 0px, 0px); 
+    
 }
+
