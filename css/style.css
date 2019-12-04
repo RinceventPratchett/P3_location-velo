@@ -48,7 +48,7 @@ header{
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    z-index: 99;
 }
 
 
@@ -322,9 +322,10 @@ canvas{
     transform: rotate3d(0,1,0, 60deg) translate3d(250px, 0px, 0px);
 }
 .position2{
+    z-index: 1;
     position: absolute;
     right: -120px;;
-    transition: all 2s ease-in;
+    transition: all 1s ease-in;
 
     transform: rotate3d(0,1,0, 60deg) translate3d(0px, 0px, 0px); 
 }
