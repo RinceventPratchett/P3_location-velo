@@ -30,7 +30,7 @@ class MyMap{
         this.map.addEventListener("click", function () {
             $("#billboard").css({display: "none"}); //pour effacer le panneau lors d'un click sur la map 
             $("#map").css({width: "100%"});
-            window.location.hash = '';
+            window.location.hash = "#resume";
         });
     }
  
