@@ -5,15 +5,16 @@ class Diaporama {
         this.items = document.getElementsByClassName("mySlides"); // Attribut de sélection des figures;;
         this.imageNum = 0; // Attribut qui permet de parcourir les images
         this.timeOut = 'Null';
-        this.init();
-        
+        //this.init();
+        this.start();
     }
     init(){
-        this.suivant();
+        
         this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
+        //this.suivant();
         this.timeOut = 'Null';
         document.getElementById("playPause").textContent = "";
-        document.getElementById("playPause").textContent = "Pause";
+        document.getElementById("playPause").textContent = "Stop";
                 console.log('passage pause l-17');
 
     }
@@ -26,16 +27,26 @@ class Diaporama {
             document.addEventListener("keydown", ObjDiaporama.precedent(), ObjDiaporama.pause()); // Appui sur la touche <=
             console.log('l-22 fleche gauche ' + ObjDiaporama.pause);
         }
-    }   
+    }
+    start() {
+        this.items[this.imageNum].style.display = "flex";
+        this.init();
+    }
     // Méthode qui fait fonctionner le diaporama en avant
     suivant() {
-        this.items[this.imageNum].style.display = "none"; // Fait disparaître l'image active
+        //this.items[this.imageNum].style.display = "none"; // Fait disparaître l'image active
+        console.log(this.items);
+        this.items[this.imageNum].className += " position2 ";
+        
         if(this.imageNum === 3) { // Si le diaporama est à la dernière image
             this.imageNum = 0; // On repasse l'attribut à 0 pour faire réapparaître la première image
+            this.items[this.imageNum].classList.remove("position2");           
         } else { // Sinon on passe à l'image suivante
             this.imageNum++; // En augmentant de 1 l'attribut
+             this.items[this.imageNum].classList.remove("position2");
         }
         this.items[this.imageNum].style.display = "flex"; // Fait apparaître l'image suivante
+        //this.items[this.imageNum++].className += " position1 ";
     }
 
     // Méthode qui fait fonctionner le diaporama en arrière
@@ -47,6 +58,7 @@ class Diaporama {
         } else { // Sinon on passe à l'image précédente
             this.imageNum--; // En diminuant de 1 la valeur de l'attribut
         }
+        this.items[this.imageNum].classList.remove("position2");
         this.items[this.imageNum].style.display = "flex"; // Fait apparaître l'image précédente        
     }
 
@@ -73,7 +85,7 @@ class Diaporama {
             clearInterval(this.timer);
             this.timer = setInterval(this.suivant.bind(this),5000);
             document.getElementById("playPause").textContent = "";
-            document.getElementById("playPause").textContent = "Pause";
+            document.getElementById("playPause").textContent = "Stop";
                     console.log('passage pause l-75');
 
             console.log(' l-73 if this.timeOut fction playPause');
