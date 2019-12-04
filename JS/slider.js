@@ -38,15 +38,18 @@ class Diaporama {
     suivant() {
         //this.items[this.imageNum].style.display = "none"; // Fait disparaître l'image active
         console.log(this.items);
-        this.items[this.imageNum].className += " position2 ";
+        this.items[this.imageNum].className += " position2";
         this.label[this.imageNum].style.display = "none";
         
         if(this.imageNum === 3) { // Si le diaporama est à la dernière image
             this.imageNum = 0; // On repasse l'attribut à 0 pour faire réapparaître la première image
-            this.items[this.imageNum].classList.remove("position2");           
+            this.items[this.imageNum].classList.remove("position2");
+//            this.items[1].className += " position1";
+//            this.items[2].className += " position1";
+//            this.items[3].className += " position1";
         } else { // Sinon on passe à l'image suivante
             this.imageNum++; // En augmentant de 1 l'attribut
-             this.items[this.imageNum].classList.remove("position2");
+            this.items[this.imageNum].classList.remove("position2");
         }
         this.items[this.imageNum].style.display = "flex"; // Fait apparaître l'image suivante
         this.label[this.imageNum].style.display = "flex";
@@ -56,14 +59,16 @@ class Diaporama {
     // Méthode qui fait fonctionner le diaporama en arrière
     precedent() {
         //this.timer = clearInterval();
-        this.items[this.imageNum].style.display = "none"; // Fait disparaître l'image active
+        this.items[this.imageNum].className += " position2 ";
+        this.label[this.imageNum].style.display = "none"; // Fait disparaître l'image active
         if(this.imageNum === 0) { // Si le diaporama est à la première image
             this.imageNum = 3; // On passe l'attribut à 4 pour faire réapparaître l'image précédente
         } else { // Sinon on passe à l'image précédente
             this.imageNum--; // En diminuant de 1 la valeur de l'attribut
         }
         this.items[this.imageNum].classList.remove("position2");
-        this.items[this.imageNum].style.display = "flex"; // Fait apparaître l'image précédente        
+        this.items[this.imageNum].style.display = "flex"; // Fait apparaître l'image précédente
+        this.label[this.imageNum].style.display = "flex";//avec son label
     }
 
     pause() {
