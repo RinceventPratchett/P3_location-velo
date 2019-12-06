@@ -6,11 +6,11 @@ class Diaporama {
         this.imageNum = 2; // Attribut qui permet de parcourir les images
         this.timeOut = 'Null';
         this.label = document.getElementsByTagName("label");
-        //this.init();
-        this.start();
+        this.init();
+        //this.start();
     }
     init(){
-        
+        this.label[0].style.display = "flex";
         this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
         //this.suivant();
         this.timeOut = 'Null';
@@ -29,11 +29,11 @@ class Diaporama {
             console.log('l-22 fleche gauche ' + ObjDiaporama.pause);
         }
     }
-    start() {
-//        this.items[this.imageNum].style.display = "flex";
-        this.label[0].style.display = "flex";
-        this.init();
-    }
+//    start() {
+////        this.items[this.imageNum].style.display = "flex";
+//        this.label[0].style.display = "flex";
+//        this.init();
+//    }
     // Méthode qui fait fonctionner le diaporama en avant
 //    suivant() {
 //        //this.items[this.imageNum].style.display = "none"; // Fait disparaître l'image active
