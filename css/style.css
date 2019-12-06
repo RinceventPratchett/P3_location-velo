@@ -322,7 +322,7 @@ canvas{
         height: 139px;
     }
     .position1{
-        transform: rotate3d(0,1,0, 60deg) translate3d(0px, 0px, -300px);
+        transform: rotate3d(0,1,0, 60deg) translate3d(0px, 0px, -125px);
         z-index: 1;
     }
     .position2{
@@ -336,7 +336,7 @@ canvas{
 
     .position4 {
         opacity: 0;
-        transform: rotate3d(0,1,0, 0deg) translate3d(0px, 0px, -125px);
+        transform: rotate3d(0,1,0, 0deg) translate3d(0px, 0px, -300px);
     }
 }
 /*-------------------------------------------------------------------------*/
