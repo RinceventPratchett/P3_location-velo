@@ -12,6 +12,7 @@ class Diaporama {
     init(){
         this.label[0].style.display = "flex";
         this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
+        //this.imageNum = 2;
         //this.suivant();
         this.timeOut = 'Null';
         document.getElementById("playPause").textContent = "";
@@ -56,47 +57,62 @@ class Diaporama {
 //        //this.items[this.imageNum++].className += " position1 ";
 //    }
     suivant() {
-        
+        var x = document.getElementsByClassName("position4")[0];
+        var w = document.getElementsByClassName("position2")[0]; 
+        var y = document.getElementsByClassName("position3")[0];
+        var z = document.getElementsByClassName("position1")[0];
+        w.className += " position1";
+        w.classList.remove("position2");        
+        x.className += " position2"
+        x.classList.remove("position4");
+        y.className += " position4"
+        y.classList.remove("position3");
+        z.className += " position3";
+        z.classList.remove("position1");
         if(this.imageNum === 3) { // Si le diaporama est à la dernière image
             this.imageNum = 0; // On repasse l'attribut à 0 pour faire réapparaître la première image
         } else { // Sinon on passe à l'image suivante
             this.imageNum++; // En augmentant de 1 l'attribut
         }
-        
-        this.UpdateSlides(); // affiche les éléments en fonction de  imageNum
-
     }
 
     // Méthode qui fait fonctionner le diaporama en arrière
     precedent() {
-        //this.timer = clearInterval()
-        if(this.imageNum === 0) { // Si le diaporama est à la première image
-            this.imageNum = 3; // On passe l'attribut à 4 pour faire réapparaître l'image précédente
-        } else { // Sinon on passe à l'image précédente
-            this.imageNum--; // En diminuant de 1 la valeur de l'attribut
+        var x = document.getElementsByClassName("position4")[0];
+        var w = document.getElementsByClassName("position2")[0]; 
+        var y = document.getElementsByClassName("position3")[0];
+        var z = document.getElementsByClassName("position1")[0];
+        w.className += " position1";
+        w.classList.remove("position2");        
+        x.className += " position2"
+        x.classList.remove("position4");
+        y.className += " position4"
+        y.classList.remove("position3");
+        z.className += " position3";
+        z.classList.remove("position1");
+        if(this.imageNum === 0) { // Si le diaporama est à la dernière image
+            this.imageNum = 3; // On repasse l'attribut à 0 pour faire réapparaître la première image
+        } else { // Sinon on passe à l'image suivante
+            this.imageNum--; // En augmentant de 1 l'attribut
         }
-        this.UpdateSlides(); // affiche les éléments en fonction de  imageNum
-        //this.items[this.imageNum].classList.remove("position2");
-//        this.items[this.imageNum].style.display = "flex"; // Fait apparaître l'image précédente
-//        this.label[this.imageNum].style.display = "flex";//avec son label
-
-    }
+    } 
+    
 
     pause() {
         if(this.timeOut !== 'Null') {
             clearTimeout(this.timeOut);
             this.timeOut = 'Null';//pour relancer si le diapo est en pause de 15 secondes
-            console.log(' l-51 if this TimeOut fction pause');
+            console.log(' l-117 if this TimeOut fction pause');
         }else{
             clearInterval(this.timer);
             this.timer = 'Null';//pour arreter le defilement auto
-            console.log(' l-54 else this.timer fction pause');
+            console.log(' l-121 else this.timer fction pause');
         }
         document.getElementById("playPause").textContent = "";
         document.getElementById("playPause").textContent = "Play";
-        console.log('passage play l-63');
+        console.log('passage play l-125');
         this.timeOut = setTimeout(this.init.bind(this), 15000);
-        console.log('l-57 exec this.timeOut ' + this.timeOut);
+        console.log('l-127 exec this.timeOut ' + this.timeOut);
     }
     playPause() {
         if (this.timeOut !=='Null') {
@@ -106,17 +122,17 @@ class Diaporama {
             this.timer = setInterval(this.suivant.bind(this),5000);
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Stop";
-                    console.log('passage pause l-75');
+                    console.log('passage pause l-137');
 
-            console.log(' l-73 if this.timeOut fction playPause');
+            console.log(' l-139 if this.timeOut fction playPause');
         }else if(this.timer){
             clearInterval(this.timer);
             this.timer = "Null";
             this.timeOut = 0;
-            console.log(' l-78 else if this.timer fction playPause');
+            console.log(' l-144 else if this.timer fction playPause');
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Play";
-            console.log('paasage play l-83');
+            console.log('paasage play l-148');
         }
     }
     UpdateSlides(){

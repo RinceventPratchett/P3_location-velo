@@ -73,13 +73,13 @@ label {
     margin: 5px;
     padding: 5px;
     border-radius: 5px;
-    height: 90px;
+    height: auto;
 }
 
 main #feature {
    display: flex;
    justify-content: center;
-   margin-top: 573px;
+   margin-top: 40rem;
 }
 
 #feature .button {
@@ -281,7 +281,7 @@ canvas{
 /*-------------------------------------------Queries à partir de 900 px----------------------------------------*/
 @media all and (max-width: 900px){
     body{
-        overflow-x: visible;
+        overflow-x: hidden;
         text-align: center;
     }
 
