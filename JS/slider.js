@@ -1,8 +1,4 @@
-/* 
- *Required style.css + index.html
- * 
- *
- */
+
 
 class Diaporama {
     constructor() {        
@@ -16,30 +12,34 @@ class Diaporama {
     init(){
         this.label[0].style.display = "flex";
         this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
-                    //declenche la fonction suvant au bout de 5sec.
         this.timeOut = 'Null';
         document.getElementById("playPause").textContent = "";
         document.getElementById("playPause").textContent = "Stop";
+                console.log('passage txt button pause l-17');
+
     }
     // Méthode qui récupére les touches du clavier et actionne le diaporama en fonction de la touche
     infosClavier(e) {
         if(e.keyCode === 39) {
             document.addEventListener("keydown",  ObjDiaporama.suivant(), ObjDiaporama.pause()); // Appui sur la touche =>
+            console.log('l-19 fleche droite ' + ObjDiaporama.pause);
         } else if(e.keyCode === 37) {
             document.addEventListener("keydown", ObjDiaporama.precedent(), ObjDiaporama.pause()); // Appui sur la touche <=
+            console.log('l-22 fleche gauche ' + ObjDiaporama.pause);
         }
     }
 
     suivant() {
-        var w = document.getElementsByClassName("position2")[0]; //pour récupérer chaque slide en fonction de son emplacement actuel
+        var w = document.getElementsByClassName("position2")[0]; 
         var x = document.getElementsByClassName("position4")[0];
         var y = document.getElementsByClassName("position3")[0];
         var z = document.getElementsByClassName("position1")[0];
-        document.querySelector('.position2 > label').style.display= "none"; //fait disparaitre le label avant de supprimer la classe
-        document.querySelector('.position4 > label').style.display= "flex";
+
         w.className += " position1";
+        document.querySelector('.position2 > label').style.display= "none"; //fait disparaitre le label avant de supprimer la classe
         w.classList.remove("position2");        
         x.className += " position2";
+        document.querySelector('.position4 > label').style.display= "flex";
         x.classList.remove("position4");
         y.className += " position4";
         y.classList.remove("position3");
@@ -51,7 +51,6 @@ class Diaporama {
             this.imageNum++; // En augmentant de 1 l'attribut
         }
     }
-
 
     // Méthode qui fait fonctionner le diaporama en arrière
     precedent() {
@@ -75,18 +74,23 @@ class Diaporama {
             this.imageNum--; // En augmentant de 1 l'attribut
         }
     } 
+    
 
     pause() {
         if(this.timeOut !== 'Null') {
             clearTimeout(this.timeOut);
             this.timeOut = 'Null';//pour relancer si le diapo est en pause de 15 secondes
+            console.log(' l-117 if this TimeOut fction pause');
         }else{
             clearInterval(this.timer);
             this.timer = 'Null';//pour arreter le defilement auto
+            console.log(' l-121 else this.timer fction pause');
         }
         document.getElementById("playPause").textContent = "";
         document.getElementById("playPause").textContent = "Play";
+        console.log('passage play l-125');
         this.timeOut = setTimeout(this.init.bind(this), 15000);
+        console.log('l-127 exec this.timeOut ' + this.timeOut);
     }
     playPause() {
         if (this.timeOut !=='Null') {
@@ -96,13 +100,73 @@ class Diaporama {
             this.timer = setInterval(this.suivant.bind(this),5000);
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Stop";
+                    console.log('passage pause l-137');
             this.suivant();
+            console.log(' l-139 if this.timeOut fction playPause');
         }else if(this.timer){
             clearInterval(this.timer);
             this.timer = "Null";
             this.timeOut = 0;
+            console.log(' l-144 else if this.timer fction playPause');
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Play";
+            console.log('paasage play l-148');
+        }
+    }
+    UpdateSlides(){
+        switch (this.imageNum) {
+            case 0:
+                console.log('case 0');
+                this.items[0].classList.remove("position2");
+                this.items[0].className += " position1";
+                this.label[0].style.display = "none";
+                this.items[1].classList.remove("position4");
+                this.items[1].className += " position2";
+                this.label[1].style.display = "flex";
+                this.items[2].classList.remove("position3");
+                this.items[2].className += " position4";
+                this.items[3].classList.remove("position1");
+                this.items[3].className += " position3";
+                break;
+            case 1:
+                console.log('case 1');
+                this.items[0].classList.remove("position1");
+                this.items[0].className += " position3";
+                this.items[1].classList.remove("position2");
+                this.items[1].className += " position1";
+                this.label[1].style.display = "none";
+                this.items[2].classList.remove("position4");
+                this.items[2].className += " position2";
+                this.label[2].style.display = "flex";
+                this.items[3].classList.remove("position3");
+                this.items[3].className += " position4";
+                break;
+            case 2:
+                console.log('case 2');
+                this.items[0].classList.remove("position3");
+                this.items[0].className += " position4";
+                this.items[1].classList.remove("position1");
+                this.items[1].className += " position3";
+                this.items[2].classList.remove("position2");
+                this.items[2].className += " position1";
+                this.label[2].style.display = "none";
+                this.items[3].classList.remove("position4");
+                this.items[3].className += " position2";
+                this.label[3].style.display = "flex";
+                break;
+            case 3:    
+                console.log('case 3');
+                this.items[0].classList.remove("position4");
+                this.items[0].className += " position2";
+                this.label[0].style.display = "flex";
+                this.items[1].classList.remove("position3");
+                this.items[1].className += " position4";
+                this.items[2].classList.remove("position1");
+                this.items[2].className += " position3";
+                this.items[3].classList.remove("position2");
+                this.items[3].className += " position1";
+                this.label[3].style.display = "none";
+                break;    
         }
     }
 }

@@ -1,5 +1,8 @@
-/*              
-    required index.hmtl + 
+/*              ---signature canvas ou autre a mettre.---
+ * 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 
 let clickX = new Array();   //definit les array qui contiendront la position du click
@@ -145,6 +148,7 @@ var ObjCanvas = new Canvas($('canvas'));
 //};
 
 $(window).resize(function(){
+    console.log('ds la funct resize ' + ObjCanvas.resizeCanvas + typeof ObjCanvas.resizeCanvas);
     ObjCanvas.resizeCanvas;
 });    
 
