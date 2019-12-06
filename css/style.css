@@ -348,8 +348,8 @@ canvas{
         transform: rotate3d(0,1,0, 0deg) translate3d(0px, 0px, -300px);
     }
     body{
-        margin-right: -50px;
-        margin-left: -50px;
+        margin-right: -20px;
+        margin-left: -20px;
     }
 }
 
