@@ -101,7 +101,7 @@ class Diaporama {
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Stop";
                     console.log('passage pause l-137');
-
+            this.suivant();
             console.log(' l-139 if this.timeOut fction playPause');
         }else if(this.timer){
             clearInterval(this.timer);
