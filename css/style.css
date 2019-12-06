@@ -30,12 +30,12 @@ header{
     margin: auto;
     width: 50%;
     display: flex;
-    /*flex-direction: column;*/
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-   
     perspective: 800px;
-    perspective-origin: top left;
+    /*perspective-origin: top left;*/
+    height: 1px;
 
 }
 
@@ -45,6 +45,9 @@ header{
 
 }*/
 .mySlides{
+    transition: all 1.5s ease-out;
+    position: absolute;
+    top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,12 +56,12 @@ header{
 }
 
 
-.diaporama div img {
+/*.diaporama div img {
     box-shadow: 0px 15px 10px -5px #777;
     height: 300px;
     width: 200px;
     margin: 0 auto;
-}
+}*/
 
 label {
     font-size: 1rem;
@@ -76,7 +79,7 @@ label {
 main #feature {
    display: flex;
    justify-content: center;
-   
+   margin-top: 573px;
 }
 
 #feature .button {
@@ -309,31 +312,30 @@ canvas{
         height: auto;
         margin: 3px;
         padding: 3px;
+        display: none;
     }
 
 /*    .diaporama .mySlides .feature{
         display: flex;
     }*/
 }
-/*
 
--------------------------------------------------------------------------
+
+/*-------------------------------------------------------------------------*/
 .position1{
-z-index: 1;
-    position: absolute;
-    left: 0;
-    top: 0;
-    transition: all 1.5s ease-out;
-
-    transform: rotate3d(0,1,0, -60deg) translate3d(0px, 0px, 0px); 
-}*/
-.position2{
+    transform: rotate3d(0,1,0, 60deg) translate3d(0px, 0px, -300px);
     z-index: 1;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: all 1.5s ease-out;
-
-    transform: rotate3d(0,1,0, 60deg) translate3d(0px, 0px, 0px); 
+}
+.position2{
+     
 }
 
+.position3{
+    z-index: 1;
+    transform: rotate3d(0,1,0, -60deg) translate3d(0px, 0px, -300px);
+}
+
+.position4 {
+    opacity: 0;
+    transform: rotate3d(0,1,0, 0deg) translate3d(0px, 0px, -300px);
+}
