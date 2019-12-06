@@ -329,6 +329,8 @@ canvas{
     .position1{
         transform: rotate3d(0,1,0, 60deg) translate3d(0px, 0px, -125px);
         z-index: 1;
+        opacity: 0;
+
     }
     .position2{
 
@@ -337,6 +339,8 @@ canvas{
     .position3{
         z-index: 1;
         transform: rotate3d(0,1,0, -60deg) translate3d(0px, 0px, -125px);
+        opacity: 0;
+
     }
 
     .position4 {
