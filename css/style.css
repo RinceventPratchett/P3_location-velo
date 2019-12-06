@@ -35,15 +35,9 @@ header{
     justify-content: center;
     perspective: 800px;
     /*perspective-origin: top left;*/
-    height: 1px;
-
+    height: 34.25rem;
 }
 
-
-/*.diaporama div {
-    position: relative;
-
-}*/
 .mySlides{
     transition: all 1.5s ease-out;
     position: absolute;
@@ -55,14 +49,6 @@ header{
     z-index: 99;
 }
 
-
-/*.diaporama div img {
-    box-shadow: 0px 15px 10px -5px #777;
-    height: 300px;
-    width: 200px;
-    margin: 0 auto;
-}*/
-
 label {
     font-size: 1rem;
     display: none;
@@ -73,13 +59,12 @@ label {
     margin: 5px;
     padding: 5px;
     border-radius: 5px;
-    height: auto;
+    height: 130px;
 }
 
 main #feature {
    display: flex;
    justify-content: center;
-   margin-top: 40rem;
 }
 
 #feature .button {
@@ -280,14 +265,12 @@ canvas{
 
 /*-------------------------------------------Queries à partir de 900 px----------------------------------------*/
 @media all and (min-width: 901px) and (max-width: 1530px){
-    main #feature {
-        display: flex;
-        justify-content: center;
-        margin-top: 35rem;
+    .diaporama {
+        height: 38.25rem;
     }
 }
 
-@media all and (max-width: 900px){
+@media all and (min-width: 501px) and (max-width: 900px){
     body{
         overflow-x: hidden;
         text-align: center;
@@ -307,18 +290,11 @@ canvas{
         width: auto;
     }
     .diaporama{
-        background-size: contain; /*pour que nos images de fond soient à la fois contraintes dans 
-         le conteneur mais occupe le plus d’espace dans celui-ci tout en conservant leur proportions d’origine.*/
-        position: relative;    
-        margin: 0;
-        width: 100%;
-        display: flex;
-        /*flex-direction: column*/
+        height: 41.25rem;
     }
     
-    
     label {
-        height: auto;
+        height: 170px;
         margin: 3px;
         padding: 3px;
         display: none;
@@ -327,11 +303,17 @@ canvas{
     main #feature {
        display: flex;
        justify-content: center;
-       margin-top: 38rem;
     }
 }
 
-
+@media all and (max-width: 500px){
+    .diaporama{
+        height: 39rem;
+    }
+    label{
+        height: 139px;
+    }
+}
 /*-------------------------------------------------------------------------*/
 .position1{
     transform: rotate3d(0,1,0, 60deg) translate3d(0px, 0px, -300px);

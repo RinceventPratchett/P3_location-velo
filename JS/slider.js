@@ -81,19 +81,19 @@ class Diaporama {
 
     // Méthode qui fait fonctionner le diaporama en arrière
     precedent() {
-        var x = document.getElementsByClassName("position4")[0];
         var w = document.getElementsByClassName("position2")[0]; 
+        var x = document.getElementsByClassName("position4")[0];
         var y = document.getElementsByClassName("position3")[0];
         var z = document.getElementsByClassName("position1")[0];
-        w.className += " position1";
-        document.querySelector('.position2 > label').style.display= "none";
+        document.querySelector('.position1 > label').style.display= "flex";
+        document.querySelector('.position2 > label').style.display= "none";        
+        w.className += " position4";
         w.classList.remove("position2");        
-        x.className += " position2";
-        document.querySelector('.position4 > label').style.display= "flex";
+        x.className += " position3";        
         x.classList.remove("position4");
-        y.className += " position4";
+        y.className += " position1";
         y.classList.remove("position3");
-        z.className += " position3";
+        z.className += " position2";
         z.classList.remove("position1");
         if(this.imageNum === 0) { // Si le diaporama est à la dernière image
             this.imageNum = 3; // On repasse l'attribut à 0 pour faire réapparaître la première image
