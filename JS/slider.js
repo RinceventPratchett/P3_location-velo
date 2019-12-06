@@ -57,15 +57,18 @@ class Diaporama {
 //        //this.items[this.imageNum++].className += " position1 ";
 //    }
     suivant() {
-        var x = document.getElementsByClassName("position4")[0];
         var w = document.getElementsByClassName("position2")[0]; 
+        var x = document.getElementsByClassName("position4")[0];
         var y = document.getElementsByClassName("position3")[0];
         var z = document.getElementsByClassName("position1")[0];
+
         w.className += " position1";
+        document.querySelector('.position2 > label').style.display= "none"; //fait disparaitre le label avant de supprimer la classe
         w.classList.remove("position2");        
-        x.className += " position2"
+        x.className += " position2";
+        document.querySelector('.position4 > label').style.display= "flex";
         x.classList.remove("position4");
-        y.className += " position4"
+        y.className += " position4";
         y.classList.remove("position3");
         z.className += " position3";
         z.classList.remove("position1");
@@ -83,10 +86,12 @@ class Diaporama {
         var y = document.getElementsByClassName("position3")[0];
         var z = document.getElementsByClassName("position1")[0];
         w.className += " position1";
+        document.querySelector('.position2 > label').style.display= "none";
         w.classList.remove("position2");        
-        x.className += " position2"
+        x.className += " position2";
+        document.querySelector('.position4 > label').style.display= "flex";
         x.classList.remove("position4");
-        y.className += " position4"
+        y.className += " position4";
         y.classList.remove("position3");
         z.className += " position3";
         z.classList.remove("position1");
