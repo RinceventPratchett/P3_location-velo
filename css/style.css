@@ -349,8 +349,7 @@ canvas{
     }
     body{
         /*pour vue sur smartphone*/
-        margin-right: -15px;
-        margin-left: -25px;
+       margin-left: -40px;
     }
 }
 
