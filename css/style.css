@@ -17,10 +17,6 @@ header{
     font-size: 1.5rem;
 }
 
-
-#velov{
-
-}
 /*--------------------------------------------------------------------------------------------
                 slider
 ----------------------------------------------------------------------------------------------*/
@@ -34,8 +30,7 @@ header{
     align-items: center;
     justify-content: center;
     perspective: 800px;
-    /*perspective-origin: top left;*/
-    height: 34.25rem;
+    height: 39rem;
 }
 
 .mySlides{
@@ -47,6 +42,23 @@ header{
     align-items: center;
     margin: 1rem;
     z-index: 99;
+}
+.position1{
+    transform: rotate3d(0,1,0, 60deg) translate3d(0px, 0px, -300px);
+    z-index: 1;
+}
+.position2{
+     
+}
+
+.position3{
+    z-index: 1;
+    transform: rotate3d(0,1,0, -60deg) translate3d(0px, 0px, -300px);
+}
+
+.position4 {
+    opacity: 0;
+    transform: rotate3d(0,1,0, 0deg) translate3d(0px, 0px, -300px);
 }
 
 label {
@@ -61,7 +73,9 @@ label {
     border-radius: 5px;
     height: 130px;
 }
-
+/*------------------------------------------------------------------------------------------------
+Carte et feature
+--------------------------------------------------------------------*/
 main #feature {
    display: flex;
    justify-content: center;
@@ -315,20 +329,3 @@ canvas{
     }
 }
 /*-------------------------------------------------------------------------*/
-.position1{
-    transform: rotate3d(0,1,0, 60deg) translate3d(0px, 0px, -300px);
-    z-index: 1;
-}
-.position2{
-     
-}
-
-.position3{
-    z-index: 1;
-    transform: rotate3d(0,1,0, -60deg) translate3d(0px, 0px, -300px);
-}
-
-.position4 {
-    opacity: 0;
-    transform: rotate3d(0,1,0, 0deg) translate3d(0px, 0px, -300px);
-}

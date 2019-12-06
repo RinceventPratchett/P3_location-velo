@@ -115,10 +115,42 @@ class Canvas {
         clickY.push(y);
         clickDrag.push(dragging);
     }
+    resizeCanvas(){
+        let canvasDOM = $('#canvas');
+        let largeurwidth = $("body").width();
 
+        if (largeurwidth <= 900) {
+            canvasDOM.removeAttr('width');
+            canvasDOM.removeAttr('height');
+            canvasDOM.attr({height:115, width:200});
+        }else{
+            canvasDOM.removeAttr('width');
+            canvasDOM.removeAttr('height');
+            canvasDOM.attr({height:165, width:300});
+        }
+    };
 }
 
 var ObjCanvas = new Canvas($('canvas'));
+
+//-*-----------------------------------------------------
+//function resizeCanvas(){
+//    let canvasDOM = $('#canvas');
+//    let largeurwidth = $("body").width();
+//    canvasDOM.removeAttr('width');
+//    canvasDOM.removeAttr('height');
+//           
+//    if (largeurwidth <= 900) {
+//        canvasDOM.attr({height:115, width:200});
+//    }else{
+//        canvasDOM.attr({height:165, width:300});
+//    }
+//};
+
+$(window).resize(function(){
+    console.log('ds la funct resize ' + ObjCanvas.resizeCanvas + typeof ObjCanvas.resizeCanvas);
+    ObjCanvas.resizeCanvas;
+});    
 
 
 

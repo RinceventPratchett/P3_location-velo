@@ -106,9 +106,9 @@ var booking = {
         }   
     },
     
-    identifiant() {
+    identity() {
+        // pour stocker les infos saisies lors de la session (pas de reset si fermeture du nav)
         var lastName = $('#lastName');
-    //    var firstName = document.getElementById('firstName');
         var firstName = $('#firstName');
         if (localStorage.getItem('stockLastName')) {
             lastName.val(localStorage.getItem('stockLastName')); //pour restaurer le champ Nom
@@ -134,14 +134,12 @@ var booking = {
     },
     
     init(){
-        booking.identifiant();
-
         //code à éxécuter au chargement de la page
+        booking.identity();
         if (sessionStorage.getItem('timer')) { //pour vérifier la présence du timer en cache sessionStorage
             booking.params.timer = sessionStorage.getItem('timer');     //affecte le timer existant
             booking.timer();
-            booking.display(); //pour faire apparaitre le timer contenu/en cours
-            
+            booking.display(); //pour faire apparaitre le timer contenu/en cours            
         }
         $("#buttonResa").click(function () { 
             booking.ResaButtonOnClick();
@@ -149,29 +147,8 @@ var booking = {
     }
 };    
 
-
-// pour stocker les infos saisies lors de la session (pas de reset si fermeture du nav)
-
-//-*-----------------------------------------------------
-function resizeCanvas(){
-    let canvasDOM = $('#canvas');
-    let largeurwidth = $("body").width();
-    canvasDOM.removeAttr('width');
-    canvasDOM.removeAttr('height');
-           
-    if (largeurwidth <= 900) {
-        canvasDOM.attr({height:115, width:200});
-    }else{
-        canvasDOM.attr({height:165, width:300});
-    }
-};
-
-$(window).resize(function(){
-    resizeCanvas();
-});    
-
 $(document).ready(function(){
-    resizeCanvas();
+    ObjCanvas.resizeCanvas();
     resume.empty();
     if (booking.params.timer === undefined || booking.params.timer === false) {
         resume.html("en attente de réservation");
