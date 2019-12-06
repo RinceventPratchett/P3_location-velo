@@ -316,7 +316,7 @@ canvas{
 
 @media all and (max-width: 500px){
     #map{
-        width: 100%;
+        width: 100% !important;
     }
     .diaporama{
         height: 39rem;
@@ -348,4 +348,5 @@ canvas{
         transform: rotate3d(0,1,0, 0deg) translate3d(0px, 0px, -300px);
     }
 }
+
 /*-------------------------------------------------------------------------*/
