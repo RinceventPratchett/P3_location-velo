@@ -291,13 +291,12 @@ canvas{
     }
 
     #velov{
-        height: min-content;
         display: flex;
         flex-direction: column;
     }
     #map{
         height: 22.5rem;
-        width: auto !important;
+        width: 98% !important;
     }
 
     #billboard{
