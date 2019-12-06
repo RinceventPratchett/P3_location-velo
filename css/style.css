@@ -315,10 +315,14 @@ canvas{
 }
 
 @media all and (max-width: 500px){
+    #map{
+        width: 100%;
+    }
     .diaporama{
         height: 39rem;
         width: 75%;
     }
+    
     label{
         height: 139px;
     }
