@@ -348,7 +348,7 @@ canvas{
         transform: rotate3d(0,1,0, 0deg) translate3d(0px, 0px, -300px);
     }
     body{
-        margin-right: -30px; 
+        margin-right: -50px; 
     }
 }
 
