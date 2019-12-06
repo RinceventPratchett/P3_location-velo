@@ -113,6 +113,7 @@ class Canvas {
         clickDrag.push(dragging);
     }
     resizeCanvas(){
+        console.log('resize canv dans class JS');
         let canvasDOM = $('#canvas');
         let largeurwidth = $("body").width();
 
@@ -130,22 +131,9 @@ class Canvas {
 
 var ObjCanvas = new Canvas($('canvas'));
 
-//-*-----------------------------------------------------
-//function resizeCanvas(){
-//    let canvasDOM = $('#canvas');
-//    let largeurwidth = $("body").width();
-//    canvasDOM.removeAttr('width');
-//    canvasDOM.removeAttr('height');
-//           
-//    if (largeurwidth <= 900) {
-//        canvasDOM.attr({height:115, width:200});
-//    }else{
-//        canvasDOM.attr({height:165, width:300});
-//    }
-//};
-
 $(window).resize(function(){
-    ObjCanvas.resizeCanvas;
+    console.log('func resize');
+    ObjCanvas.resizeCanvas();
 });    
 
 

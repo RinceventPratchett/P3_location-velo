@@ -7,7 +7,6 @@
 class Diaporama {
     constructor() {        
         this.items = document.getElementsByClassName("mySlides"); // Attribut de sélection des figures;;
-        this.imageNum = 2; // Attribut qui permet de parcourir les images
         this.timeOut = 'Null';
         this.label = document.getElementsByTagName("label");
         this.init();
@@ -45,14 +44,7 @@ class Diaporama {
         y.classList.remove("position3");
         z.className += " position3";
         z.classList.remove("position1");
-        if(this.imageNum === 3) { // Si le diaporama est à la dernière image
-            this.imageNum = 0; // On repasse l'attribut à 0 pour faire réapparaître la première image
-        } else { // Sinon on passe à l'image suivante
-            this.imageNum++; // En augmentant de 1 l'attribut
-        }
     }
-
-
     // Méthode qui fait fonctionner le diaporama en arrière
     precedent() {
         var w = document.getElementsByClassName("position2")[0]; 
@@ -69,11 +61,6 @@ class Diaporama {
         y.classList.remove("position3");
         z.className += " position2";
         z.classList.remove("position1");
-        if(this.imageNum === 0) { // Si le diaporama est à la dernière image
-            this.imageNum = 3; // On repasse l'attribut à 0 pour faire réapparaître la première image
-        } else { // Sinon on passe à l'image suivante
-            this.imageNum--; // En augmentant de 1 l'attribut
-        }
     } 
 
     pause() {
@@ -114,7 +101,6 @@ $('#btnDroit').click(function(){
 });
 
 // Le bouton gauche appel la méthode "précédent" du diaporama
-//document.getElementById("btnGauche").addEventListener("click", Diaporama.precedent.bind(Diaporama));
 $('#btnGauche').click(function(){
     ObjDiaporama.pause();
     ObjDiaporama.precedent();

@@ -1,5 +1,5 @@
 /* 
- *Required ajax.js + map.js
+ *Required ajax.js + map.js + canvas.js
  * 
  *
  */
