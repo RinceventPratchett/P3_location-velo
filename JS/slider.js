@@ -30,37 +30,38 @@ class Diaporama {
     }
 
     suivant() {
-        var w = document.getElementsByClassName("position2")[0]; //pour récupérer chaque slide en fonction de son emplacement actuel
-        var x = document.getElementsByClassName("position4")[0];
-        var y = document.getElementsByClassName("position3")[0];
-        var z = document.getElementsByClassName("position1")[0];
+        var old2 = document.getElementsByClassName("position2")[0];
+        var old4 = document.getElementsByClassName("position4")[0];
+        var old3 = document.getElementsByClassName("position3")[0];
+        var old1 = document.getElementsByClassName("position1")[0];
+
+       
         document.querySelector('.position2 > label').style.display= "none"; //fait disparaitre le label avant de supprimer la classe
-        document.querySelector('.position4 > label').style.display= "flex";
-        w.className += " position1";
-        w.classList.remove("position2");        
-        x.className += " position2";
-        x.classList.remove("position4");
-        y.className += " position4";
-        y.classList.remove("position3");
-        z.className += " position3";
-        z.classList.remove("position1");
+        document.querySelector('.position3 > label').style.display= "flex";
+
+        old2.className = "mySlides position1"; //.classNmae remplace les classes existantes
+        old3.className = "mySlides position2";
+        old4.className = "mySlides position3";
+        old1.className = "mySlides position4";
+  
     }
     // Méthode qui fait fonctionner le diaporama en arrière
     precedent() {
-        var w = document.getElementsByClassName("position2")[0]; 
-        var x = document.getElementsByClassName("position4")[0];
-        var y = document.getElementsByClassName("position3")[0];
-        var z = document.getElementsByClassName("position1")[0];
+//       
+        var old2 = document.getElementsByClassName("position2")[0];
+        var old4 = document.getElementsByClassName("position4")[0];
+        var old3 = document.getElementsByClassName("position3")[0];
+        var old1 = document.getElementsByClassName("position1")[0];
+
+       
+        document.querySelector('.position2 > label').style.display= "none"; //fait disparaitre le label avant de supprimer la classe
         document.querySelector('.position1 > label').style.display= "flex";
-        document.querySelector('.position2 > label').style.display= "none";        
-        w.className += " position4";
-        w.classList.remove("position2");        
-        x.className += " position3";        
-        x.classList.remove("position4");
-        y.className += " position1";
-        y.classList.remove("position3");
-        z.className += " position2";
-        z.classList.remove("position1");
+
+        old2.className = "mySlides position3";
+        old3.className = "mySlides position4";
+        old4.className = "mySlides position1";
+        old1.className = "mySlides position2";
+
     } 
 
     pause() {
@@ -73,10 +74,10 @@ class Diaporama {
         }
         document.getElementById("playPause").textContent = "";
         document.getElementById("playPause").textContent = "Play";
-        this.timeOut = setTimeout(this.init.bind(this), 15000);
+        this.timeOut = setTimeout(this.suivant.bind(this), 15000);
     }
     playPause() {
-        if (this.timeOut !=='Null') {
+        if (this.timeOut !=='Null') { //verifie l'existence de timeOut(15sec de pause)
             clearTimeout(this.timeOut);
             this.timeOut = 'Null';
             clearInterval(this.timer);
@@ -84,7 +85,7 @@ class Diaporama {
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Stop";
             this.suivant();
-        }else if(this.timer){
+        }else if(this.timer){ //relance le timer de zero
             clearInterval(this.timer);
             this.timer = "Null";
             this.timeOut = 0;

@@ -93,7 +93,9 @@ main #feature {
    margin-right: 1%;
    border-radius: 5px;
 }
-
+/*-------------------------------------------
+panneau d'info et reservation
+---------------------------------------------*/
 #billboard{
     display: none;
     margin-right: 0.5%;
@@ -277,7 +279,7 @@ canvas{
     border-radius: 5px;
 }
 
-/*-------------------------------------------Queries à partir de 900 px----------------------------------------*/
+/*-------------------------------------------Queries----------------------------------------*/
 @media all and (min-width: 901px) and (max-width: 1530px){
     .diaporama {
         height: 38.25rem;
@@ -314,7 +316,15 @@ canvas{
     }
 }
 
+/*--------------------pour vue sur smartphone----------------------------------*/
 @media all and (max-width: 500px){
+    
+    body{
+       margin-right: -50px;
+    }
+    header{
+        font-size: 1rem;
+    }    
     #map{
         width: 100% !important;
     }
@@ -347,13 +357,6 @@ canvas{
         opacity: 0;
         transform: rotate3d(0,1,0, 0deg) translate3d(0px, 0px, -300px);
     }
-    body{
-        /*pour vue sur smartphone*/
-       margin-right: -50px;
-    }
-    header{
-        font-size: 1rem;
-    }    
 }
 
 /*-------------------------------------------------------------------------*/

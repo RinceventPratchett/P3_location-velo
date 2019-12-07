@@ -7,64 +7,71 @@
 var resume = $("#resume");
 //creation de l'objet booking 
 var booking = {
-    start(){ //méthode pour démarer le booking
-        booking.display();
-    // Set the timer
-        booking.timer();
-        resume.empty();
-        resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : " 
-            + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
+    init(){
+        //code à éxécuter au chargement de la page
+        booking.identity();
+        if (sessionStorage.getItem('timer')) { //pour vérifier la présence du timer en cache sessionStorage
+            booking.params.timer = sessionStorage.getItem('timer');     //affecte le timer existant
+            booking.timer();
+            $(".timer").css({display: "block"});//fait apparaitre le timer contenu/en cours            
+        }
+        $("#buttonResa").click(function () { 
+            booking.ResaButtonOnClick();
+        });
+    },
     
-
+    start(){ //méthode pour démarer le booking
+        $(".timer").css({display: "block"});//fait apparaitre le timer
+        booking.timer(); //verifie la presence du timer et/ou l'initie
+        resume.empty(); //vide le champ html resume
+        resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : "  //donne le résumé à la page html
+            + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
     },
 
-    stop(){
-        clearInterval(booking.loop);
-        booking.params.timer = false;
-        $("#firstName").css({display: "block"});
+    stop(){ //lorsque le timer se termine ou q'une nouvell résa est lancée
+        clearInterval(booking.loop); 
+        booking.params.timer = false; //pour supprimer la valeur du timer en cours.
+        $("#firstName").css({display: "block"}); //on fait reapparaitre le champ Nom et prénom pour une nouvelle réservation.
         $("#lastName").css({display: "block"});
-        $(".timer").html("20mn 00s");        
+        $(".timer").html("20mn 00s");   //remise à zéro du timer de la page html
+        $('canvas').css({display: "block"});
+        resume.empty();
+        resume.html("en attente de réservation");
         ObjCanvas.clearAll(); //pour effacer le canvas à la fin de la résa
-        //window.location.hash = '#resume';
+    },
+    
+    params(){
+        booking.params = {};
+        if (sessionStorage.getItem('timer')) {
+            booking.params.timer = sessionStorage.getItem('timer');
+        }else {
+            booking.params.timer = false; 
+        }
     },
     
     timer(){
         if (!booking.params.timer) { //si le timer n'est pas initié
-            booking.params.timer = new Date().getTime() + (1000 * 60 * 20);//1000 au lieu de 100  
+            booking.params.timer = new Date().getTime() + (100 * 60 * 20);//1000 au lieu de 100  
         }
-        // Update the count down every 1 second
-        booking.loop = setInterval(function () {
-
-            // Get today's date and time
-            var newResa = new Date().getTime();
-            // Find the distance between now and the count down date
-            var finResa = booking.params.timer - newResa;
-            // Time calculations for minutes and seconds
+        // Update the count down -> l-63
+        booking.loop = setInterval(function () {           
+            var newResa = new Date().getTime(); // affecte le jour et l'heure
+            var finResa = booking.params.timer - newResa;// calcul la difference entre le timer initié et le moment ouy il a commencé
+            // Calcul des minutes et seconde
             var minutes = Math.floor((finResa % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((finResa % (1000 * 60)) / 1000);
-            // Output the result in the element with id="timer"  .html = innerHTML
-            $(".timer").each(function () {
-                $(this).html(minutes + "m " + seconds + "s "); // .each ->function jquery <-------------------------
+            $(".timer").each(function () { //renvoie le decompte pour chaque seconde à la page html
+                $(this).html(minutes + "m " + seconds + "s "); // .each ->function jquery <--------- .html = innerHTML
             });
-            // If the count down is over, write some text 
-            if (finResa < 0) {
-                booking.stop();
-                $('canvas').css({display: "block"});
-                $("#lastName").css({display: "block"});
-                $("#firstName").css({display: "block"});
-                resume.empty();
-                resume.html("en attente de réservation");
+            if (finResa < 0) { //a la fin du decompte
+                booking.stop(); //update le tableau de resa dur la page html
             }
-        }, 1000);
+        }, 1000); // -> every 1 second
         sessionStorage.setItem('timer', booking.params.timer);  //stock les infos de session - raz lors de la fermeture de session.
     },
     
-    display(){
-        $(".timer").css({display: "block"});
-    },
-    
     ResaButtonOnClick() {
-        var lastName = $('#lastName');
+        var lastName = $('#lastName'); //on redeclarre pour récupérer les éléments dans la fonction enfant
         var firstName = $('#firstName');
         var canvas = $('#canvas');
         var hasError = false;
@@ -82,7 +89,7 @@ var booking = {
         setState (firstName, firstName.val() === "");
         setState (canvas, canvas.val() === "");
 
-        let shouldBook = false;
+        let shouldBook = false; 
 
         if (hasError){
             alert('les champs nom,prénom et signature sont indispensables pour créer une réservation');
@@ -98,7 +105,7 @@ var booking = {
                 shouldBook = true;
             }
         } 
-        if (shouldBook) {
+        if (shouldBook) { //si reservation on masque les champs et demarre le booking
             lastName.css({display: "none"});
             firstName.css({display: "none"});
             canvas.css({display: "none"});
@@ -122,34 +129,14 @@ var booking = {
        firstName.change(function () {
             localStorage.setItem('stockFirstName', firstName.val());
         });
-    },
-    
-    params(){
-        booking.params = {};
-        if (sessionStorage.getItem('timer')) {
-            booking.params.timer = sessionStorage.getItem('timer');
-        }else {
-            booking.params.timer = false; 
-        }
-    },
-    
-    init(){
-        //code à éxécuter au chargement de la page
-        booking.identity();
-        if (sessionStorage.getItem('timer')) { //pour vérifier la présence du timer en cache sessionStorage
-            booking.params.timer = sessionStorage.getItem('timer');     //affecte le timer existant
-            booking.timer();
-            booking.display(); //pour faire apparaitre le timer contenu/en cours            
-        }
-        $("#buttonResa").click(function () { 
-            booking.ResaButtonOnClick();
-        });
-    }
+    }   
 };    
 
+booking.init();
+
 $(document).ready(function(){
-    ObjCanvas.resizeCanvas();
-    resume.empty();
+    ObjCanvas.resizeCanvas(); //appelle l'objet canvas créer dans canvas.js
+    resume.empty(); 
     if (booking.params.timer === undefined || booking.params.timer === false) {
         resume.html("en attente de réservation");
     } else {
@@ -157,8 +144,3 @@ $(document).ready(function(){
             + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
     }
 });
-
-
-booking.init();
-
-
