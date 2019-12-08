@@ -7,17 +7,15 @@
 class Diaporama {
     constructor() {        
         this.items = document.getElementsByClassName("mySlides"); // Attribut de sélection des figures;;
-        this.timeOut = 'Null';
         this.label = document.getElementsByTagName("label");
+        this.timeOut = 'Null';
         this.init();
 
     }
-    init(){
-       
+    init(){       
         this.label[0].style.display = "flex";
         this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
                     //declenche la fonction suvant au bout de 5sec.
-        this.timeOut = 'Null';
         document.getElementById("playPause").textContent = "";
         document.getElementById("playPause").textContent = "Stop";
     }
@@ -78,7 +76,7 @@ class Diaporama {
         }else if(this.timer){ //relance le timer de zero
             clearInterval(this.timer);
             this.timer = "Null";
-            this.timeOut = 0;
+            this.timeOut = 0; //pour faire la vérif entre play et pause (affichage du btn)
             document.getElementById("playPause").textContent = "";
             document.getElementById("playPause").textContent = "Play";
         }
@@ -86,8 +84,6 @@ class Diaporama {
 }
 
 var ObjDiaporama = new Diaporama();
-
-
 
 // Gestion de l'appui et du relâchement d'une touche du clavier
 document.addEventListener("keydown", ObjDiaporama.infosClavier.bind(Diaporama));//pour que le diaporama puisse recevoir le keydown de chaque touche et déclencher l'action correspondante
