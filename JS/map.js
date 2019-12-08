@@ -124,10 +124,12 @@ class MyMap{
 }; 
 
 var NewMap = new MyMap();
-NewMap.init();
+NewMap.init(); //pour afficher la map définit.
+
 ajaxGet(url, function(detailsStation) { 
-    NewMap.successAjax(detailsStation);
+    NewMap.successAjax(detailsStation); //function qui récupère les info de l'api.
 });
+
           /*Developers are often confused by what a callback is because of the name of the damned thing.
 
 A callback function is a function which is:
