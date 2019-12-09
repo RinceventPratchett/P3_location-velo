@@ -30,7 +30,7 @@ header{
     align-items: center;
     justify-content: center;
     perspective: 800px;
-    height: 39rem;
+    height: 26rem;
 }
 
 .mySlides{
@@ -72,6 +72,9 @@ label {
     padding: 5px;
     border-radius: 5px;
     height: 130px;
+}
+img{
+    height: 250px;
 }
 /*------------------------------------------------------------------------------------------------
 Carte et feature
@@ -282,7 +285,7 @@ canvas{
 /*-------------------------------------------Queries----------------------------------------*/
 @media all and (min-width: 901px) and (max-width: 1530px){
     .diaporama {
-        height: 38.25rem;
+        height: 25.25rem;
     }
 }
 
@@ -300,7 +303,7 @@ canvas{
         width: auto;
     }
     .diaporama{
-        height: 41.25rem;
+        height: 28rem;
     }
     
     label {
@@ -319,9 +322,7 @@ canvas{
 /*--------------------pour vue sur smartphone----------------------------------*/
 @media all and (max-width: 500px){
     
-    body{
-       margin-right: -50px;
-    }
+
     header{
         font-size: 1rem;
     }    
@@ -329,8 +330,12 @@ canvas{
         width: 100% !important;
     }
     .diaporama{
-        height: 39rem;
-        width: 70%;
+        height: 28rem;
+        width: 100%;
+    }
+    #feature .button {
+
+        width: 6rem;
     }
     
     label{
