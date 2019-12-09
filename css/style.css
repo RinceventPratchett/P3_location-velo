@@ -24,7 +24,7 @@ header{
 .diaporama {
     position: relative;    
     margin: auto;
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,10 +71,12 @@ label {
     padding: 5px;
     border-radius: 5px;
     height: 130px;
+    border: solid 1px;
 }
-img{
+.mySlides img{
     height: 250px;
     border-radius: 5px;
+    border: solid 1px;
 }
 /*------------------------------------------------------------------------------------------------
 Carte et feature
@@ -123,6 +125,7 @@ panneau d'info et reservation
     border-radius: 5px;
     background-color: black;
     color: white;
+    border: solid 1px;
 }
 
 .statut{
@@ -136,6 +139,7 @@ panneau d'info et reservation
     border-radius: 5px;
     background-color: black;
     color: white;
+    border: solid 1px;
 }
 
 #rent{
