@@ -106,3 +106,6 @@ var ObjDiaporama = new Diaporama();
 // Gestion de l'appui et du relâchement d'une touche du clavier
 document.addEventListener("keydown", ObjDiaporama.infosClavier.bind(Diaporama));//pour que le diaporama puisse recevoir le keydown de chaque touche et déclencher l'action correspondante
 //                                //Attach a handler to an event for the elements.
+//document.getElementById("playPause").addEventListener("click", function(){
+//    ObjDiaporama.playPause();
+//}); 
