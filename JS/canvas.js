@@ -2,11 +2,6 @@
     required index.hmtl + 
  */
 
-//let clickX = new Array();   //definit les array qui contiendront la position du click et le mouvement
-//let clickY = new Array();
-//let clickDrag = new Array();
-//let effacer = $('#erase'); //boutton du panneau d'information
-
 class Canvas {
     
     constructor(cible) { //cible est type obj contenant le canvas html 

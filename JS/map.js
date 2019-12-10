@@ -87,15 +87,15 @@ class MyMap{
 
         if (station.status === 'OPEN') { //verification du statut pour déffinir les infos à afficher        
             $(".statut").append("statut : open");
-            $(".detailsStation").css({display: "block"});
+            $(".detailsStation").css({display: "flex"});
             $(".detailsStation").append("Détails de la station"); //texte qui apparait
-            $(".nameStation").css({display: "block"});
+            $(".nameStation").css({display: "flex"});
             $(".nameStation").append(station.name);
-            $(".address").css({display: "block"});
+            $(".address").css({display: "flex"});
             $(".address").append("adresse : " + station.address);
-            $(".dispo").css({display: "block"});
+            $(".dispo").css({display: "flex"});
             $(".dispo").append(station.available_bikes + " vélo'v disponible(s)");
-            $(".stationnement").css({display: "block"});
+            $(".stationnement").css({display: "flex"});
             $(".stationnement").append(station.available_bike_stands + " place(s) restante(s)");
 
             if (station.available_bikes > 0) { //ouverture du formulaire de resa
@@ -110,10 +110,10 @@ class MyMap{
 
             }
         } else if (station.status === 'CLOSED') { //affichage limité en cas de statut fermé
-            $(".detailsStation").css({display: "block"});
+            $(".detailsStation").css({display: "flex"});
             $(".detailsStation").append("détails de la station");
             $(".statut").append("statut : closed");
-            $(".nameStation").css({display: "block"});
+            $(".nameStation").css({display: "flex"});
             $(".nameStation").append(station.name);
             $(".address").css({display: "none"}); //pour faire disparaitre le bloc vide
             $(".dispo").css({display: "none"});

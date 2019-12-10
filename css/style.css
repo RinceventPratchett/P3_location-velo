@@ -5,7 +5,6 @@ body{
     background-size: cover;
     font-size: 1rem;
 }
-
 header{
     display: block;
     font-weight: bold;
@@ -16,11 +15,9 @@ header{
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     font-size: 1.5rem;
 }
-
 /*--------------------------------------------------------------------------------------------
                 slider
 ----------------------------------------------------------------------------------------------*/
-
 .diaporama {
     position: relative;    
     margin: auto;
@@ -47,22 +44,19 @@ header{
     z-index: 1;
 }
 .position2{
-     
 }
-
 .position3{
     z-index: 1;
     transform: rotate3d(0,1,0, -60deg) translate3d(0px, 0px, -300px);
 }
-
 .position4 {
     opacity: 0;
     transform: rotate3d(0,1,0, 0deg) translate3d(0px, 0px, -300px);
 }
-
 label {
     font-size: 1rem;
     display: none;
+    text-align: center;
     align-items: center;
     color: white;
     font-weight: bold;
@@ -76,7 +70,6 @@ label {
 .mySlides img{
     height: 250px;
     border-radius: 5px;
-
 }
 /*------------------------------------------------------------------------------------------------
 Carte et feature
@@ -85,12 +78,10 @@ main #feature {
    display: flex;
    justify-content: center;
 }
-
 #feature .button {
     width: 8rem;
     height: 2rem;
 }
-
 #map{
    height: 30rem;
    max-width: 98%;
@@ -113,51 +104,32 @@ panneau d'info et reservation
     background-color: gray;
     border-radius: 5px;
 }
-
-.detailsStation{
+#rent, .dispo, .stationnement, .address, .nameStation, .detailsStation, .statut{
     display: none;
-    text-transform: uppercase;
     text-align: center;
-    width : 80%;
-    margin-left: 10%;
-    margin-top: 1%;
-    height: auto;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    border: solid 1px;
-}
-
-.statut{
-    display: block;
-    text-align: center;
-    text-transform: uppercase;
     width: 80%;
-    margin-left: 10%;
-    margin-top: 5px;
-    height: auto;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    border: solid 1px;
-}
-
-#rent{
-    display: none;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    width: 80%;
+    align-items: center;
     border: solid 1px;
     margin-top: 5px;
-    padding-bottom: 1rem;
+    padding-bottom: 5px;
     margin-left: 10%;
     border-radius: 5px;
     background-color: black;
     color: white;
     height: auto;
 }
-
+.detailsStation{
+    text-transform: uppercase;
+    margin-top: 2%;
+}
+.statut{
+    text-transform: uppercase;
+    width: 80%;
+}
+#rent{
+    flex-direction: column;
+}
 #rent p{
     text-align: center;
 }
@@ -172,7 +144,6 @@ panneau d'info et reservation
 #lastName{
     margin-top: 3px;;
 }
-
 #rent span{
     width: 80%;
     text-align: center; 
@@ -182,7 +153,6 @@ panneau d'info et reservation
     border-radius: 5px;
     height: auto;     
 }
-
 .hilight { /*classe pour le cas ou un champs est vide*/ 
     border: solid 1px red;
 }
@@ -190,7 +160,6 @@ panneau d'info et reservation
     display: flex;
     justify-content: space-around;
 }
-
 button{
     width: 80%;
     text-transform: uppercase;
@@ -200,41 +169,9 @@ button{
     color: white;
     height: auto;
 }
-
-.nameStation{
-    display: none;
-    text-align: center;
-    vertical-align: middle;
-    width: 80%;
-    border: solid 1px;
-    margin-top: 5px;
-    margin-left: 10%;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    height: auto;
-    
-}
-
-
-.dispo, .stationnement, .address{
-    display: none;
-    text-align: center;
-    width: 80%;
-    border: solid 1px;
-    margin-top: 5px;
-    padding-bottom: 1rem;
-    margin-left: 10%;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    height: auto;
-}
-
 .address{
     text-transform: uppercase;
 }
-
 #timer{
     display: none;
     text-align: center;
@@ -244,15 +181,12 @@ button{
     color: white;
     height: auto;
 }
-
-
 canvas{
     margin-top: 5px;  
     background-color: white;
     border-radius: 5px;
     cursor: pointer;
 }
-
 #resume{
     background-color: gray;
     color: white;
@@ -261,11 +195,10 @@ canvas{
     margin: 0.33%;
     border-radius: 5px;
 }
-
 /*-------------------------------------------Queries----------------------------------------*/
 @media all and (min-width: 901px) and (max-width: 1530px){
     .diaporama {
-        height: 25.25rem;
+        height: 23.25rem;
     }
 }
 
@@ -278,27 +211,23 @@ canvas{
         height: 22.5rem;
         width: 98% !important;
     }
-
     #billboard{
         width: auto;
     }
     .diaporama{
-        height: 28rem;
-    }
-    
+        height: 26.25rem;
+    }  
     label {
         height: 170px;
-        margin: 3px;
+        margin: 5px;
         padding: 3px;
         display: none;
     }
-
     main #feature {
        display: flex;
        justify-content: center;
     }
 }
-
 /*--------------------pour vue sur smartphone----------------------------------*/
 @media all and (max-width: 500px){
     #velov{
@@ -333,18 +262,14 @@ canvas{
     .position2{
 
     }
-
     .position3{
         z-index: 1;
         transform: rotate3d(0,1,0, -60deg) translate3d(0px, 0px, -125px);
         opacity: 0;
 
     }
-
     .position4 {
         opacity: 0;
         transform: rotate3d(0,1,0, 0deg) translate3d(0px, 0px, -300px);
     }
 }
-
-/*-------------------------------------------------------------------------*/
