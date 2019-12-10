@@ -6,7 +6,7 @@
 
 //creation de l'objet booking 
 var booking = {
-    init(){
+    init() {
         this.resume = $("#resume");
         //code à éxécuter au chargement de la page
         booking.identity();
@@ -15,21 +15,19 @@ var booking = {
             booking.timer();
             $(".timer").css({display: "block"});//fait apparaitre le timer contenu/en cours            
         }
-        $("#buttonResa").click(function () { 
+        $("#buttonResa").click(function () {
             booking.ResaButtonOnClick();
         });
     },
-    
-    start(){ //méthode pour démarer le booking
+    start() { //méthode pour démarer le booking
         $(".timer").css({display: "block"});//fait apparaitre le timer
         booking.timer(); //verifie la presence du timer et/ou l'initie
         this.resume.empty(); //vide le champ html resume
         this.resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : "  //donne le résumé à la page html
-            + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
+                + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
     },
-
-    stop(){ //lorsque le timer se termine ou q'une nouvell résa est lancée
-        clearInterval(booking.loop); 
+    stop() { //lorsque le timer se termine ou q'une nouvell résa est lancée
+        clearInterval(booking.loop);
         booking.params.timer = false; //pour supprimer la valeur du timer en cours.
         $("#firstName").css({display: "block"}); //on fait reapparaitre le champ Nom et prénom pour une nouvelle réservation.
         $("#lastName").css({display: "block"});
@@ -39,22 +37,21 @@ var booking = {
         this.resume.html("en attente de réservation");
         ObjCanvas.clearAll(); //pour effacer le canvas à la fin de la résa
     },
-    
-    params(){
+
+    params() {
         booking.params = {};
         if (sessionStorage.getItem('timer')) {
             booking.params.timer = sessionStorage.getItem('timer');
-        }else {
-            booking.params.timer = false; 
+        } else {
+            booking.params.timer = false;
         }
     },
-    
-    timer(){
+    timer() {
         if (!booking.params.timer) { //si le timer n'est pas initié
             booking.params.timer = new Date().getTime() + (1000 * 60 * 20);//1000ms x 60 (1mn) x20(20mn) 
         }
         // Update the count down -> l-63
-        booking.loop = setInterval(function () {           
+        booking.loop = setInterval(function () {
             var newResa = new Date().getTime(); // affecte le jour et l'heure
             var finResa = booking.params.timer - newResa;// calcul la difference entre le timer initié et le moment ouy il a commencé
             // Calcul des minutes et seconde
@@ -69,7 +66,6 @@ var booking = {
         }, 1000); // -> every 1 second
         sessionStorage.setItem('timer', booking.params.timer);  //stock les infos de session - raz lors de la fermeture de session.
     },
-    
     ResaButtonOnClick() {
         var lastName = $('#lastName'); //on redeclarre pour récupérer les éléments dans la fonction enfant
         var firstName = $('#firstName');
@@ -81,39 +77,36 @@ var booking = {
                 myObject.addClass("hilight");
                 hasError = true;
             } else {
-                myObject.removeClass("hilight"); 
+                myObject.removeClass("hilight");
             }
-        }  
-        
-        setState (lastName, lastName.val() === "");
-        setState (firstName, firstName.val() === "");
-        setState (canvas, canvas.val() === "");
+        }
+        setState(lastName, lastName.val() === "");
+        setState(firstName, firstName.val() === "");
+        setState(canvas, canvas.val() === "");
+        let shouldBook = false;
 
-        let shouldBook = false; 
-
-        if (hasError){
+        if (hasError) {
             alert('les champs nom,prénom et signature sont indispensables pour créer une réservation');
         } else if (booking.params.timer === undefined || booking.params.timer === false) {
-              //booking non existant 
-              shouldBook = true;
+            //booking non existant 
+            shouldBook = true;
         } else {
             lastName.val(localStorage.getItem('stockLastName'));
-            firstName.val(localStorage.getItem('stockFirstName'));        
+            firstName.val(localStorage.getItem('stockFirstName'));
             var r = confirm("réservation existante. Continuer la nouvelle reservation ?");
             if (r === true) { //pour reset le counter
                 booking.stop();
                 shouldBook = true;
             }
-        } 
+        }
         if (shouldBook) { //si reservation on masque les champs et demarre le booking
             lastName.css({display: "none"});
             firstName.css({display: "none"});
             canvas.css({display: "none"});
             $('#rent').css({display: "none"});
             booking.start();
-        }   
+        }
     },
-    
     identity() {
         // pour stocker les infos saisies lors de la session (pas de reset si fermeture du nav)
         var lastName = $('#lastName');
@@ -126,22 +119,22 @@ var booking = {
         });
         if (localStorage.getItem('stockFirstName')) {
             firstName.val(localStorage.getItem('stockFirstName'));
-        } 
-       firstName.change(function () {
+        }
+        firstName.change(function () {
             localStorage.setItem('stockFirstName', firstName.val());
         });
-    }   
-};    
+    }
+};
 
 booking.init();
 
-$(document).ready(function(){
+$(document).ready(function () {
     ObjCanvas.resizeCanvas(); //appelle l'objet canvas créer dans canvas.js
-    booking.resume.empty(); 
+    booking.resume.empty();
     if (booking.params.timer === undefined || booking.params.timer === false) {
         booking.resume.html("en attente de réservation");
     } else {
-        booking.resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : " 
-            + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
+        booking.resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : "
+                + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
     }
 });

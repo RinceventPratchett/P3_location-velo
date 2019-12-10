@@ -74,19 +74,19 @@ label {
 Carte et feature
 --------------------------------------------------------------------*/
 main #feature {
-   display: flex;
-   justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 #feature .button {
     width: 8rem;
     height: 2rem;
 }
 #map{
-   height: 30rem;
-   max-width: 98%;
-   margin-left: 1%;
-   margin-right: 1%;
-   border-radius: 5px;
+    height: 30rem;
+    max-width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 5px;
 }
 /*-------------------------------------------
 panneau d'info et reservation
@@ -223,8 +223,8 @@ canvas{
         display: none;
     }
     main #feature {
-       display: flex;
-       justify-content: center;
+        display: flex;
+        justify-content: center;
     }
 }
 /*--------------------pour vue sur smartphone----------------------------------*/
@@ -241,7 +241,7 @@ canvas{
     }
     .diaporama{
         height: 28rem;
-        
+
     }
     #feature .button {
 

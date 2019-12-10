@@ -4,58 +4,58 @@ developed by Vivien Marcadé
 -->
 <html lang="fr">
 
-    
+
     <head>
         <title>oclocvelo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="images/png" href="images/bike-icon.png" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
-                integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="/css/style.css" type="text/css" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-                integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-                accesskey="" crossorigin=""/>
+              integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+              accesskey="" crossorigin=""/>
         <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" type="text/css" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" type="text/css" />
-        
+
 
     </head>
-    
+
     <body>
         <header>Bienvenue sur l'application oclocvelo qui donne accès au disponibilité de vélo'v instantanément</header>
-        
+
         <main>
             <div class="diaporama">
-               
+
                 <div class="mySlides position2"> 
-                            <img src="/images/map-diapo.png" alt="image comprenant les 3 types de markers existant" />
-                            <label> Marker vert : Station ouverte et disponibilité OK <br>
-                                    Marker orange : Vélo'v et/ou place de staionnement limité <br>
-                                    Marker rouge : Station fermée au public ou pas de disponibilité.
-                            </label>                
+                    <img src="/images/map-diapo.png" alt="image comprenant les 3 types de markers existant" />
+                    <label> Marker vert : Station ouverte et disponibilité OK <br>
+                        Marker orange : Vélo'v et/ou place de staionnement limité <br>
+                        Marker rouge : Station fermée au public ou pas de disponibilité.
+                    </label>                
                 </div>
                 <div class="mySlides position3"> 
-                            <img src="/images/marker-diapo.png" alt="image de la carte" />
-                            <label>Cliquer sur la zone de votre choix.<br>
-                                   Ensuite sélectionner la station qui vous intéresse
-                            </label>
+                    <img src="/images/marker-diapo.png" alt="image de la carte" />
+                    <label>Cliquer sur la zone de votre choix.<br>
+                        Ensuite sélectionner la station qui vous intéresse
+                    </label>
                 </div>
                 <div class="mySlides position4"> 
-                            <img src="/images/nouvelle-reservation.png" alt="image du formulaire à remplir" />
-                            <label>Remplissez le formulaire de réservation<br>
-                                   Tous les champs sont requis pour valider la réservation
-                            </label>                
+                    <img src="/images/nouvelle-reservation.png" alt="image du formulaire à remplir" />
+                    <label>Remplissez le formulaire de réservation<br>
+                        Tous les champs sont requis pour valider la réservation
+                    </label>                
                 </div>
-                
-                 <div class="mySlides position1">   
-                            <img src="/images/resa-en-cours.png" alt="image du résumé apparaissant en bas de page" />
-                            <label>Une réservation est effectuée à votre nom<br>
-                                   Celle-ci est effective durant les 20 prochaines minutes
-                            </label>
+
+                <div class="mySlides position1">   
+                    <img src="/images/resa-en-cours.png" alt="image du résumé apparaissant en bas de page" />
+                    <label>Une réservation est effectuée à votre nom<br>
+                        Celle-ci est effective durant les 20 prochaines minutes
+                    </label>
                 </div>
             </div>    
-               
+
             <div id="feature">
                 <button id="btnGauche" class="button" type="button">&#10094;</button>
                 <button id="playPause" class="button" type="button"></button>
@@ -63,9 +63,9 @@ developed by Vivien Marcadé
             </div>
 
             <div id="velov">
-                
+
                 <div id="map" class="map"></div>
-                
+
                 <div id="billboard">
                     <span class="detailsStation billboardContent"></span>
                     <span class="nameStation billboardContent"></span>
@@ -73,7 +73,7 @@ developed by Vivien Marcadé
                     <span class="address billboardContent"></span>
                     <span class="dispo billboardContent"></span>
                     <span class="stationnement billboardContent"></span>
-                    
+
                     <form id="rent" class="billboardContent">
                         <p>Formulaire de réservation</p>
                         <input type="hidden" id="id_station" name="idstation" />
@@ -85,10 +85,10 @@ developed by Vivien Marcadé
                             <button id="buttonResa" type="button" >réserver</button>
                             <button id="erase" type="button">effacer</button>
                         </div>
-                        
+
                         <div class="timer"></div>
                     </form>
-                    
+
                 </div>
             </div>
             <div id="resume"></div>
@@ -96,8 +96,8 @@ developed by Vivien Marcadé
         <footer>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
             <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-                       integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-                       crossorigin="">
+                    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+                    crossorigin="">
             </script>
             <link rel="stylesheet" href="//unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
             <script src="//unpkg.com/leaflet-gesture-handling"></script>
