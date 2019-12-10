@@ -88,7 +88,6 @@ class Canvas {
         this._canvas.val("");
     }
     redraw(){  
-        
         this.context.strokeStyle = "#222222"; //dessine le chemin actuel ou donné avec le style de trait
         this.context.lineJoin = "round"; //détermine la forme à utiliser pour joindre deux segments de ligne à leur intersection
         this.context.lineWidth = 2; 
@@ -96,7 +95,7 @@ class Canvas {
             this.context.beginPath(); //La méthode CanvasRenderingContext2D.beginPath() de l'API Canvas 2D permet de commencer un nouveau chemin en vidant la liste des sous-chemins.
             if(clickDrag[i] && i){  
                 this.context.moveTo(clickX[i-1], clickY[i-1]); //déplace le point de départ d'un nouveau sous-chemin vers les coordonnées (x, y).
-            }else{
+            }else{ //The CanvasRenderingContext2D.moveTo() method of the Canvas 2D API begins a new sub-path at the point specified by the given (x, y) coordinates.
                 this.context.moveTo(clickX[i]-1, clickY[i]); 
             }
             this.context.lineTo(clickX[i], clickY[i]); //connecte le dernier point du sous-chemin en cours aux coordonnées x, y spécifiée
