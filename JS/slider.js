@@ -9,7 +9,6 @@ class Diaporama {
         
         this.items = document.getElementsByClassName("mySlides"); // Attribut de sélection des figures;;
         this.label = document.getElementsByTagName("label");
-        //this.timeOut = 'Null';
         this.init();
         this.infosBtnDroit();
         this.infosBtnGauche();
@@ -20,10 +19,6 @@ class Diaporama {
         });
         this.label[0].style.display = "flex";
         this.start();
-        //this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
-                    //declenche la fonction suvant au bout de 5sec.
-        //document.getElementById("playPause").textContent = "";
-        //document.getElementById("playPause").textContent = "Stop";
     }
     // Méthode qui récupére les touches du clavier et actionne le diaporama en fonction de la touche
     infosClavier(e) {
@@ -48,13 +43,11 @@ class Diaporama {
     start(){
         clearInterval(this.timer);
         this.timer = setInterval(this.suivant.bind(this),5000);
-        //document.getElementById("playPause").textContent = "";
         document.getElementById("playPause").textContent = "Stop";
     }
     stop(){
         clearInterval(this.timer);
         this.timer = 0;        
-        //document.getElementById("playPause").textContent = "";
         document.getElementById("playPause").textContent = "Play";
     }
     suivant() {

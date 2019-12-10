@@ -4,10 +4,11 @@
  *
  */
 
-let resume = $("#resume");
+
 //creation de l'objet booking 
 var booking = {
     init(){
+        this.resume = $("#resume");
         //code à éxécuter au chargement de la page
         booking.identity();
         if (sessionStorage.getItem('timer')) { //pour vérifier la présence du timer en cache sessionStorage
@@ -23,8 +24,8 @@ var booking = {
     start(){ //méthode pour démarer le booking
         $(".timer").css({display: "block"});//fait apparaitre le timer
         booking.timer(); //verifie la presence du timer et/ou l'initie
-        resume.empty(); //vide le champ html resume
-        resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : "  //donne le résumé à la page html
+        this.resume.empty(); //vide le champ html resume
+        this.resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : "  //donne le résumé à la page html
             + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
     },
 
@@ -35,8 +36,8 @@ var booking = {
         $("#lastName").css({display: "block"});
         $(".timer").html("20mn 00s");   //remise à zéro du timer de la page html
         $('canvas').css({display: "block"});
-        resume.empty();
-        resume.html("en attente de réservation");
+        this.resume.empty();
+        this.resume.html("en attente de réservation");
         ObjCanvas.clearAll(); //pour effacer le canvas à la fin de la résa
     },
     
@@ -110,8 +111,7 @@ var booking = {
             firstName.css({display: "none"});
             canvas.css({display: "none"});
             $('#rent').css({display: "none"});
-            $('#timer').css({display: "none"});
-            ObjCanvas.clearAll(canvas);
+            ObjCanvas.clearAll();
             booking.start();
         }   
     },
@@ -139,11 +139,11 @@ booking.init();
 
 $(document).ready(function(){
     ObjCanvas.resizeCanvas(); //appelle l'objet canvas créer dans canvas.js
-    resume.empty(); 
+    booking.resume.empty(); 
     if (booking.params.timer === undefined || booking.params.timer === false) {
-        resume.html("en attente de réservation");
+        booking.resume.html("en attente de réservation");
     } else {
-        resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : " 
+        booking.resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : " 
             + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
     }
 });
