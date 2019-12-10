@@ -111,6 +111,7 @@ class Diaporama {
                 this.stop();                
             }else { 
                 this.start();
+                this.suivant();
             }
             
     }
