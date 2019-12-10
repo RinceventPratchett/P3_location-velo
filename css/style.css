@@ -29,7 +29,6 @@ header{
     perspective: 800px;
     height: 26rem;
 }
-
 .mySlides{
     transition: all 1.5s ease-out;
     position: absolute;
@@ -252,7 +251,7 @@ canvas{
         width: 100%;
     }
     label{
-        height: 186px;
+        height: 188px;
     }
     .position1{
         transform: rotate3d(0,1,0, 60deg) translate3d(0px, 0px, -125px);
