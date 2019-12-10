@@ -1,10 +1,25 @@
+/*-----------------------------------------Police Ã©citure---------------------------------------*/
+@font-face{
+    font-family: "Roboto-Regular";
+    src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+}
+@font-face{
+    font-family: "Roboto-Light";
+    src: url("../fonts/Roboto-Light.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Roboto-Bold";
+    src: url("../fonts/Roboto-Bold.ttf") format("truetype");
+} 
+
+/*-----------------------------------------------------------------------------*/
 body{
     margin: 0;
     overflow-x: hidden;
     background-image: url("../images/velo-v-.jpg");
     background-size: cover;
     font-size: 1rem;
-    font-family: Roboto;
+    font-family: "Roboto-Regular", sans-serif;
 }
 header{
     display: block;
