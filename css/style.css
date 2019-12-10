@@ -241,7 +241,7 @@ canvas{
         width: 100% !important;
     }
     .diaporama{
-        height: 26.5rem;
+        height: 27.5rem;
         
     }
     #feature .button {
@@ -252,7 +252,7 @@ canvas{
         width: 100%;
     }
     label{
-        height: 169px;
+        height: 186px;
     }
     .position1{
         transform: rotate3d(0,1,0, 60deg) translate3d(0px, 0px, -125px);
