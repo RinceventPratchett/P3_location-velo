@@ -4,6 +4,7 @@ body{
     background-image: url("../images/velo-v-.jpg");
     background-size: cover;
     font-size: 1rem;
+    font-family: Roboto;
 }
 header{
     display: block;
