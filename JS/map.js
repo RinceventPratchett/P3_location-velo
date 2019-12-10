@@ -104,6 +104,7 @@ class MyMap{
 
             if (station.available_bikes > 0) { //ouverture du formulaire de resa
                 $("#rent").css({display: "flex"});
+                $('#formButtons').css({display: "flex"});
                 $("input").css({display: "block"});
                 $("canvas").css({display: "block"});
 
