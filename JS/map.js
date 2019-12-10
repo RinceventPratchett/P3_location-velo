@@ -46,7 +46,7 @@ class MyMap{
  */
     successAjax(detailsStation) { //l'utilisation de var permet l'appel du contenu dans toute la fonction
             var details = JSON.parse(detailsStation);
-            var mapObj =this; // on garde le context pour la callback du foreach
+            var mapObj = this; // on garde le context pour la callback du foreach
   			
             details.forEach(function (station) { //pour récupérer les détail de chaque station
                 var coordLat = station.position.lat;
@@ -106,6 +106,7 @@ class MyMap{
                 $("#rent").css({display: "flex"});
                 $('#formButtons').css({display: "flex"});
                 $("input").css({display: "block"});
+                ObjCanvas.clearAll(); //pour recharger le cnvas à blanc
                 $("canvas").css({display: "block"});
 
             } else {
@@ -125,7 +126,6 @@ class MyMap{
             $(".dispo").css({display: "none"});
             $("#rent").css({display: "none"});
             $(".stationnement").css({display: "none"});
-            $('#formButtons').css({display: "none"});
         }
     }
 }; 

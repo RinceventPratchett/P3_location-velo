@@ -110,7 +110,6 @@ var booking = {
             firstName.css({display: "none"});
             canvas.css({display: "none"});
             $('#rent').css({display: "none"});
-            ObjCanvas.clearAll();
             booking.start();
         }   
     },
