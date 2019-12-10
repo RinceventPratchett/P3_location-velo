@@ -87,6 +87,7 @@ class MyMap{
 
         if (station.status === 'OPEN') { //verification du statut pour déffinir les infos à afficher        
             $(".statut").append("statut : open");
+            $(".statut").css({display: "flex"});
             $(".detailsStation").css({display: "flex"});
             $(".detailsStation").append("Détails de la station"); //texte qui apparait
             $(".nameStation").css({display: "flex"});
@@ -106,19 +107,21 @@ class MyMap{
             } else {
                 $("input").css({display: "none"});
                 $("canvas").css({display: "none"});
-                $("timer").css({display: "block"});
-
+                $("#rent").css({display: "none"});
+                
             }
         } else if (station.status === 'CLOSED') { //affichage limité en cas de statut fermé
             $(".detailsStation").css({display: "flex"});
             $(".detailsStation").append("détails de la station");
             $(".statut").append("statut : closed");
+            $(".statut").css({display: "flex"});
             $(".nameStation").css({display: "flex"});
             $(".nameStation").append(station.name);
             $(".address").css({display: "none"}); //pour faire disparaitre le bloc vide
             $(".dispo").css({display: "none"});
             $("#rent").css({display: "none"});
             $(".stationnement").css({display: "none"});
+            $('#formButtons').css({display: "none"});
         }
     }
 }; 

@@ -104,7 +104,7 @@ panneau d'info et reservation
     background-color: gray;
     border-radius: 5px;
 }
-#rent, .dispo, .stationnement, .address, .nameStation, .detailsStation, .statut{
+.billboardContent{
     display: none;
     text-align: center;
     width: 80%;

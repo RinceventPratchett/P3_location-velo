@@ -85,7 +85,7 @@ var booking = {
                 myObject.removeClass("hilight"); 
             }
         }  
-
+        
         setState (lastName, lastName.val() === "");
         setState (firstName, firstName.val() === "");
         setState (canvas, canvas.val() === "");
