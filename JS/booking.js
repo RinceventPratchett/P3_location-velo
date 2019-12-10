@@ -4,7 +4,6 @@
  *
  */
 
-
 //creation de l'objet booking 
 var booking = {
     init(){

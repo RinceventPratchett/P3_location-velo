@@ -1,5 +1,5 @@
 /*              
-    required index.hmtl + 
+    required index.hmtl + booking.js + map.js + ajax.js
  */
 
 class Canvas {

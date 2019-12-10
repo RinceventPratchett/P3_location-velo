@@ -1,5 +1,8 @@
+/***
+ * 
+ *Required ajax.js 
+ */
 
-//Required ajax.js + booking.js
 
 
 class MyMap{
@@ -132,18 +135,3 @@ NewMap.init(); //pour afficher la map définit.
 ajaxGet(url, function(detailsStation) { 
     NewMap.successAjax(detailsStation); //function qui récupère les info de l'api.
 });
-
-          /*Developers are often confused by what a callback is because of the name of the damned thing.
-
-A callback function is a function which is:
-
-    accessible by another function, and
-    is invoked after the first function if that first function completes
-
-A nice way of imagining how a callback function works is that it is a function that is "called at the back" 
-of the function it is passed into.
-
-Maybe a better name would be a "call after" function.
-
-This construct is very useful for asynchronous behaviour where we want an activity to take place 
-whenever a previous event completes.*/
