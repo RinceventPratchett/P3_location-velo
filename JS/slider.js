@@ -9,7 +9,7 @@ class Diaporama {
         
         this.items = document.getElementsByClassName("mySlides"); // Attribut de sélection des figures;;
         this.label = document.getElementsByTagName("label");
-        this.timeOut = 'Null';
+        //this.timeOut = 'Null';
         this.init();
         this.infosBtnDroit();
         this.infosBtnGauche();
@@ -19,10 +19,11 @@ class Diaporama {
             ObjDiaporama.playPause();
         });
         this.label[0].style.display = "flex";
-        this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
+        this.start();
+        //this.timer = setInterval(this.suivant.bind(this),5000);//pour eviter de declarer la fonction de setInterval -> use bind(param) directement
                     //declenche la fonction suvant au bout de 5sec.
-        document.getElementById("playPause").textContent = "";
-        document.getElementById("playPause").textContent = "Stop";
+        //document.getElementById("playPause").textContent = "";
+        //document.getElementById("playPause").textContent = "Stop";
     }
     // Méthode qui récupére les touches du clavier et actionne le diaporama en fonction de la touche
     infosClavier(e) {
@@ -47,10 +48,15 @@ class Diaporama {
     start(){
         clearInterval(this.timer);
         this.timer = setInterval(this.suivant.bind(this),5000);
-        document.getElementById("playPause").textContent = "";
+        //document.getElementById("playPause").textContent = "";
         document.getElementById("playPause").textContent = "Stop";
     }
-
+    stop(){
+        clearInterval(this.timer);
+        this.timer = 0;        
+        //document.getElementById("playPause").textContent = "";
+        document.getElementById("playPause").textContent = "Play";
+    }
     suivant() {
         var old2 = document.getElementsByClassName("position2")[0];
         var old4 = document.getElementsByClassName("position4")[0];
@@ -83,22 +89,32 @@ class Diaporama {
         old1.className = "mySlides position2";
 
     } 
-    playPause() {
-            if (this.timeOut !=='Null') { //verifie l'existence de timeOut
-                this.timeOut = 'Null';
-                clearInterval(this.timer);
-            this.timer = setInterval(this.suivant.bind(this),5000);
-                document.getElementById("playPause").textContent = "";
-                document.getElementById("playPause").textContent = "Stop";
-                this.suivant();
-            }else if(this.timer){ //relance le timer de zero
-                clearInterval(this.timer);
-                this.timer = "Null";
-                this.timeOut = 0; //pour faire la vérif entre play et pause (affichage du btn)
-                document.getElementById("playPause").textContent = "";
-                document.getElementById("playPause").textContent = "Play";
+//    playPause() {
+//            if (this.timeOut !=='Null') { //verifie l'existence de timeOut
+//                this.timeOut = 'Null';
+//                clearInterval(this.timer);
+//            this.timer = setInterval(this.suivant.bind(this),5000);
+//                document.getElementById("playPause").textContent = "";
+//                document.getElementById("playPause").textContent = "Stop";
+//                this.suivant();
+//            }else if(this.timer){ //relance le timer de zero
+//                clearInterval(this.timer);
+//                this.timer = "Null";
+//                this.timeOut = 0; //pour faire la vérif entre play et pause (affichage du btn)
+//                document.getElementById("playPause").textContent = "";
+//                document.getElementById("playPause").textContent = "Play";
+//            }
+//            
+//    }
+     playPause() {
+            if (this.timer > 0) { 
+                this.stop();                
+            }else { 
+                this.start();
             }
+            
     }
+    
 }
 
 var ObjDiaporama = new Diaporama();
