@@ -89,33 +89,14 @@ class Diaporama {
         old1.className = "mySlides position2";
 
     } 
-//    playPause() {
-//            if (this.timeOut !=='Null') { //verifie l'existence de timeOut
-//                this.timeOut = 'Null';
-//                clearInterval(this.timer);
-//            this.timer = setInterval(this.suivant.bind(this),5000);
-//                document.getElementById("playPause").textContent = "";
-//                document.getElementById("playPause").textContent = "Stop";
-//                this.suivant();
-//            }else if(this.timer){ //relance le timer de zero
-//                clearInterval(this.timer);
-//                this.timer = "Null";
-//                this.timeOut = 0; //pour faire la vérif entre play et pause (affichage du btn)
-//                document.getElementById("playPause").textContent = "";
-//                document.getElementById("playPause").textContent = "Play";
-//            }
-//            
-//    }
      playPause() {
-            if (this.timer > 0) { 
-                this.stop();                
-            }else { 
-                this.start();
-                this.suivant();
-            }
-            
+        if (this.timer > 0) { 
+            this.stop();                
+        }else { 
+            this.start();
+            this.suivant();
+        }           
     }
-    
 }
 
 var ObjDiaporama = new Diaporama();

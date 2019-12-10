@@ -109,6 +109,8 @@ var booking = {
             lastName.css({display: "none"});
             firstName.css({display: "none"});
             canvas.css({display: "none"});
+            $('#rent').css({display: "none"});
+            $('#timer').css({display: "none"});
             ObjCanvas.clearAll(canvas);
             booking.start();
         }   

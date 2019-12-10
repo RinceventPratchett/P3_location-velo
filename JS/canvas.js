@@ -2,14 +2,18 @@
     required index.hmtl + 
  */
 
-let clickX = new Array();   //definit les array qui contiendront la position du click et le mouvement
-let clickY = new Array();
-let clickDrag = new Array();
-let effacer = $('#erase'); //boutton du panneau d'information
+//let clickX = new Array();   //definit les array qui contiendront la position du click et le mouvement
+//let clickY = new Array();
+//let clickDrag = new Array();
+//let effacer = $('#erase'); //boutton du panneau d'information
 
 class Canvas {
     
     constructor(cible) { //cible est type obj contenant le canvas html 
+        this.clickX = new Array();   //definit les array qui contiendront la position du click et le mouvement
+        this.clickY = new Array();
+        this.clickDrag = new Array();
+        this.effacer = $('#erase'); //boutton du panneau d'information
         this.paint = false; //pour pouvoir basculer en mode écriture 
         this._canvas = cible; 
         this.context = cible[0].getContext('2d');  //index du canvas indispensable pour appliquer le context qui fournit le contexte de rendu 2D pour la surface de dessin     
@@ -19,8 +23,8 @@ class Canvas {
             var mouseY = e.pageY - this.offsetTop;
             
             that.paint = true; // bascule la valeur de paint
-            cible.val("ok"); //pour authoriser la reservation de vélo
-            cible.removeClass("hilight"); //si le champ etait hilighted   
+            that._canvas.val("ok"); //pour authoriser la reservation de vélo
+            that._canvas.removeClass("hilight"); //si le champ etait hilighted   
             that.addClick(mouseX, mouseY, false); //pour retourner les positions de la souris dans le canvas.
             that.redraw();     //dessine les mouvements enregistrés en donnant le type de crayon/la couleur/l'épaisseur
         });
@@ -49,8 +53,8 @@ class Canvas {
             var mouseY = e.originalEvent.changedTouches[0].pageY - $(this).offset().top;
             
             that.paint = true; //on laisse écrire
-            cible.val("ok"); //pour authoriser la reservation de vélo
-            cible.removeClass("hilight"); //si le champ etait hilighted   
+            that._canvas.val("ok"); //pour authoriser la reservation de vélo
+            that._canvas.removeClass("hilight"); //si le champ etait hilighted   
             that.addClick(mouseX, mouseY, false); //appel de la méthode addClick qui enregistre les poistions
             that.redraw();
         });
@@ -74,16 +78,16 @@ class Canvas {
             //alert('touch end');
         });
          
-        effacer.click(function () {    
+        this.effacer.click(function () {    
            that.clearAll();
         });
     }
 
     clearAll() {
         this.context.clearRect(0, 0, this._canvas.width(), this._canvas.height()); // utilisation du width Jquery pour définir la largeur ->ctx.clearRect(x, y, largeur, hauteur);
-        clickX = new Array();
-        clickY = new Array();
-        clickDrag = new Array();
+        this.clickX = new Array();
+        this.clickY = new Array();
+        this.clickDrag = new Array();
         this.paint = false;
         this._canvas.val("");
     }
@@ -91,36 +95,36 @@ class Canvas {
         this.context.strokeStyle = "#222222"; //dessine le chemin actuel ou donné avec le style de trait
         this.context.lineJoin = "round"; //détermine la forme à utiliser pour joindre deux segments de ligne à leur intersection
         this.context.lineWidth = 2; 
-        for(var i=0; i < clickX.length; i++) {		
+        for(var i=0; i < this.clickX.length; i++) {		
             this.context.beginPath(); //La méthode CanvasRenderingContext2D.beginPath() de l'API Canvas 2D permet de commencer un nouveau chemin en vidant la liste des sous-chemins.
-            if(clickDrag[i] && i){  
-                this.context.moveTo(clickX[i-1], clickY[i-1]); //déplace le point de départ d'un nouveau sous-chemin vers les coordonnées (x, y).
+            if(this.clickDrag[i] && i){  
+                this.context.moveTo(this.clickX[i-1], this.clickY[i-1]); //déplace le point de départ d'un nouveau sous-chemin vers les coordonnées (x, y).
             }else{ //The CanvasRenderingContext2D.moveTo() method of the Canvas 2D API begins a new sub-path at the point specified by the given (x, y) coordinates.
-                this.context.moveTo(clickX[i]-1, clickY[i]); 
+                this.context.moveTo(this.clickX[i], this.clickY[i]); 
             }
-            this.context.lineTo(clickX[i], clickY[i]); //connecte le dernier point du sous-chemin en cours aux coordonnées x, y spécifiée
+            this.context.lineTo(this.clickX[i], this.clickY[i]); //connecte le dernier point du sous-chemin en cours aux coordonnées x, y spécifiée
             this.context.closePath(); // provoque le retour du stylo au point de départ du sous-traçé courant. 
             this.context.stroke(); // dessine le chemin actuel ou donné avec le style de trait actuel 
         }        
     }
     addClick(x, y, dragging) { //fonction qui déclenche l'enregistrement des positions 
-        clickX.push(x);
-        clickY.push(y);
-        clickDrag.push(dragging); //dragging est un booleen qui recoit sa valeur au click/touch et au relachement
+        this.clickX.push(x);
+        this.clickY.push(y);
+        this.clickDrag.push(dragging); //dragging est un booleen qui recoit sa valeur au click/touch et au relachement
     }
     
     resizeCanvas(){
-        let canvasDOM = $('#canvas');
+        //let canvasDOM = $('#canvas');
         let largeurwidth = $("body").width();
 
         if (largeurwidth <= 900) {
-            canvasDOM.removeAttr('width');
-            canvasDOM.removeAttr('height');
-            canvasDOM.attr({height:115, width:200});
+            this._canvas.removeAttr('width');
+            this._canvas.removeAttr('height');
+            this._canvas.attr({height:115, width:200});
         }else{
-            canvasDOM.removeAttr('width');
-            canvasDOM.removeAttr('height');
-            canvasDOM.attr({height:165, width:300});
+            this._canvas.removeAttr('width');
+            this._canvas.removeAttr('height');
+            this._canvas.attr({height:165, width:300});
         }
     };
 }
