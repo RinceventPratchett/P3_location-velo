@@ -226,7 +226,7 @@ canvas{
     #map{
         height: 22.5rem;
         width: auto;
-        margin-bottom: 5px;
+        margin-bottom: 0.5%;
     }
     #billboard{
         width: auto;
