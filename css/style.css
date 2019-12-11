@@ -225,8 +225,8 @@ canvas{
     }
     #map{
         height: 22.5rem;
-        width: auto;
-        margin-bottom: 0.5%;
+        width: 98% !important;
+        margin-bottom: 1%;
     }
     #billboard{
         width: auto;
@@ -255,7 +255,7 @@ canvas{
         font-size: 1rem;
     }    
     #map{
-        width: auto;
+        width: 100% !important;
     }
     .diaporama{
         height: 28.5rem;
