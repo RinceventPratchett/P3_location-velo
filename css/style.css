@@ -29,7 +29,8 @@ header{
     color: white;
     padding: 2.5vw;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    font-family: "Roboto-Bold", sans-serif;
 }
 /*--------------------------------------------------------------------------------------------
                 slider
@@ -43,7 +44,7 @@ header{
     align-items: center;
     justify-content: center;
     perspective: 800px;
-    height: 26rem;
+    height: 23rem;
 }
 .mySlides{
     transition: all 1.5s ease-out;
@@ -213,7 +214,7 @@ canvas{
 /*-------------------------------------------Queries----------------------------------------*/
 @media all and (min-width: 901px) and (max-width: 1530px){
     .diaporama {
-        height: 23.25rem;
+        height: 24rem;
     }
 }
 
@@ -224,13 +225,13 @@ canvas{
     }
     #map{
         height: 22.5rem;
-        width: 98% !important;
+        width: 98%;
     }
     #billboard{
         width: auto;
     }
     .diaporama{
-        height: 26.25rem;
+        height: 27rem;
     }  
     label {
         height: 170px;
