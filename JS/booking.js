@@ -3,13 +3,8 @@
  * 
  *
  */
-
-//creation de l'objet booking 
 class Booking{
     constructor(){
-        this.init();
-    }
-    init() {
         //code à éxécuter au chargement de la page
         var that = this; //pour garder le contexte dans la fonction enfant
         this.resume = $("#resume");
@@ -22,6 +17,14 @@ class Booking{
         $("#buttonResa").click(function () {
             that.ResaButtonOnClick();
         });
+        ObjCanvas.resizeCanvas(); //appelle l'objet canvas créer dans canvas.js et l'adapte à la bonne taille
+        this.resume.empty();
+        if (this.params.timer === undefined || this.params.timer === false) {
+                that.resume.html("en attente de réservation");
+        } else {
+            this.resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : "
+            + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
+    }
     }
     start() { //méthode pour démarer le booking
         $(".timer").css({display: "block"});//fait apparaitre le timer
@@ -132,14 +135,3 @@ class Booking{
 }
 
 var ObjBooking = new Booking;
-
-$(document).ready(function () {
-    ObjCanvas.resizeCanvas(); //appelle l'objet canvas créer dans canvas.js
-    ObjBooking.resume.empty();
-    if (ObjBooking.params.timer === undefined || ObjBooking.params.timer === false) {
-        ObjBooking.resume.html("en attente de réservation");
-    } else {
-        ObjBooking.resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : "
-                + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
-    }
-});

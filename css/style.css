@@ -100,7 +100,7 @@ main #feature {
 }
 #map{
     height: 30rem;
-    max-width: 98%;
+    width: 98%;
     margin-left: 1%;
     margin-right: 1%;
     border-radius: 5px;
@@ -226,6 +226,7 @@ canvas{
     #map{
         height: 22.5rem;
         width: 98%;
+        margin-bottom: 5px;
     }
     #billboard{
         width: auto;

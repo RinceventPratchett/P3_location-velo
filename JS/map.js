@@ -2,11 +2,8 @@
  * 
  *Required ajax.js 
  */
-
-
-
 class MyMap {
-    constructor() {
+    constructor() {        
         this.map = L.map('map', {gestureHandling: true}).setView([45.76, 4.85], 13);
         this.markers = L.markerClusterGroup(); //initialise le cluster des markers
         this.icons = L.Icon.extend({
@@ -16,6 +13,11 @@ class MyMap {
                 popupAnchor: [-3, -76]
             }
         });
+        var that = this;
+        ajaxGet(url, function (detailsStation) {
+            that.successAjax(detailsStation); //function qui récupère les info de l'api.
+        });
+        this.init();
     }
     init() {
         L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -25,10 +27,9 @@ class MyMap {
             id: 'mapbox.streets',
             accessToken: 'pk.eyJ1Ijoib2Nwcm9qZWN0NjkiLCJhIjoiY2sya2kzeWZpMTRnczNubWw5ZWNpN2pmYyJ9.oxsBCTb68dqIZhCi_2pySw'
         }).addTo(this.map);
-
-        this.greenIcon = new NewMap.icons({iconUrl: '../images/leaf-green.png'});
-        this.redIcon = new NewMap.icons({iconUrl: '../images/leaf-red.png'});
-        this.orangeIcon = new NewMap.icons({iconUrl: '../images/leaf-orange.png'});
+        this.greenIcon = new this.icons({iconUrl: '../images/leaf-green.png'});
+        this.redIcon = new this.icons({iconUrl: '../images/leaf-red.png'});
+        this.orangeIcon = new this.icons({iconUrl: '../images/leaf-orange.png'});
 
         this.map.addEventListener("click", function () {
             $("#billboard").css({display: "none"}); //pour effacer le panneau lors d'un click sur la map 
@@ -65,7 +66,7 @@ class MyMap {
             });
             mapObj.markers.addLayer(marker); //pour ajouter les marker au cluster.
         });//end foreach			
-        this.markers.addTo(NewMap.map);
+        this.markers.addTo(this.map);
         return true;
     }
     markerClick(station) {
@@ -117,10 +118,5 @@ class MyMap {
         }
     }
 }
-;
-var NewMap = new MyMap();
-NewMap.init(); //pour afficher la map définit.
 
-ajaxGet(url, function (detailsStation) {
-    NewMap.successAjax(detailsStation); //function qui récupère les info de l'api.
-});
+var NewMap = new MyMap();
