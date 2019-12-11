@@ -15,30 +15,34 @@ class Diaporama {
         this.infosBtnGauche();
     }
     init() {
+        var that = this;
         document.getElementById("playPause").addEventListener("click", function () {
-            ObjDiaporama.playPause();
+            that.playPause();
         });
         this.label[0].style.display = "flex";
         this.start();
     }
     // Méthode qui récupére les touches du clavier et actionne le diaporama en fonction de la touche
     infosClavier(e) {
+        var that = this;
         if (e.keyCode === 39) {
-            document.addEventListener("keydown", ObjDiaporama.suivant()); // Appui sur la touche =>
+            document.addEventListener("keydown", that.suivant()); // Appui sur la touche =>
         } else if (e.keyCode === 37) {
-            document.addEventListener("keydown", ObjDiaporama.precedent()); // Appui sur la touche <=
+            document.addEventListener("keydown", that.precedent()); // Appui sur la touche <=
         }
     }
     infosBtnDroit() {
+        var that = this;
         $("#btnDroit").click(function () {
-            ObjDiaporama.suivant();
-            ObjDiaporama.start();
+            that.suivant();
+            that.start();
         });
     }
     infosBtnGauche() {
+        var that = this;
         $('#btnGauche').click(function () {
-            ObjDiaporama.precedent();
-            ObjDiaporama.start();
+            that.precedent();
+            that.start();
         });
     }
     start() {
