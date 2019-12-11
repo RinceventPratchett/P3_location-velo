@@ -10,17 +10,14 @@ class Diaporama {
         //Attach a handler to an event for the elements.
         this.items = document.getElementsByClassName("mySlides"); // Attribut de sélection des figures;;
         this.label = document.getElementsByTagName("label");
-        this.init();
-        this.infosBtnDroit();
-        this.infosBtnGauche();
-    }
-    init() {
         var that = this;
         document.getElementById("playPause").addEventListener("click", function () {
             that.playPause();
         });
         this.label[0].style.display = "flex";
         this.start();
+        this.infosBtnDroit();
+        this.infosBtnGauche();
     }
     // Méthode qui récupére les touches du clavier et actionne le diaporama en fonction de la touche
     infosClavier(e) {
