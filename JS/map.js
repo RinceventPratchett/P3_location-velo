@@ -56,6 +56,7 @@ class MyMap {
                 color = mapObj.orangeIcon;
             } else if (statutStation === 'CLOSED' || dispo === 0) {
                 color = mapObj.redIcon;
+                
             }
             var marker = L.marker([coordLat, coordLng], {icon: color});
             marker.stationData = station;
@@ -89,13 +90,15 @@ class MyMap {
             $(".nameStation").append(station.name);
             $(".address").css({display: "flex"});
             $(".address").append("adresse : " + station.address);
-            $(".dispo").css({display: "flex"});
-            $(".dispo").append(station.available_bikes + " vélo'v disponible(s)");
             document.getElementById("buttonResa").addEventListener("click", function () {     
                 station.available_bikes --;
-                $(".dispo").empty();
+                $(".dispo").empty();            
                 $(".dispo").append(station.available_bikes + " vélo'v disponible(s)");
-            });
+                station.available_bikes ++; //pour rendre la valeur aux autres stations lors d'un clic sur son marqueur               
+            }); 
+            $(".dispo").css({display: "flex"});
+            $(".dispo").empty();            
+            $(".dispo").append(station.available_bikes + " vélo'v disponible(s)");
             $(".stationnement").css({display: "flex"});
             $(".stationnement").append(station.available_bike_stands + " place(s) restante(s)");
             if (station.available_bikes > 0) { //ouverture du formulaire de resa
