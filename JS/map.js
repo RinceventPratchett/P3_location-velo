@@ -94,7 +94,7 @@ class MyMap {
                 station.available_bikes --;
                 $(".dispo").empty();            
                 $(".dispo").append(station.available_bikes + " vélo'v disponible(s)");
-                station.available_bikes ++; //pour rendre la valeur aux autres stations lors d'un clic sur son marqueur               
+                station.available_bikes ++; //pour remettre le stock réel de vélo lors d'un nouveau clik sur un marker               
             }); 
             $(".dispo").css({display: "flex"});
             $(".dispo").empty();            
