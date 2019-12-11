@@ -33,7 +33,7 @@ class Booking{
         this.resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : "  //donne le résumé à la page html
                 + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
     }
-    stop() { //lorsque le timer se termine ou q'une nouvell résa est lancée
+    stop() { //lorsque le timer se termine ou q'une nouvelle résa est lancée
         clearInterval(this.loop);
         this.params.timer = false; //pour supprimer la valeur du timer en cours.
         $("#firstName").css({display: "block"}); //on fait reapparaitre le champ Nom et prénom pour une nouvelle réservation.

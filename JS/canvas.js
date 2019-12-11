@@ -14,7 +14,6 @@ class Canvas {
         var that = this; //pour pouvoir utiliser le this venant du constructeur dans les fonctions enfant
         this._canvas.mousedown(function (e) {
             var mouseX = e.pageX - this.offsetLeft;
-            debugger;
             var mouseY = e.pageY - this.offsetTop;
             that.paint = true; // bascule la valeur de paint
             that._canvas.val("ok"); //pour authoriser la reservation de vélo
@@ -65,6 +64,7 @@ class Canvas {
         this.effacer.click(function () {    //boutton erase du DOM
             that.clearAll();
         });
+        this.resizeCanvas();
         $(window).resize(function () {
             that.resizeCanvas(); //pour recharger le canvas en foncyion de la width du viewport
         });

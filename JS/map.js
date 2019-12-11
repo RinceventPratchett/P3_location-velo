@@ -14,7 +14,7 @@ class MyMap {
             }
         });
         var that = this;
-        ajaxGet(url, function (detailsStation) {
+        ajaxGet(url, function(detailsStation) {
             that.successAjax(detailsStation); //function qui récupère les info de l'api.
         });
         this.init();
@@ -44,7 +44,7 @@ class MyMap {
      */
     successAjax(detailsStation) { //l'utilisation de var permet l'appel du contenu dans toute la fonction
         var details = JSON.parse(detailsStation);
-        var mapObj = this; // on garde le context pour la callback du foreach			
+        var mapObj = this; // on garde le context pour la callback du foreach	
         details.forEach(function (station) { //pour récupérer les détail de chaque station
             var coordLat = station.position.lat;
             var coordLng = station.position.lng;
@@ -91,6 +91,11 @@ class MyMap {
             $(".address").append("adresse : " + station.address);
             $(".dispo").css({display: "flex"});
             $(".dispo").append(station.available_bikes + " vélo'v disponible(s)");
+            document.getElementById("buttonResa").addEventListener("click", function () {     
+                station.available_bikes --;
+                $(".dispo").empty();
+                $(".dispo").append(station.available_bikes + " vélo'v disponible(s)");
+            });
             $(".stationnement").css({display: "flex"});
             $(".stationnement").append(station.available_bike_stands + " place(s) restante(s)");
             if (station.available_bikes > 0) { //ouverture du formulaire de resa
