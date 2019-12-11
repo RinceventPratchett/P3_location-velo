@@ -253,10 +253,10 @@ canvas{
         font-size: 1rem;
     }    
     #map{
-        width: 100% !important;
+        width: 100%;
     }
     .diaporama{
-        height: 28rem;
+        height: 28.5rem;
 
     }
     #feature .button {
