@@ -24,7 +24,7 @@ class Booking{
         } else {
             this.resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : "
             + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
-    }
+        }
     }
     start() { //méthode pour démarer le booking
         $(".timer").css({display: "block"});//fait apparaitre le timer
