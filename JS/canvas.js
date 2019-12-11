@@ -1,7 +1,7 @@
 /*              
  required index.hmtl + booking.js + map.js + ajax.js
- */
 
+ */
 class Canvas {
     constructor(cible) { //cible est type obj contenant le canvas html 
         this.clickX = new Array();   //definit les array qui contiendront la position du click et le mouvement
@@ -14,6 +14,7 @@ class Canvas {
         var that = this; //pour pouvoir utiliser le this venant du constructeur dans les fonctions enfant
         this._canvas.mousedown(function (e) {
             var mouseX = e.pageX - this.offsetLeft;
+            debugger;
             var mouseY = e.pageY - this.offsetTop;
             that.paint = true; // bascule la valeur de paint
             that._canvas.val("ok"); //pour authoriser la reservation de vélo
@@ -36,7 +37,7 @@ class Canvas {
         // Evénements Tactiles
         //on clic sur le tactile
         this._canvas.on("touchstart", function (e) { //on = addEventListener onclick en Jquery !
-            e.preventDefault(); //preventDefault pour stoper la propagation de l'event.
+            e.preventDefault(); //preventDefault pour annuler le comportmentr de base
             var mouseX = e.originalEvent.changedTouches[0].pageX - $(this).offset().left; //méthode JQ qui detecte l'emplacement du doigt sur le canvas au start 
             var mouseY = e.originalEvent.changedTouches[0].pageY - $(this).offset().top;
             that.paint = true; //on laisse écrire
@@ -63,6 +64,9 @@ class Canvas {
         });
         this.effacer.click(function () {    //boutton erase du DOM
             that.clearAll();
+        });
+        $(window).resize(function () {
+            that.resizeCanvas(); //pour recharger le canvas en foncyion de la width du viewport
         });
     }
     clearAll() {
@@ -96,7 +100,7 @@ class Canvas {
     }
     resizeCanvas() {
         //let canvasDOM = $('#canvas');
-        let largeurwidth = $("body").width();
+        var largeurwidth = $("body").width();
 
         if (largeurwidth <= 900) {
             this._canvas.removeAttr('width');
@@ -109,10 +113,6 @@ class Canvas {
         }
     }
 }
-var ObjCanvas = new Canvas($('canvas'));
 
-$(window).resize(function () {
-    ObjCanvas.resizeCanvas();
-});
-
+let ObjCanvas = new Canvas($('canvas'));
 

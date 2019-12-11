@@ -21,16 +21,20 @@ class Diaporama {
     }
     // Méthode qui récupére les touches du clavier et actionne le diaporama en fonction de la touche
     infosClavier(e) {
-        var that = this;
         if (e.keyCode === 39) {
-            document.addEventListener("keydown", that.suivant()); // Appui sur la touche =>
+            document.addEventListener("keydown", this.suivant()); // Appui sur la touche =>
+            clearInterval(this.timer);
+            this.timer = setInterval(this.suivant.bind(this), 5000);
+            
         } else if (e.keyCode === 37) {
-            document.addEventListener("keydown", that.precedent()); // Appui sur la touche <=
+            document.addEventListener("keydown", this.precedent()); // Appui sur la touche <=
+            clearInterval(this.timer);
+            this.timer = setInterval(this.suivant.bind(this), 5000);
         }
     }
     infosBtnDroit() {
         var that = this;
-        $("#btnDroit").click(function () {
+        $("#btnDroit").click(function () { //equivalence en Jquery de addEventListener
             that.suivant();
             that.start();
         });

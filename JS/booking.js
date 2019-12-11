@@ -20,7 +20,7 @@ class Booking{
         ObjCanvas.resizeCanvas(); //appelle l'objet canvas créer dans canvas.js et l'adapte à la bonne taille
         this.resume.empty();
         if (this.params.timer === undefined || this.params.timer === false) {
-                that.resume.html("en attente de réservation");
+                this.resume.html("en attente de réservation");
         } else {
             this.resume.html($('#firstName').val() + " " + $('#lastName').val() + " a 1 velo reservé station : "
             + $("#id_station").val() + '  -  ' + '<span class="timer"></span>' + " restante");
@@ -91,7 +91,7 @@ class Booking{
         setState(lastName, lastName.val() === "");
         setState(firstName, firstName.val() === "");
         setState(canvas, canvas.val() === "");
-        let shouldBook = false;
+        var shouldBook = false;
 
         if (hasError) {
             alert('les champs nom,prénom et signature sont indispensables pour créer une réservation');
@@ -134,4 +134,4 @@ class Booking{
     }
 }
 
-var ObjBooking = new Booking;
+let ObjBooking = new Booking;
