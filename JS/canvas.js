@@ -102,7 +102,7 @@ class Canvas {
         //let canvasDOM = $('#canvas');
         var largeurwidth = $("body").width();
 
-        if (largeurwidth <= 900) {
+        if (largeurwidth < 1024) {
             this._canvas.removeAttr('width');
             this._canvas.removeAttr('height');
             this._canvas.attr({height: 115, width: 200});
