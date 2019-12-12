@@ -90,12 +90,10 @@ class MyMap {
             $(".nameStation").append(station.name);
             $(".address").css({display: "flex"});
             $(".address").append("adresse : " + station.address);
-            document.getElementById("buttonResa").addEventListener("click", function () {     
-                station.available_bikes --;
-                $(".dispo").empty();            
-                $(".dispo").append(station.available_bikes + " vélo'v disponible(s)");
-                station.available_bikes ++; //pour remettre le stock réel de vélo lors d'un nouveau clik sur un marker               
-            }); 
+            document.getElementById("buttonResa").addEventListener("click", function () {
+                $(".dispo").empty();   
+                $(".dispo").append( (station.available_bikes-1) + " vélo'v disponible(s)");
+            });
             $(".dispo").css({display: "flex"});
             $(".dispo").empty();            
             $(".dispo").append(station.available_bikes + " vélo'v disponible(s)");
