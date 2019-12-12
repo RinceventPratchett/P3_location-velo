@@ -27,9 +27,9 @@ class MyMap {
             id: 'mapbox.streets',
             accessToken: 'pk.eyJ1Ijoib2Nwcm9qZWN0NjkiLCJhIjoiY2sya2kzeWZpMTRnczNubWw5ZWNpN2pmYyJ9.oxsBCTb68dqIZhCi_2pySw'
         }).addTo(this.map);
-        this.greenIcon = new this.icons({iconUrl: '../images/leaf-green.png'});
-        this.redIcon = new this.icons({iconUrl: '../images/leaf-red.png'});
-        this.orangeIcon = new this.icons({iconUrl: '../images/leaf-orange.png'});
+        this.greenIcon = new this.icons({iconUrl: 'images/leaf-green.png'});
+        this.redIcon = new this.icons({iconUrl: 'images/leaf-red.png'});
+        this.orangeIcon = new this.icons({iconUrl: 'images/leaf-orange.png'});
 
         this.map.addEventListener("click", function () {
             $("#billboard").css({display: "none"}); //pour effacer le panneau lors d'un click sur la map 
