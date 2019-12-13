@@ -23,13 +23,11 @@ class Diaporama {
     infosClavier(e) {
         if (e.keyCode === 39) {
             document.addEventListener("keydown", this.suivant()); // Appui sur la touche =>
-            clearInterval(this.timer);
-            this.timer = setInterval(this.suivant.bind(this), 5000);
+            this.start();
             
         } else if (e.keyCode === 37) {
             document.addEventListener("keydown", this.precedent()); // Appui sur la touche <=
-            clearInterval(this.timer);
-            this.timer = setInterval(this.suivant.bind(this), 5000);
+            this.start();
         }
     }
     infosBtnDroit() {
