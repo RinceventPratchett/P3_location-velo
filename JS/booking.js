@@ -6,7 +6,7 @@
 class Booking{
     constructor(){
         //code à éxécuter au chargement de la page
-        var that = this; //pour garder le contexte dans la fonction enfant
+        var that = this; //pour garder le contexte dans la fonction callback
         this.resume = $("#resume");
         this.identity();
         if (sessionStorage.getItem('timer')) { //pour vérifier la présence du timer en cache sessionStorage
@@ -17,7 +17,6 @@ class Booking{
         $("#buttonResa").click(function () {
             that.ResaButtonOnClick();
         });
-        ObjCanvas.resizeCanvas(); //appelle l'objet canvas créer dans canvas.js et l'adapte à la bonne taille
         this.resume.empty();
         if (this.params.timer === undefined || this.params.timer === false) {
                 this.resume.html("en attente de réservation");
