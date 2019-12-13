@@ -86,7 +86,7 @@ class Canvas {
             if (this.clickDrag[i] && i) {
                 this.context.moveTo(this.clickX[i - 1], this.clickY[i - 1]); //déplace le point de départ d'un nouveau sous-chemin vers les coordonnées (x, y).
             } else { //The CanvasRenderingContext2D.moveTo() method of the Canvas 2D API begins a new sub-path at the point specified by the given (x, y) coordinates.
-                this.context.moveTo(this.clickX[i], this.clickY[i]);
+                this.context.moveTo(this.clickX[i]-1, this.clickY[i]);//pour afficher le premier point au clik.
             }
             this.context.lineTo(this.clickX[i], this.clickY[i]); //connecte le dernier point du sous-chemin en cours aux coordonnées x, y spécifiée
             this.context.closePath(); // provoque le retour du stylo au point de départ du sous-traçé courant. 
