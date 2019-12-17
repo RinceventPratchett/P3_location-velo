@@ -67,6 +67,7 @@ class Canvas {
         this.resizeCanvas();
         $(window).resize(function () {
             that.resizeCanvas(); //pour recharger le canvas en foncyion de la width du viewport
+            that.redraw();
         });
     }
     clearAll() {
